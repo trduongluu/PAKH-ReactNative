@@ -27,7 +27,6 @@ const ReceiveStack = createStackNavigator({
     headerTitle: 'Received',
     headerTitleStyle: {
       textAlign: 'center',
-      alignSelf: 'center'
     }
   }
 });
