@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {sendStyle} from '../LayoutStyle';
 
 export default class Send extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#0057AA',
+    },
+    headerRight: <Icon name="paper-plane" color='white' size={24} style={{marginRight: 15}} />,
+    headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
+  };
+
     render() {
       return (
         <View style={styles.container}>

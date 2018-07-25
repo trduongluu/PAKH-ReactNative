@@ -7,8 +7,12 @@ import Receive from "./ReceiveRQ/Receive";
 import Send from "./SendRQ/Send";
 import Search from "./Search/Search";
 import Setting from "./Setting/Setting";
-
-import khung from './LayoutStyle';
+import Process from './ReceiveRQ/Process';
+import Profile from './Setting/Profile';
+import MakeRQ from './SendRQ/MakeRQ';
+import Details from './Search/Details';
+import Results from './Search/Results';
+import Password from './Setting/Password';
 
 console.disableYellowBox = true;
 
@@ -24,9 +28,9 @@ const ReceiveStack = createStackNavigator({
   Receive: {
     screen: Receive,
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#0057AA',
-      },
+      // headerStyle: {
+      //   backgroundColor: '#0057AA',
+      // },
       // title: 'Receive',
       // headerTintColor: '#000',
       // headerTitleStyle: {
@@ -35,45 +39,29 @@ const ReceiveStack = createStackNavigator({
       //   textAlign: 'center',
       //   flex: 1,
       // },
-      headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} />,
-      headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
+      // headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} />,
+      // headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
     }
-  }
+  },
+  Process: { screen: Process },
+  Profile: { screen: Profile }
 });
 
 const SendStack = createStackNavigator({
-  Send: {
-    screen: Send,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#0057AA',
-      },
-      headerRight: <Icon name="paper-plane" color='white' size={24} style={{marginRight: 15}} />,
-      headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
-    }
-  }
+  Send: { screen: Send },
+  MakeRQ: { screen: MakeRQ },
+  Details: { screen: Details }
 });
 
 const SearchStack = createStackNavigator({
-  Search: {
-    screen: Search,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#0057AA',
-      },
-    }
-  }
+  Search: { screen: Search },
+  Results: { screen: Results },
 });
 
 const SettingStack = createStackNavigator({
-  Setting: {
-    screen: Setting,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#0057AA',
-      },
-    }
-  }
+  Setting: { screen: Setting },
+  Profile: { screen: Profile },
+  Password: { screen: Password }
 });
 
 export const BottomTabNav = createBottomTabNavigator({
@@ -120,7 +108,10 @@ export const BottomTabNav = createBottomTabNavigator({
       tabBarVisible: true
     },
     tabBarOptions: {
-      activeTintColor: 'blue',
-      inactiveTintColor: 'grey'
+      activeTintColor: '#9CDCFF',
+      inactiveTintColor: '#fff',
+      style: {
+        backgroundColor: '#0057AA'
+      }
     }
 });

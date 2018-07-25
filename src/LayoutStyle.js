@@ -8,3 +8,23 @@ export const khung = StyleSheet.create({
         marginRight: 15
     }
 });
+
+export const loginStyle = StyleSheet.create({
+    abc: {}
+});
+
+export const receiveStyle = StyleSheet.create({
+    abc: {}
+});
+
+export const sendStyle = StyleSheet.create({
+    abc: {}
+});
+
+export const searchStyle = StyleSheet.create({
+    abc: {}
+});
+
+export const settingStyle = StyleSheet.create({
+    abc: {}
+});
