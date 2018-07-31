@@ -7,7 +7,8 @@ export default class Profile extends Component {
     headerStyle: {
       backgroundColor: '#0057AA',
     },
-    headerTitle: 'Profile'
+    headerTitle: 'Profile',
+    headerTitleStyle: { color: '#fff' }
   };
 
     render() {

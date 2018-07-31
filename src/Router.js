@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image, View, StyleSheet} from 'react-native'
-import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
+import {createBottomTabNavigator, createStackNavigator, createMaterialTopTabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Receive from "./ReceiveRQ/Receive";
-import Send from "./SendRQ/Send";
-import Search from "./Search/Search";
+import Receive from './ReceiveRQ/Receive';
+import Send from './SendRQ/Send';
+import Search from './Search/Search';
 import Setting from "./Setting/Setting";
 import Process from './ReceiveRQ/Process';
 import Profile from './Setting/Profile';
@@ -13,44 +13,58 @@ import MakeRQ from './SendRQ/MakeRQ';
 import Details from './Search/Details';
 import Results from './Search/Results';
 import Password from './Setting/Password';
+import Login from './Login/Login';
+import PhanCong from './ReceiveRQ/PhanCong';
+import DangXuly from './ReceiveRQ/DangXuly';
+import DaXuly from './ReceiveRQ/DaXuly';
 
 console.disableYellowBox = true;
 
 export default class Router extends React.Component{
   render() {
     return(
-      <BottomTabNav/>
+      <LoginStack/>
     );
   }
 }
 
+const TopbarTabs = createMaterialTopTabNavigator({
+  PhanCong: {
+    screen: PhanCong,
+    navigationOptions: { tabBarLabel: 'Phân công' }
+  },
+  DangXuly: {
+    screen: DangXuly,
+    navigationOptions: { tabBarLabel: 'Đang xử lý' }
+  },
+  DaXuly: {
+    screen: DaXuly,
+    navigationOptions: { tabBarLabel: 'Đã xử lí' }
+  }
+}, {
+  initialRouteName: 'PhanCong',
+  order: ['PhanCong', 'DangXuly', 'DaXuly'],
+  tabBarOptions: {
+    navigationOptions: { tabBarVisible: true },
+    style: { backgroundColor: '#0057AA' }
+  }
+});
+
 const ReceiveStack = createStackNavigator({
   Receive: {
     screen: Receive,
-    navigationOptions: {
-      // headerStyle: {
-      //   backgroundColor: '#0057AA',
-      // },
-      // title: 'Receive',
-      // headerTintColor: '#000',
-      // headerTitleStyle: {
-      //   fontWeight: '200',
-      //   color: '#2c38ff',
-      //   textAlign: 'center',
-      //   flex: 1,
-      // },
-      // headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} />,
-      // headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
-    }
+    // navigationOptions: {}
   },
   Process: { screen: Process },
-  Profile: { screen: Profile }
+  Profile: { screen: Profile },
+  TopbarTabs: { screen: TopbarTabs }
 });
 
 const SendStack = createStackNavigator({
   Send: { screen: Send },
   MakeRQ: { screen: MakeRQ },
-  Details: { screen: Details }
+  Details: { screen: Details },
+  TopbarTabs: { screen: TopbarTabs }
 });
 
 const SearchStack = createStackNavigator({
@@ -61,7 +75,8 @@ const SearchStack = createStackNavigator({
 const SettingStack = createStackNavigator({
   Setting: { screen: Setting },
   Profile: { screen: Profile },
-  Password: { screen: Password }
+  Password: { screen: Password },
+  Login: { screen: Login }
 });
 
 export const BottomTabNav = createBottomTabNavigator({
@@ -104,14 +119,20 @@ export const BottomTabNav = createBottomTabNavigator({
 }, {
     initialRouteName: 'Receive',
     order: ['Receive', 'Send', 'Search', 'Setting'],
-    navigationOptions: {
-      tabBarVisible: true
-    },
+    navigationOptions: { tabBarVisible: true },
     tabBarOptions: {
       activeTintColor: '#9CDCFF',
       inactiveTintColor: '#fff',
-      style: {
-        backgroundColor: '#0057AA'
-      }
+      style: { backgroundColor: '#0057AA' }
     }
+});
+
+export const LoginStack = createStackNavigator({
+  Login: {
+    screen: Login,
+  },
+  BottomTabNav: { screen: BottomTabNav }
+}, {
+  mode: 'modal',
+  headerMode: 'none'
 });

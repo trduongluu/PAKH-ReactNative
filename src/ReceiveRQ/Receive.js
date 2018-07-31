@@ -10,7 +10,7 @@ export default class Receive extends Component {
     },
     headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} 
     onPress={() => navigation.navigate('Profile')} />,
-    headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
+    headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
   });
 
     render() {

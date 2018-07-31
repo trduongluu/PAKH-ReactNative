@@ -7,7 +7,7 @@ export  default class Setting extends Component {
     headerStyle: {
       backgroundColor: '#0057AA',
     },
-    headerLeft: <Image style={{width: 96, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
+    headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
   };
 
     render() {
