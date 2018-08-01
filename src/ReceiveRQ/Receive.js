@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {receiveStyle} from '../LayoutStyle';
+import PhanCong from './PhanCong';
 
 export default class Receive extends Component {
   static navigationOptions =  ({navigation}) => ({
@@ -15,9 +16,7 @@ export default class Receive extends Component {
 
     render() {
       return (
-        <View style={styles.container}>
-          <Text>Receive</Text>
-        </View>
+        <PhanCong />
       );
     }
   }

@@ -4,14 +4,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {receiveStyle} from '../LayoutStyle';
 
 export default class PhanCong extends Component {
-  static navigationOptions =  ({navigation}) => ({
-    headerStyle: {
-      backgroundColor: '#0057AA',
-    },
-    headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} 
-    onPress={() => navigation.navigate('Profile')} />,
-    headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
-  });
+    // static navigationOptions =  ({navigation}) => ({
+    //     headerStyle: {
+    //       backgroundColor: '#0057AA',
+    //     },
+    //     headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} 
+    //     onPress={() => navigation.navigate('Profile')} />,
+    //     headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')} />
+    // });
 
     render() {
       return (

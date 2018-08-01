@@ -23,32 +23,10 @@ console.disableYellowBox = true;
 export default class Router extends React.Component{
   render() {
     return(
-      <LoginStack/>
+      <BottomTabNav/>
     );
   }
 }
-
-const TopbarTabs = createMaterialTopTabNavigator({
-  PhanCong: {
-    screen: PhanCong,
-    navigationOptions: { tabBarLabel: 'Phân công' }
-  },
-  DangXuly: {
-    screen: DangXuly,
-    navigationOptions: { tabBarLabel: 'Đang xử lý' }
-  },
-  DaXuly: {
-    screen: DaXuly,
-    navigationOptions: { tabBarLabel: 'Đã xử lí' }
-  }
-}, {
-  initialRouteName: 'PhanCong',
-  order: ['PhanCong', 'DangXuly', 'DaXuly'],
-  tabBarOptions: {
-    navigationOptions: { tabBarVisible: true },
-    style: { backgroundColor: '#0057AA' }
-  }
-});
 
 const ReceiveStack = createStackNavigator({
   Receive: {
@@ -56,15 +34,40 @@ const ReceiveStack = createStackNavigator({
     // navigationOptions: {}
   },
   Process: { screen: Process },
-  Profile: { screen: Profile },
-  TopbarTabs: { screen: TopbarTabs }
+  Profile: { screen: Profile }
+}, {
+  initialRouteName: 'Receive',
+  navigationOptions: {
+    // headerStyle: { backgroundColor: '#0057AA' }
+  }
+});
+
+const DangXLStack = createStackNavigator({
+  DangXuly: { screen: DangXuly },
+  Process: { screen: Process },
+  Profile: { screen: Profile }
+}, {
+  initialRouteName: 'DangXuly',
+  navigationOptions: {
+    // headerStyle: { backgroundColor: '#0057AA' }
+  }
+});
+
+const DaXLStack = createStackNavigator({
+  DaXuly: { screen: DangXuly },
+  Process: { screen: Process },
+  Profile: { screen: Profile }
+}, {
+  initialRouteName: 'DaXuly',
+  navigationOptions: {
+    // headerStyle: { backgroundColor: '#0057AA' }
+  }
 });
 
 const SendStack = createStackNavigator({
   Send: { screen: Send },
   MakeRQ: { screen: MakeRQ },
-  Details: { screen: Details },
-  TopbarTabs: { screen: TopbarTabs }
+  Details: { screen: Details }
 });
 
 const SearchStack = createStackNavigator({
@@ -79,14 +82,46 @@ const SettingStack = createStackNavigator({
   Login: { screen: Login }
 });
 
-export const BottomTabNav = createBottomTabNavigator({
-  Receive: {
+const TopbarTabs = createMaterialTopTabNavigator({
+  ReceiveStack: {
     screen: ReceiveStack,
+    navigationOptions: { tabBarLabel: 'Phân công' }
+  },
+  DangXLStack: {
+    screen: DangXLStack,
+    navigationOptions: { tabBarLabel: 'Đang xử lý' }
+  },
+  DaXLStack: {
+    screen: DaXLStack,
+    navigationOptions: { tabBarLabel: 'Đã xử lý' }
+  }
+}, {
+  initialRouteName: 'ReceiveStack',
+  order: ['ReceiveStack', 'DangXLStack', 'DaXLStack'],
+  tabBarOptions: {
+    navigationOptions: {
+      tabBarVisible: false,
+      // headerStyle: { backgroundColor: '#0057AA' },
+      // headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}} 
+      //               onPress={() => navigation.navigate('Profile')} />,
+      // headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
+    },
+    tabStyle: {
+      // padding: 20
+    },
+    style: { backgroundColor: '#0057AA' }
+  }
+});
+
+export const BottomTabNav = createBottomTabNavigator({
+  TopbarTabs: {
+    screen: TopbarTabs,
     navigationOptions: {
       tabBarLabel: 'Receive',
       tabBarIcon: ({tintColor}) => (
         <Icon name="briefcase" color={tintColor} size={24} />
-      )
+      ),
+      headerStyle: { backgroundColor: '#0057AA' }
     }
   },
   Send: {
@@ -117,14 +152,15 @@ export const BottomTabNav = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'Receive',
-    order: ['Receive', 'Send', 'Search', 'Setting'],
+    initialRouteName: 'TopbarTabs',
+    order: ['TopbarTabs', 'Send', 'Search', 'Setting'],
     navigationOptions: { tabBarVisible: true },
     tabBarOptions: {
       activeTintColor: '#9CDCFF',
       inactiveTintColor: '#fff',
       style: { backgroundColor: '#0057AA' }
-    }
+    },
+    headerMode: 'none'
 });
 
 export const LoginStack = createStackNavigator({
