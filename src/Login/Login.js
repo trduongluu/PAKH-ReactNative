@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, StatusBar, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {loginStyle} from '../LayoutStyle';
-import loginAPI from '../apiData';
+import DataAction from '../apiData';
 import LinearGradient from 'react-native-linear-gradient'
 
 export default class Login extends Component {
@@ -16,7 +16,7 @@ export default class Login extends Component {
     }
 
     login(user, pw){
-        loginAPI.userLogin(user, pw).then((response) => {
+        DataAction.userLogin(user, pw).then((response) => {
             // this.setState({
             //     pass: response.phone,
             // });

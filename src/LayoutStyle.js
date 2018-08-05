@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const khung = StyleSheet.create({
     toplogo: {
-        width: 96, height: 35, marginLeft: 25
+        width: 105, height: 35, marginLeft: 25
     },
     topicon: {
         marginRight: 15
@@ -78,7 +78,68 @@ export const loginStyle = StyleSheet.create({
 });
 
 export const receiveStyle = StyleSheet.create({
-    abc: {}
+    bground: {
+        flex: 1
+    },
+    rowbg: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        borderBottomWidth: 1
+    },
+    rowSubline: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    txtRQ: {
+        fontSize: 12,
+        color: 'white',
+        fontWeight: 'bold',
+        width: 200,
+        height: 35,
+        padding: 4
+    },
+    code_levelArea: {
+        flex: 1,
+        alignItems: 'flex-end',
+        padding: 2,
+        paddingRight: 5
+    },
+    txtCode: {
+        fontSize: 10,
+        color: 'white'
+    },
+    levelIcon: {
+        padding: 0,
+        marginLeft: 5
+    },
+    timeArea: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    usersArea: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
+    clockIcon: {
+        color: 'white',
+        padding: 2,
+        marginLeft: 5
+    },
+    txtTime: {
+        fontSize: 10,
+        color: 'white',
+        paddingBottom: 5
+    },
+    senderIcon: {
+        color: 'white',
+        padding: 2
+    },
+    txtSender: {
+        fontSize: 10,
+        color: 'white',
+        marginRight: 6
+    }
 });
 
 export const sendStyle = StyleSheet.create({
