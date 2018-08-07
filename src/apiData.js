@@ -11,8 +11,8 @@ var DataAction = {
         return fetch(url).then((res) => res.json());
     },
 
-    getReceiveRQ(user){
-        var url = `${apiReceiveRQ}pro_user=${user}`;
+    getReceiveRQ(){
+        var url = `${apiReceiveRQ}start_req_date=12-12-2017&end_req_date=05-08-2018&req_status=PHAN_CONG_XU_LY&pro_user=CHANHTC`;
         return fetch(url).then((res) => res.json());
     }
 };

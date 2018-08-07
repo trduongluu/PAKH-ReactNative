@@ -79,13 +79,30 @@ export const loginStyle = StyleSheet.create({
 
 export const receiveStyle = StyleSheet.create({
     bground: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+    },
+    Parea: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 0, left: 0, right: 0, bottom: 40,
+        position: 'absolute'
+    },
+    Pimage: {
+        width: 220,
+        height: 386
     },
     rowbg: {
         flex: 1,
-        backgroundColor: 'transparent',
-        borderBottomWidth: 1
+        backgroundColor: 'rgba(0,0,0,0.1)',
+        borderBottomWidth: 1,
+        borderColor: '#95afc0'
     },
+    blurAbsolute: {
+        position: "absolute",
+        top: 0, left: 0, bottom: 0, right: 0,
+      },
     rowSubline: {
         flex: 1,
         flexDirection: 'row'
