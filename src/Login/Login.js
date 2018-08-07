@@ -16,21 +16,21 @@ export default class Login extends Component {
     }
 
     login(user, pw){
-        DataAction.userLogin(user, pw).then((response) => {
-            // this.setState({
-            //     pass: response.phone,
-            // });
-            // alert('test', 'test');
-            if(user == '' || pw == ''){
-                Alert.alert('Lỗi', 'Hãy nhập thông tin đăng nhập!');
-            } else if(response.password == null) {
-                Alert.alert('Lỗi', 'Sai Username hoặc Password!');
-            } else if(response.password != '') {
-                this.props.navigation.navigate('Receive');
-            }
-        }).catch((error) => {
-            console.log(error)
-        });
+        if(user == '' || pw == ''){
+            Alert.alert('Lỗi', 'Hãy nhập thông tin đăng nhập!');
+        }
+        else {
+            DataAction.userLogin(user, pw).then((response) => {
+                console.log(JSON.stringify(response));
+                if(response.password == null) {
+                    Alert.alert('Lỗi', 'Sai Username hoặc Password!');
+                } else if(response.password != '') {
+                    this.props.navigation.navigate('BottomTabNav');
+                }
+            }).catch((error) => {
+                console.log(error)
+            });
+        }
     }
 
     render() {

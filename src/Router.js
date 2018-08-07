@@ -28,7 +28,7 @@ const headerConfig = {
 export default class Router extends React.Component{
   render() {
     return(
-      <BottomTabNav/>
+      <LoginStack/>
     );
   }
 }

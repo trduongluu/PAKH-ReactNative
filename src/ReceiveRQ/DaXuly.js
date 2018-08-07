@@ -61,7 +61,7 @@ export default class DaXuly extends Component {
         <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
           <View style={receiveStyle.Parea} >
-            <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')} blurRadius={4} />
+            <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')} />
           </View>
           <FlatList data={this.state.receiveRQ}
           renderItem={({item, index}) => {
