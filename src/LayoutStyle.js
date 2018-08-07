@@ -112,7 +112,7 @@ export const receiveStyle = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         width: 200,
-        height: 35,
+        height: 50,
         padding: 4
     },
     code_levelArea: {

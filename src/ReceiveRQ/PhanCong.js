@@ -24,7 +24,7 @@ class ItemLayout extends Component {
   render() {
     return(
       <View style={receiveStyle.bground} >
-        <View style={receiveStyle.rowbg} ref={(item) => this.renderItem = findNodeHandle(item)} >
+        <View style={receiveStyle.rowbg} >
           <View style={receiveStyle.rowSubline} >
             <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_content} tu {this.props.item.req_dep_code}</Text>
             <View style={receiveStyle.code_levelArea} >
@@ -43,12 +43,6 @@ class ItemLayout extends Component {
             </View>
           </View>
         </View>
-        <BlurView
-            style={receiveStyle.blurAbsolute}
-            viewRef={this.renderItem}
-            blurType="regular"
-            blurAmount={30}
-          />
       </View>
     );
   }
@@ -60,12 +54,13 @@ export default class PhanCong extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      receiveRQ: []
+      receiveRQ: [],
+      tabname: 'PHAN_CONG_XU_LY'
     }
   }
 
   componentDidMount(){
-    DataAction.getReceiveRQ().then((response) => {
+    DataAction.getReceiveRQ(this.state.tabname).then((response) => {
       this.setState({
         receiveRQ: response,
         isLoading: false
@@ -76,15 +71,15 @@ export default class PhanCong extends Component {
   }
 
     render() {
-      // console.log(this.state.receiveRQ);
       return (
         <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
           <View style={receiveStyle.Parea} >
-            <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')} blurRadius={4} />
+            <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')} />
           </View>
           <FlatList data={this.state.receiveRQ}
           renderItem={({item, index}) => {
+            // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`)
             return(
               <ItemLayout item={item} index={index} ></ItemLayout>
             );

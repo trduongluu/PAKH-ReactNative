@@ -1,4 +1,4 @@
-var ip = 'http://localhost:8080';       //IP config
+var ip = 'http://192.168.10.127:8080';       //IP config
 
 //List API
 var apiLogin = `${ip}/user?`;
@@ -11,8 +11,8 @@ var DataAction = {
         return fetch(url).then((res) => res.json());
     },
 
-    getReceiveRQ(){
-        var url = `${apiReceiveRQ}start_req_date=12-12-2017&end_req_date=05-08-2018&req_status=PHAN_CONG_XU_LY&pro_user=CHANHTC`;
+    getReceiveRQ(tabname){
+        var url = `${apiReceiveRQ}start_req_date=12-12-2017&end_req_date=05-08-2018&req_status=${tabname}&pro_user=CHANHTC`;
         return fetch(url).then((res) => res.json());
     }
 };
