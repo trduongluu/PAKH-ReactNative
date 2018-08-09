@@ -1,4 +1,4 @@
-var ip = 'http://192.168.10.147:9080';       //IP config
+var ip = 'http://14.160.91.174:8080';       //IP config
 
 //List API
 var apiLogin = `${ip}/user?`;

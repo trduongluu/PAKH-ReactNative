@@ -55,7 +55,8 @@ export default class PhanCong extends Component {
     this.state = {
       isLoading: true,
       receiveRQ: [],
-      tabname: 'PHAN_CONG_XU_LY'
+      tabname: 'PHAN_CONG_XU_LY',
+      // user: this.props.navigation.state.params.user
     }
   }
 

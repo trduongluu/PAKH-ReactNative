@@ -25,7 +25,7 @@ export default class Login extends Component {
                 if(response.password == null) {
                     Alert.alert('Lỗi', 'Sai Username hoặc Password!');
                 } else if(response.password != '') {
-                    this.props.navigation.navigate('BottomTabNav');
+                    this.props.navigation.navigate('BottomTabNav', {user: user});
                 }
             }).catch((error) => {
                 console.log(error)
@@ -66,7 +66,7 @@ export default class Login extends Component {
             </View>
             
             <TouchableOpacity style={loginStyle.buttonLogin}
-            onPress={() => {this.login("admin", "123456")}} >
+            onPress={() => {this.login(this.state.username, this.state.pass)}} >
                 <Text style={loginStyle.buttonText} >Đăng nhập</Text>
             </TouchableOpacity>
 
