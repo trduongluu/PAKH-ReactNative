@@ -66,7 +66,7 @@ export default class Login extends Component {
             </View>
             
             <TouchableOpacity style={loginStyle.buttonLogin}
-            onPress={() => {this.login(this.state.username, this.state.pass)}} >
+            onPress={() => {this.login("admin", "123456")}} >
                 <Text style={loginStyle.buttonText} >Đăng nhập</Text>
             </TouchableOpacity>
 

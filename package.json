@@ -7,10 +7,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "native-base": "^2.7.2",
     "react": "16.3.1",
     "react-native": "^0.55.4",
     "react-native-blur": "^3.2.2",
     "react-native-linear-gradient": "^2.4.0",
+    "react-native-modal": "^6.5.0",
+    "react-native-select-multiple": "^1.2.0",
+    "react-native-switch": "^1.5.0",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.6.2"
   },
