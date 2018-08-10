@@ -20,11 +20,13 @@ import DaXuly from './ReceiveRQ/DaXuly';
 
 console.disableYellowBox = true;
 
+// Config header màn hình trong stack
 const headerConfig = {
     headerTintColor: 'white',
     headerTitleStyle: {flex: 1, textAlign: 'center', alignItems: 'center'}
 }
 
+// Start screen here
 export default class Router extends React.Component {
     render() {
         return (
@@ -36,48 +38,46 @@ export default class Router extends React.Component {
     }
 }
 
-const SendStack = createStackNavigator({
-    Send: {screen: Send},
-    MakeRQ: {screen: MakeRQ, navigationOptions: headerConfig},
-    Details: {screen: Details, navigationOptions: headerConfig}
-});
-
+// Cụm search screens
 const SearchStack = createStackNavigator({
-    Search: {screen: Search},
-    Results: {screen: Results, navigationOptions: headerConfig},
+    Search: { screen: Search },
+    Results: { screen: Results, navigationOptions: headerConfig }
 });
 
+// Cụm setting screens
 const SettingStack = createStackNavigator({
-    Setting: {screen: Setting},
-    Profile: {screen: Profile, navigationOptions: headerConfig},
-    Password: {screen: Password, navigationOptions: headerConfig},
-    Logout: {screen: Login}
+    Setting: { screen: Setting },
+    Profile: { screen: Profile, navigationOptions: headerConfig },
+    Password: { screen: Password, navigationOptions: headerConfig },
+    Logout: { screen: Login }
 });
 
-const TopbarTabs = createMaterialTopTabNavigator({
+// Topbar trong tab Receive
+const ReceiveTopbar = createMaterialTopTabNavigator({
     Receive: {
         screen: Receive,
-        navigationOptions: {tabBarLabel: 'Phân công'}
+        navigationOptions: { tabBarLabel: 'Phân công' }
     },
     DangXuly: {
         screen: DangXuly,
-        navigationOptions: {tabBarLabel: 'Đang xử lý'}
+        navigationOptions: { tabBarLabel: 'Đang xử lý' }
     },
     DaXuly: {
         screen: DaXuly,
-        navigationOptions: {tabBarLabel: 'Đã xử lý'}
+        navigationOptions: { tabBarLabel: 'Đã xử lý' }
     }
 }, {
     initialRouteName: 'Receive',
     order: ['Receive', 'DangXuly', 'DaXuly'],
     tabBarOptions: {
-        style: {backgroundColor: '#0057AA'}
+        style: { backgroundColor: '#0057AA' }
     }
 });
 
+// Cụm receive screens
 const ReceiveStack = createStackNavigator({
-    TopbarTabs: {
-        screen: TopbarTabs,
+    ReceiveTopbar: {
+        screen: ReceiveTopbar,
         navigationOptions: ({navigation}) => ({
             headerStyle: {backgroundColor: '#0057AA'},
             headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}}
@@ -85,12 +85,42 @@ const ReceiveStack = createStackNavigator({
             headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')}/>
         })
     },
-    Process: {screen: Process, navigationOptions: headerConfig},
-    Profile: {screen: Profile, navigationOptions: headerConfig}
+    Process: { screen: Process, navigationOptions: headerConfig },
+    Profile: { screen: Profile, navigationOptions: headerConfig }
 }, {
-    initialRouteName: 'TopbarTabs'
+    initialRouteName: 'ReceiveTopbar'
 });
 
+// Topbar trong tab Send
+// const SendTopbar = createMaterialTopTabNavigator({
+//     Send: {
+//         screen: Send,
+//         navigationOptions: { tabBarLabel: 'Phân công' }
+//     },
+//     DangXuly: {
+//         screen: DangXulySend,
+//         navigationOptions: { tabBarLabel: 'Đang xử lý' }
+//     },
+//     DaXuly: {
+//         screen: DaXulySend,
+//         navigationOptions: { tabBarLabel: 'Đã xử lý' }
+//     }
+// }, {
+//     initialRouteName: 'Send',
+//     order: ['Send', 'DangXuly', 'DaXuly'],
+//     tabBarOptions: {
+//         style: { backgroundColor: '#0057AA' }
+//     }
+// });
+
+// Cụm send screens
+const SendStack = createStackNavigator({
+    Send: { screen: Send },
+    MakeRQ: { screen: MakeRQ, navigationOptions: headerConfig },
+    Details: { screen: Details, navigationOptions: headerConfig }
+});
+
+// Bottom bar tabs
 export const BottomTabNav = createBottomTabNavigator({
     Receive: {
         screen: ReceiveStack,
@@ -131,19 +161,20 @@ export const BottomTabNav = createBottomTabNavigator({
 }, {
     initialRouteName: 'Receive',
     order: ['Receive', 'Send', 'Search', 'Setting'],
-    navigationOptions: {tabBarVisible: true},
+    navigationOptions: { tabBarVisible: true },
     tabBarOptions: {
         activeTintColor: '#9CDCFF',
         inactiveTintColor: '#fff',
-        style: {backgroundColor: '#0057AA'}
+        style: { backgroundColor: '#0057AA' }
     }
 });
 
+// Config screens của toàn app
 export const LoginStack = createStackNavigator({
     Login: {
         screen: Login,
     },
-    BottomTabNav: {screen: BottomTabNav}
+    BottomTabNav: { screen: BottomTabNav }
 }, {
     mode: 'modal',
     headerMode: 'none'

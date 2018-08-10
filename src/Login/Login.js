@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, StatusBar, Alert} from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, StatusBar, Alert, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {loginStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
@@ -11,26 +11,35 @@ export default class Login extends Component {
         super(props);
         this.state = {
             username: '',
-            pass: ''
+            pass: '',
+            globUser: ''
         }
     }
-
+    
     login(user, pw){
         if(user == '' || pw == ''){
             Alert.alert('Lỗi', 'Hãy nhập thông tin đăng nhập!');
         }
         else {
             DataAction.userLogin(user, pw).then((response) => {
-                console.log(JSON.stringify(response));
+                // console.log(JSON.stringify(response));
                 if(response.password == null) {
                     Alert.alert('Lỗi', 'Sai Username hoặc Password!');
                 } else if(response.password != '') {
-                    this.props.navigation.navigate('BottomTabNav', {user: user});
+                    DataAction.storeUser(user);
+                    this.props.navigation.navigate('BottomTabNav');
                 }
             }).catch((error) => {
                 console.log(error)
             });
         }
+    }
+
+    componentWillMount(){
+        DataAction.getUser().then((value) => {
+            this.setState({ globUser: value });
+            console.log('global = ' + this.state.globUser);
+        });
     }
 
     render() {

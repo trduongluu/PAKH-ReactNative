@@ -6,6 +6,7 @@ import {Content, Right} from 'native-base'
 import Profile from './Profile'
 import Login from '../Login/Login'
 import styles from "./styles";
+import DataAction from '../apiData';
 
 export  default class Setting extends Component {
     constructor(props){
@@ -50,7 +51,9 @@ export  default class Setting extends Component {
                     </Right>
                 </View>
                 <View style={{borderBottomWidth:1, borderBottomColor: '#6677ff'}}>
-                  <TouchableOpacity style={{paddingVertical: 10}} onPress={() => this.props.navigation.navigate('Login')}>
+                  <TouchableOpacity style={{paddingVertical: 10}} onPress={() => {
+                                                                DataAction.removeUser();
+                                                                this.props.navigation.navigate('Login')}}>
                     <Text style={{fontWeight: 'bold', color: '#fff'}}>Đăng xuất</Text>
                   </TouchableOpacity>
                 </View>

@@ -5,7 +5,7 @@ import styles from "./styles";
 import SelectMultiple from 'react-native-select-multiple'
 import Modal from "react-native-modal";
 import Results from './Results'
-import {getSearchRequest} from "../apiData";
+import DataAction from "../apiData";
 
 var {height, width} = Dimensions.get('window');
 
@@ -28,7 +28,7 @@ export default class Search extends Component {
             dataResultRequest: [],      //data kết quả tìm kiếm yêu cầu
 
             start_date: '18-01-2018',     //ngày bắt đầu
-            end_date: '18-07-2018',      //ngày kết thúc
+            end_date: '18-08-2018',      //ngày kết thúc
             req_title: '',             //tiêu đề
             req_system: '',
             req_dep_code: '',       //đơn vị gửi
@@ -49,7 +49,7 @@ export default class Search extends Component {
         this.setState({selectedFruits: newTaskList});
     }
     _Search = () => {
-        getSearchRequest(this.state.start_date, this.state.end_date, this.state.req_title, this.state.req_dep_code, this.state.req_system, this.state.req_user, this.state.pro_dep_code, this.state.pro_user, this.state.ticketid, this.state.req_status).then((obj) => {
+        DataAction.getSearchRequest(this.state.start_date, this.state.end_date, this.state.req_title, this.state.req_dep_code, this.state.req_system, this.state.req_user, this.state.pro_dep_code, this.state.pro_user, this.state.ticketid, this.state.req_status).then((obj) => {
             this.setState({dataResultRequest: obj})
         }).catch((error) => {
             this.state({dataResultRequest: ''})

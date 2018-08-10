@@ -41,16 +41,26 @@ export default class DangXuly extends Component {
     this.state = {
       isLoading: true,
       receiveRQ: [],
-      tabname: 'DANG_XU_LY'
+      tabname: 'DANG_XU_LY',
+      globUser: ''
     }
   }
 
+  componentWillMount(){
+    DataAction.getUser().then((value) => {
+      this.setState({ globUser: value });
+      console.log('global = ' + this.state.globUser);
+    });
+  }
+
   componentDidMount(){
-    DataAction.getReceiveRQ(this.state.tabname).then((response) => {
+    console.log('dang xu ly fetch: ' + this.state.globUser);
+    DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
       this.setState({
         receiveRQ: response,
         isLoading: false
       });
+      console.log(JSON.stringify(response));
     }).catch((error) => {
       console.log(error)
     });

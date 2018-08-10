@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, FlatList, findNodeHandle, Image} from 'react-native';
+import {View, Text, FlatList, findNodeHandle, Image, AsyncStorage} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -56,12 +56,19 @@ export default class PhanCong extends Component {
       isLoading: true,
       receiveRQ: [],
       tabname: 'PHAN_CONG_XU_LY',
-      // user: this.props.navigation.state.params.user
+      globUser: ''
     }
   }
 
+  componentWillMount(){
+    DataAction.getUser().then((value) => {
+      this.setState({ globUser: value });
+      console.log('global = ' + this.state.globUser);
+    });
+  }
+
   componentDidMount(){
-    DataAction.getReceiveRQ(this.state.tabname).then((response) => {
+    DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
       this.setState({
         receiveRQ: response,
         isLoading: false
