@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderWidth: 1,
         borderColor: '#bbbdcd',
-        borderRadius: 15
+        borderRadius: 15,
     },
     icon_time: {
         color: 'white',

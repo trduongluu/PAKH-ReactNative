@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Receive from './ReceiveRQ/Receive';
 import Send from './SendRQ/Send';
+import DangXL from './SendRQ/DangXL'
+import DaXL from './SendRQ/DaXL'
 import Search from './Search/Search';
 import Setting from "./Setting/Setting";
 import Process from './ReceiveRQ/Process';
@@ -91,33 +93,39 @@ const ReceiveStack = createStackNavigator({
     initialRouteName: 'ReceiveTopbar'
 });
 
-// Topbar trong tab Send
-// const SendTopbar = createMaterialTopTabNavigator({
-//     Send: {
-//         screen: Send,
-//         navigationOptions: { tabBarLabel: 'Phân công' }
-//     },
-//     DangXuly: {
-//         screen: DangXulySend,
-//         navigationOptions: { tabBarLabel: 'Đang xử lý' }
-//     },
-//     DaXuly: {
-//         screen: DaXulySend,
-//         navigationOptions: { tabBarLabel: 'Đã xử lý' }
-//     }
-// }, {
-//     initialRouteName: 'Send',
-//     order: ['Send', 'DangXuly', 'DaXuly'],
-//     tabBarOptions: {
-//         style: { backgroundColor: '#0057AA' }
-//     }
-// });
-
+const TopbarTabsSend = createMaterialTopTabNavigator({
+    Send: {
+        screen: Send,
+        navigationOptions: {tabBarLabel: 'Phân công'}
+    },
+    DangXL: {
+        screen: DangXL,
+        navigationOptions: {tabBarLabel: 'Đang xử lý'}
+    },
+    DaXL: {
+        screen: DaXL,
+        navigationOptions: {tabBarLabel: 'Đã xử lý'}
+    }
+}, {
+    initialRouteName: 'Send',
+    order: ['Send', 'DangXL', 'DaXL'],
+    tabBarOptions: {
+        style: {backgroundColor: '#0057AA'}
+    }
+});
 // Cụm send screens
 const SendStack = createStackNavigator({
-    Send: { screen: Send },
-    MakeRQ: { screen: MakeRQ, navigationOptions: headerConfig },
-    Details: { screen: Details, navigationOptions: headerConfig }
+    TopbarTabsSend: {
+        screen: TopbarTabsSend,
+        navigationOptions: ({navigation}) => ({
+            headerStyle: {backgroundColor: '#0057AA'},
+            headerRight: <Icon name="plus-circle" color='white' size={24} style={{marginRight: 15}} onPress={() => navigation.navigate('MakeRQ')}/>,
+            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')}/>
+        })
+    },
+    MakeRQ: {screen: MakeRQ, navigationOptions: headerConfig}
+}, {
+    initialRouteName: 'TopbarTabsSend'
 });
 
 // Bottom bar tabs

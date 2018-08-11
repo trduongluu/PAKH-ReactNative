@@ -51,6 +51,16 @@ var DataAction = {
         return fetch(url).then((res) => res.json());
     },
 
+
+    // MHA
+
+
+
+
+    getSendRQ(tabname){
+        var url = `${apiGetRequest}start_req_date=18-01-2018&end_req_date=18-08-2018&req_status=${tabname}&req_user=chanhtc`;
+        return fetch(url).then((res) => res.json());
+    },
     // Search yêu cầu
     async getSearchRequest(start_date, end_date, title, dep_code,system_code, user, pro_dep_code, pro_user, ticket_id, status) {
         try {
@@ -100,6 +110,19 @@ var DataAction = {
         }
         catch (error){
             console.error(`Error is: ${error}`);
+        }
+    },
+
+    // API lấy danh sách phòng ban
+    async getListDepartCode(){
+        try{
+            let res = await fetch(`${ip}/depart`);
+            let resJson = await res.json();
+            return resJson;
+        }
+        catch(error) {
+            console.error(`Error is: ${error}`);
+            return ''
         }
     }
 };
