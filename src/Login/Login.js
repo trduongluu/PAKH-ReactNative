@@ -17,12 +17,12 @@ export default class Login extends Component {
     }
     
     login(user, pw){
+        this.passwordInput.setNativeProps({text: ''});
         if(user == '' || pw == ''){
             Alert.alert('Lỗi', 'Hãy nhập thông tin đăng nhập!');
         }
         else {
             DataAction.userLogin(user, pw).then((response) => {
-                // console.log(JSON.stringify(response));
                 if(response.password == null) {
                     Alert.alert('Lỗi', 'Sai Username hoặc Password!');
                 } else if(response.password != '') {
@@ -36,13 +36,19 @@ export default class Login extends Component {
     }
 
     componentWillMount(){
+        // Check user session info
         DataAction.getUser().then((value) => {
             this.setState({ globUser: value });
             console.log('global = ' + this.state.globUser);
-        });
+        })
     }
 
     render() {
+      // Check user chưa logout thì skip login action khi mở app lần 2 trở đi
+      if (this.state.globUser !== '' && this.state.globUser !== null) {
+          this.props.navigation.navigate('BottomTabNav')
+      }
+
       return (
         <LinearGradient colors={['#0057AA', '#A9F8FF']} style={loginStyle.bground}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >

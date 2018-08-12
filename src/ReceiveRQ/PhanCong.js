@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, FlatList, findNodeHandle, Image, AsyncStorage} from 'react-native';
+import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -60,25 +60,31 @@ export default class PhanCong extends Component {
     }
   }
 
-  componentWillMount(){
-    DataAction.getUser().then((value) => {
-      this.setState({ globUser: value });
-      console.log('global = ' + this.state.globUser);
-    });
-  }
-
   componentDidMount(){
-    DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
-      this.setState({
-        receiveRQ: response,
-        isLoading: false
-      });
-    }).catch((error) => {
-      console.log(error)
-    });
+    DataAction.getUser().then((user) => {
+      this.setState({ globUser: user });
+      console.log('in fetch pcxl = ' + this.state.globUser);
+      DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
+        this.setState({
+          receiveRQ: response,
+          isLoading: false
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+    })
   }
 
     render() {
+      if(this.state.isLoading){
+        return(
+          <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
+          start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
+            <ActivityIndicator color='#A9F8FF' />
+          </LinearGradient>
+        )
+      }
+
       return (
         <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >

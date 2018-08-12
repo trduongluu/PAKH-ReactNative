@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, FlatList, findNodeHandle, Image} from 'react-native';
+import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -34,36 +34,50 @@ class ItemLayout extends Component {
   }
 }
 
-export default class DangXuly extends Component {
+export default class DangXL extends Component {
 
   constructor(props){
     super(props);
     this.state = {
       isLoading: true,
-      receiveRQ: [],
-      tabname: 'DANG_XU_LY'
+      sendRQ: [],
+      tabname: 'DANG_XU_LY',
+      globUser: ''
     }
   }
 
   componentDidMount(){
-    DataAction.getSendRQ(this.state.tabname).then((response) => {
-      this.setState({
-        receiveRQ: response,
-        isLoading: false
-      });
-    }).catch((error) => {
-      console.log(error)
-    });
+    DataAction.getUser().then((user) => {
+      this.setState({ globUser: user });
+      console.log('in fetch dangxl send = ' + this.state.globUser);
+      DataAction.getSendRQ(this.state.tabname, this.state.globUser).then((response) => {
+        this.setState({
+          sendRQ: response,
+          isLoading: false
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+    })
   }
 
     render() {
+      if(this.state.isLoading){
+        return(
+          <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
+          start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
+            <ActivityIndicator color='#A9F8FF' />
+          </LinearGradient>
+        )
+      }
+
       return (
         <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
           <View style={receiveStyle.Parea} >
             <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')} />
           </View>
-          <FlatList data={this.state.receiveRQ}
+          <FlatList data={this.state.sendRQ}
           renderItem={({item, index}) => {
             return(
               <ItemLayout item={item} index={index} ></ItemLayout>

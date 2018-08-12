@@ -78,6 +78,10 @@ export const loginStyle = StyleSheet.create({
 });
 
 export const receiveStyle = StyleSheet.create({
+    loading: {
+        flex: 1,
+        padding: 25
+    },
     bground: {
         flex: 1,
         justifyContent: 'center',

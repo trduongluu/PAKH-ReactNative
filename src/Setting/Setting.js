@@ -51,9 +51,10 @@ export  default class Setting extends Component {
                     </Right>
                 </View>
                 <View style={{borderBottomWidth:1, borderBottomColor: '#6677ff'}}>
-                  <TouchableOpacity style={{paddingVertical: 10}} onPress={() => {
-                                                                DataAction.removeUser();
-                                                                this.props.navigation.navigate('Login')}}>
+                  <TouchableOpacity style={{paddingVertical: 10}}
+                    onPress={() => {
+                        DataAction.removeUser();
+                        this.props.navigation.navigate('Login')}} >
                     <Text style={{fontWeight: 'bold', color: '#fff'}}>Đăng xuất</Text>
                   </TouchableOpacity>
                 </View>
