@@ -57,11 +57,13 @@ var DataAction = {
         return fetch(url).then((res) => res.json());
     },
 
+    // Lấy thông tin user
     getUserInfo(user){
         var url = `${apiUser}${user}`;
         return fetch(url).then((res) => res.json());
     },
 
+    // Lấy nguyên nhân cấp 1, 2, 3
     getNguyenNhanCap1(){
         var url = `${apiNguyenNhan}level=1`;
         return fetch(url).then((res) => res.json());
@@ -80,19 +82,7 @@ var DataAction = {
 
     // MHA
 
-// Thông tin người dùng
-    async getInfoUser(username){
-        try {
-            let res = await fetch(`${ip}/user/${username}`);
-            let resJson = res.json();
-            return resJson;
-        }
-        catch (error)  {
-            console.log(error)
-            return ''
-        }
-    },
-// lấy yêu cầu gửi
+    // lấy yêu cầu gửi
     getSendRQ(tabname, user){
         var url = `${apiGetRequest}start_req_date=18-01-2018&end_req_date=18-08-2018&req_status=${tabname}&req_user=${user}`;
         return fetch(url).then((res) => res.json());

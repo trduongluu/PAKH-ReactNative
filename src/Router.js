@@ -140,7 +140,7 @@ export const BottomTabNav = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Receive',
             tabBarIcon: ({tintColor}) => (
-                <Icon name="briefcase" color={tintColor} size={24}/>
+                <Icon name="briefcase" color={tintColor} size={24} />
             )
         }
     },
@@ -149,7 +149,7 @@ export const BottomTabNav = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Send',
             tabBarIcon: ({tintColor}) => (
-                <Icon name="send" color={tintColor} size={24}/>
+                <Icon name="send" color={tintColor} size={24} />
             )
         }
     },
@@ -158,7 +158,7 @@ export const BottomTabNav = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Search',
             tabBarIcon: ({tintColor}) => (
-                <Icon name="search" color={tintColor} size={24}/>
+                <Icon name="search" color={tintColor} size={24} />
             )
         }
     },
@@ -167,7 +167,7 @@ export const BottomTabNav = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Setting',
             tabBarIcon: ({tintColor}) => (
-                <Icon name="cog" color={tintColor} size={24}/>
+                <Icon name="cog" color={tintColor} size={24} />
             )
         }
     }

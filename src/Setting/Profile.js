@@ -21,7 +21,7 @@ export default class Profile extends Component {
     componentWillMount(){
         DataAction.getUser().then((user) => {
             this.setState({ globUser: user });
-            DataAction.getInfoUser(this.state.globUser).then((response) => {
+            DataAction.getUserInfo(this.state.globUser).then((response) => {
                 this.setState({
                     infoUser: response,
                 })
