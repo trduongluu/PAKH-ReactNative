@@ -12,6 +12,7 @@
     "react-native": "^0.55.4",
     "react-native-blur": "^3.2.2",
     "react-native-datepicker": "^1.7.2",
+    "react-native-document-picker": "^2.1.0",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-modal": "^6.5.0",
     "react-native-select-multiple": "^1.2.0",

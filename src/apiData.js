@@ -80,11 +80,24 @@ var DataAction = {
 
     // MHA
 
+// Thông tin người dùng
+    async getInfoUser(username){
+        try {
+            let res = await fetch(`${ip}/user/${username}`);
+            let resJson = res.json();
+            return resJson;
+        }
+        catch (error)  {
+            console.log(error)
+            return ''
+        }
+    },
+// lấy yêu cầu gửi
     getSendRQ(tabname, user){
         var url = `${apiGetRequest}start_req_date=18-01-2018&end_req_date=18-08-2018&req_status=${tabname}&req_user=${user}`;
         return fetch(url).then((res) => res.json());
     },
-    // Search yêu cầu
+    // Tìm kiếm yêu cầu
     async getSearchRequest(start_date, end_date, title, dep_code,system_code, user, pro_dep_code, pro_user, ticket_id, status) {
         try {
             let res = await fetch(`${apiGetRequest}start_req_date=${start_date}&end_req_date=${end_date}&req_title=${title}&req_dep_code=${dep_code}&req_system_code=${system_code}&req_user=${user}&pro_dep_code=${pro_dep_code}&pro_user=${pro_user}&ticket_id=${ticket_id}&req_status=${status}`);
@@ -97,7 +110,7 @@ var DataAction = {
         }
     },
 
-    // Lấy thông tin hệ thống
+    // Lấy danh sách hệ thống
     async getReqSystemCode(departmentCode) {
         try{
             let res = await fetch(`${apiHethong}${departmentCode}`)
@@ -136,6 +149,28 @@ var DataAction = {
         }
     },
 
+    async getRequestTypesParent(departcode, sys_code, username){
+        try{
+            let res = await fetch(`${ip}/request/type?department_code=${departcode}&system_code=${sys_code}&username=${username}`);
+            let resJson = await res.json();
+            return resJson;
+        }
+        catch(error) {
+            console.error(`Error is: ${error}`);
+            return ''
+        }
+    },
+    async getRequestTypesChild(departcode, sys_code, is_has){
+        try{
+            let res = await fetch(`${ip}/request/type?department_code=${departcode}&system_code=${sys_code}&is_has=${is_has}`);
+            let resJson = await res.json();
+            return resJson;
+        }
+        catch(error) {
+            console.error(`Error is: ${error}`);
+            return ''
+        }
+    },
     // API lấy danh sách phòng ban
     async getListDepartCode(){
         try{

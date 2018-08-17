@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
+import Details from '../Search/Details'
 
 class ItemLayout extends Component {
   render() {
@@ -80,7 +81,9 @@ export default class DangXL extends Component {
           <FlatList data={this.state.sendRQ}
           renderItem={({item, index}) => {
             return(
-              <ItemLayout item={item} index={index} ></ItemLayout>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {dataDetails: item})}>
+                  <ItemLayout item={item} index={index}></ItemLayout>
+                </TouchableOpacity>
             );
           }} ></FlatList>
         </LinearGradient>
