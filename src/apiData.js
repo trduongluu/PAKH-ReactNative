@@ -4,9 +4,15 @@ var ip = 'http://14.160.91.174:8080';       // IP config
 
 // List API
 var apiLogin = `${ip}/user?`;
+var apiUser = `${ip}/user/`;
 var apiGetRequest = `${ip}/request/get?`;
 var apiAddRequest = `${ip}/request/post?`;
 var apiHethong = `${ip}/sys/`;
+var apiNguyenNhan = `${ip}/cause?`;
+var apiRqDetail = `${ip}/request/recent/`;
+var apiPutRqDetail = `${ip}/request/updateRequestDetail/`;
+var apiPutRequest = `${ip}/request/updateRequest/`;
+var apiResponse = `${ip}/request/response?`;
 
 // Fetch API function list
 var DataAction = {
@@ -23,7 +29,7 @@ var DataAction = {
     async getUser(){
         try {
             let user = await AsyncStorage.getItem('userinfo');
-            // console.log('User action-get is: ' + user);
+            console.log('User action-get is: ' + user);
             return user;
         } catch (error) {
             console.log(`Error is: ${error}`)
@@ -51,6 +57,25 @@ var DataAction = {
         return fetch(url).then((res) => res.json());
     },
 
+    getUserInfo(user){
+        var url = `${apiUser}${user}`;
+        return fetch(url).then((res) => res.json());
+    },
+
+    getNguyenNhanCap1(){
+        var url = `${apiNguyenNhan}level=1`;
+        return fetch(url).then((res) => res.json());
+    },
+
+    getNguyenNhanCap2(idcap1){
+        var url = `${apiNguyenNhan}level=2&id_parent=${idcap1}`;
+        return fetch(url).then((res) => res.json());
+    },
+
+    getNguyenNhanCap3(idcap2){
+        var url = `${apiNguyenNhan}level=2&id_parent=${idcap2}`;
+        return fetch(url).then((res) => res.json());
+    },
 
 
     // MHA

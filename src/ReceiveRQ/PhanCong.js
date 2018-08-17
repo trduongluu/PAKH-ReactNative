@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { withNavigation } from 'react-navigation';
 import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {receiveStyle} from '../LayoutStyle';
@@ -26,7 +27,7 @@ class ItemLayout extends Component {
       <View style={receiveStyle.bground} >
         <View style={receiveStyle.rowbg} >
           <View style={receiveStyle.rowSubline} >
-            <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_content} tu {this.props.item.req_dep_code}</Text>
+            <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_title} tu {this.props.item.req_dep_code}</Text>
             <View style={receiveStyle.code_levelArea} >
               <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
               <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} />
@@ -48,7 +49,7 @@ class ItemLayout extends Component {
   }
 }
 
-export default class PhanCong extends Component {
+class PhanCong extends Component {
 
   constructor(props){
     super(props);
@@ -65,6 +66,7 @@ export default class PhanCong extends Component {
       this.setState({ globUser: user });
       console.log('in fetch pcxl = ' + this.state.globUser);
       DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
+        console.log(JSON.stringify(response));
         this.setState({
           receiveRQ: response,
           isLoading: false
@@ -95,10 +97,19 @@ export default class PhanCong extends Component {
           renderItem={({item, index}) => {
             // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`)
             return(
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Process', {
+                ticketId: item.ticket_id,
+                reqUser: item.req_user,
+                reqTitle: item.req_title,
+                reqDate: item.req_date
+              })} >
               <ItemLayout item={item} index={index} ></ItemLayout>
+              </TouchableOpacity>
             );
           }} ></FlatList>
         </LinearGradient>
       );
     }
   }
+
+  export default withNavigation(PhanCong);

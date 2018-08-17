@@ -18,6 +18,8 @@ import Password from './Setting/Password';
 import Login from './Login/Login';
 import DangXuly from './ReceiveRQ/DangXuly';
 import DaXuly from './ReceiveRQ/DaXuly';
+import PhanCong from './ReceiveRQ/PhanCong';
+import History from './ReceiveRQ/History';
 
 console.disableYellowBox = true;
 
@@ -80,14 +82,15 @@ const ReceiveStack = createStackNavigator({
     ReceiveTopbar: {
         screen: ReceiveTopbar,
         navigationOptions: ({navigation}) => ({
-            headerStyle: {backgroundColor: '#0057AA'},
+            headerStyle: { backgroundColor: '#0057AA' },
             headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}}
-                               onPress={() => navigation.navigate('Profile')}/>,
-            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')}/>
+                               onPress={() => navigation.navigate('Profile')} />,
+            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
         })
     },
     Process: { screen: Process, navigationOptions: headerConfig },
-    Profile: { screen: Profile, navigationOptions: headerConfig }
+    Profile: { screen: Profile, navigationOptions: headerConfig },
+    History: { screen: History, navigationOptions: headerConfig }
 }, {
     initialRouteName: 'ReceiveTopbar'
 });
@@ -120,8 +123,9 @@ const SendStack = createStackNavigator({
         screen: SendTopbar,
         navigationOptions: ({navigation}) => ({
             headerStyle: { backgroundColor: '#0057AA' },
-            headerRight: <Icon name="plus-circle" color='white' size={24} style={{marginRight: 15}} onPress={() => navigation.navigate('MakeRQ')}/>,
-            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')}/>
+            headerRight: <Icon name="plus-circle" color='white' size={24} style={{marginRight: 15}}
+                            onPress={() => navigation.navigate('MakeRQ')} />,
+            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
         })
     },
     MakeRQ: { screen: MakeRQ, navigationOptions: headerConfig }
