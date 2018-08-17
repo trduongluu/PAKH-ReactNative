@@ -3,19 +3,33 @@ import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackgrou
 import {Container, Header, Content} from 'native-base'
 import LinearGradient from 'react-native-linear-gradient';
 import styles from "./styles";
+import DataAction from "../apiData";
 
 const data =[{name: 'Họ tên'},
     {name: 'Username'},
     {name: 'Số điện thoại'},
     {name: 'Đơn vị'},
-    {name: 'Số yêu cầu'},
 ];
 export default class Profile extends Component {
     constructor(props){
         super(props);
         this.state ={
-            infoUser: this.props.navigation.state.params.infoU,
+            infoUser: '',
+            globUser: ''
         }
+    }
+    componentWillMount(){
+        DataAction.getUser().then((user) => {
+            this.setState({ globUser: user });
+            DataAction.getInfoUser(this.state.globUser).then((response) => {
+                this.setState({
+                    infoUser: response,
+                })
+                {console.log(this.state.infoUser)};
+            }).catch((error) => {
+                console.log(error)
+            })
+        })
     }
     setTextProfile = (lab) => {
         if(lab === 'Họ tên'){
@@ -29,8 +43,6 @@ export default class Profile extends Component {
         }
         else if(lab === 'Đơn vị'){
             return this.state.infoUser.departmentCode
-        }else if(lab === 'Số yêu cầu'){
-            return this.state.infoUser.username
         }
     };
 

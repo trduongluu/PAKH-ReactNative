@@ -42,7 +42,8 @@ export default class Router extends React.Component {
 // Cụm search screens
 const SearchStack = createStackNavigator({
     Search: { screen: Search },
-    Results: { screen: Results, navigationOptions: headerConfig }
+    Results: { screen: Results, navigationOptions: headerConfig },
+    Details: {screen: Details, navigationOptions: headerConfig}
 });
 
 // Cụm setting screens

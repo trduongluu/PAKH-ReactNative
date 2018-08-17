@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
 
 
     view_sum_item: {
-        borderBottomWidth: 3,
-        borderBottomColor: '#6677ff',
-        paddingBottom: 5
+        borderBottomWidth: 2,
+        borderBottomColor: 'black',
+        paddingBottom: 10,
+        paddingTop: 10,
     },
     txt_result_search_1: {
         fontSize: 10,
@@ -38,14 +39,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff'
     },
+
+
     picker: {
-        marginTop: 15,
+
         paddingBottom: 2,
         height: 30,
         color: 'white'
     },
 
     bo: {
+        marginTop: 20,
         borderBottomWidth: 1,
         borderColor: 'white',
         paddingBottom: -5
@@ -53,7 +57,8 @@ const styles = StyleSheet.create({
 
     textArea:{
         margin: 15,
-        borderRadius: 7
+        borderRadius: 7,
+        color: 'white'
     },
 
     textFoot: {
@@ -111,7 +116,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#8B8B8B',
         height: 2,
     }
-
 
 });
 

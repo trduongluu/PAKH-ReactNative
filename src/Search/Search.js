@@ -27,7 +27,6 @@ export default class Search extends Component {
             isModalVisible: false,
             color: '',
             selectedFruits: [],         //thêm lựa chọn tìm kiếm
-            dataResultRequest: [],      //data kết quả tìm kiếm yêu cầu
 
             start_date: '18-01-2018',     //ngày bắt đầu
             end_date: new Date(),      //ngày kết thúc
@@ -59,15 +58,6 @@ export default class Search extends Component {
         this.setState({selectedFruits: newTaskList});
     }
 
-    //chức năng tìm kiếm
-    _Search = () => {
-        DataAction.getSearchRequest(this.state.start_date, this.state.end_date, this.state.req_title, this.state.req_dep_code, this.state.req_system, this.state.req_user, this.state.pro_dep_code, this.state.pro_user, this.state.ticketid, this.state.req_status).then((obj) => {
-            this.setState({dataResultRequest: obj})
-        }).catch((error) => {
-            this.state({dataResultRequest: ''})
-        })
-    };
-
     //chọn đơn vị xử lý, đơn vị gửi
     chooseDepartCode = () =>{
         DataAction.getListDepartCode().then((obj) => {
@@ -77,7 +67,7 @@ export default class Search extends Component {
         })
     };
 
-    // Lấy thông tin khi người dùng nhập thông tin
+    // update state khi người dùng nhập thông tin
     setTextSearch = (lableText, valueText) => {
         if (lableText === 'Tiêu đề') {
             this.setState({req_title: valueText})
@@ -126,7 +116,7 @@ export default class Search extends Component {
                                   onPress={this._toggleModal}>
                     <Image source={require('../img/icon_add_white.png')} style={{width: 35, height: 35}}/>
                 </TouchableOpacity>
-                <Modal isVisible={this.state.isModalVisible} backdropOpacity='0.7'>
+                <Modal isVisible={this.state.isModalVisible} backdropOpacity = "0,7">
                     <View style={styles.view_modal}>
                         <SelectMultiple
                             items={data_search}
@@ -155,7 +145,7 @@ export default class Search extends Component {
                                                     mode="date"
                                                     placeholder="thời điểm gửi"
                                                     format="DD-MM-YYYY"
-                                                    minDate="1990-01-01"
+                                                    minDate="2000-01-01"
                                                     maxDate="2100-12-31"
                                                     confirmBtnText="Confirm"
                                                     cancelBtnText="Cancel"
@@ -190,8 +180,8 @@ export default class Search extends Component {
                                                     mode="date"
                                                     placeholder="Hạn hoàn thành"
                                                     format="DD-MM-YYYY"
-                                                    minDate="2016-05-01"
-                                                    maxDate="2016-06-01"
+                                                    minDate="2000-01-01"
+                                                    maxDate="2100-12-31"
                                                     confirmBtnText="Confirm"
                                                     cancelBtnText="Cancel"
                                                     customStyles={{
@@ -281,11 +271,11 @@ export default class Search extends Component {
                         }
                     </ScrollView>
                 </View>
-                {this._Search()}
                 <View style={styles.view_btn_search}>
                     <TouchableOpacity
                         style={styles.btn_search}
-                        onPress={() => this.props.navigation.navigate('Results', {data_2: this.state.dataResultRequest})}>
+                        onPress={() => this.props.navigation.navigate('Results', {sd: this.state.start_date, ed: this.state.end_date, rt: this.state.req_title,
+                        rdc: this.state.req_dep_code, rs: this.state.req_system, ru: this.state.req_user, pdc: this.state.pro_dep_code, pu: this.state.pro_user, tick: this.state.ticketid, rstatus: this.state.req_status})}>
                         <Text style={styles.txt_btn_search}>Tìm kiếm</Text>
                     </TouchableOpacity>
                 </View>

@@ -3,6 +3,7 @@ import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackgrou
 import LinearGradient from 'react-native-linear-gradient';
 import {Container, Header, Content} from 'native-base'
 import styles from "./styles";
+import {receiveStyle} from '../LayoutStyle';
 
 
 export default class Details extends Component {
@@ -23,20 +24,8 @@ export default class Details extends Component {
 
     render() {
         return (
-            <Container>
-                {/*<StatusBar translucent={true} backgroundColor='transparent'/>
-              <View style={styles.view_header}>
-                <TouchableOpacity style={{flex: 0.2, justifyContent: 'center'}}
-                                  onPress={() => this.props.navigation.goBack()}>
-                  <Image source={require('../img/icon_back.png')}
-                         style={styles.icon_back}/>
-                </TouchableOpacity>
-                <View style={{flex: 0.2}}></View>
-                <View style={{flex: 0.2, justifyContent: 'center'}}>
-                  <Text style={styles.txt_header}>Chi Tiết</Text>
-                </View>
-                <View style={{flex: 0.4}}></View>
-              </View>*/}
+            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
+                            start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
                 <Content style={{marginHorizontal: 7}}>
                     <View style={styles.view_one}>
                         <View style={styles.view_tinhcuoc}>
@@ -45,17 +34,17 @@ export default class Details extends Component {
                         <View style={styles.view_hethong}>
                             <View style={{flex: 0.2}}></View>
                             <View style={{flex: 0.3}}>
-                                <Text style={{fontWeight: 'bold'}}>Hệ Thống</Text>
+                                <Text style={{fontWeight: 'bold',color: '#fff'}}>Hệ Thống</Text>
                             </View>
                             <View style={{flex: 0.1}}></View>
                             <View style={{flex: 0.4}}>
-                                <Text style={{}}>{this.state.itemDetail.req_system_code}</Text>
+                                <Text style={{color: '#fff'}}>{this.state.itemDetail.req_system_code}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={styles.view_time}>
                         <Text style={styles.txt_time}>Thời gian</Text>
-                        <Text style={{flex: 0.6}}>{this.state.itemDetail.req_date}
+                        <Text style={{flex: 0.6,color: '#fff'}}>{this.state.itemDetail.req_date}
                             - {this.state.itemDetail.pro_plan}</Text>
                     </View>
                     <View style={styles.view_sum_sent}>
@@ -96,12 +85,17 @@ export default class Details extends Component {
 
                     <View style={styles.view_content_reques}>
                         <Text style={styles.txt_value_reques}>Nội dung yêu cầu</Text>
-                        <Text>{this.state.itemDetail.req_content}</Text>
+                        <Text style={{color: '#fff'}}>{this.state.itemDetail.req_content}</Text>
                     </View>
 
                     <View style={styles.view_content_reques}>
                         <Text style={styles.txt_value_reques}>Nội dung Xử lý</Text>
-                        <Text>Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4//2018</Text>
+                        <Text style={{color: '#fff'}}>Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4//2018</Text>
+                        <Text style={{color: '#fff'}}>Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4//2018</Text>
+                        <Text style={{color: '#fff'}}>Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4//2018</Text><Text style={{color: '#fff'}}>Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4//2018</Text>
+                        <Text style={{color: '#fff'}}>Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4//2018</Text>
+
+
                     </View>
 
                     <View style={styles.view_content_reques}>
@@ -109,7 +103,7 @@ export default class Details extends Component {
                         <Text style={{color: '#3a73ff'}}>teptinhkem.docx</Text>
                     </View>
                 </Content>
-            </Container>
+            </LinearGradient>
         );
     }
 }

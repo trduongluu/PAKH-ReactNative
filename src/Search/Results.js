@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, FlatList} from 'react-native'
+import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, FlatList, ActivityIndicator} from 'react-native'
 import {Content} from 'native-base'
 import LinearGradient from 'react-native-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,13 +9,27 @@ import styles from "./styles";
 import {receiveStyle} from '../LayoutStyle';
 import Details from './Details'
 import Common from "../common/Common";
+import DataAction from "../apiData";
 
 export default class Results extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            dataResult: this.props.navigation.state.params.data_2,
+            dataResultRequest: [],      //data kết quả tìm kiếm yêu cầu
+
+            start_date: this.props.navigation.state.params.sd,     //ngày bắt đầu
+            end_date: this.props.navigation.state.params.ed,      //ngày kết thúc
+            req_title: this.props.navigation.state.params.rt,             //tiêu đề
+            req_system: this.props.navigation.state.params.rs,
+            req_dep_code: this.props.navigation.state.params.rdc,       //đơn vị gửi
+            req_user: this.props.navigation.state.params.ru,           //người gửi
+            ticketid: this.props.navigation.state.params.tick,            //mã
+            pro_dep_code: this.props.navigation.state.params.pdc,      //dơn vị xử lý
+            req_status: this.props.navigation.state.params.rstatus,         //trạng thái
+            pro_user: this.props.navigation.state.params.pu,           //người xử lý
+
+            isLoading: true,
         }
     }
 
@@ -26,25 +40,34 @@ export default class Results extends Component {
         headerTitle: 'Kết quả'
     };
 
+    //chức năng tìm kiếm
+    componentWillMount(){
+        DataAction.getSearchRequest(this.state.start_date, this.state.end_date, this.state.req_title, this.state.req_dep_code, this.state.req_system, this.state.req_user, this.state.pro_dep_code, this.state.pro_user, this.state.ticketid, this.state.req_status).then((obj) => {
+            this.setState({
+                dataResultRequest: obj,
+                isLoading: false,
+            })
+            console.log("ADDD")
+        }).catch((error) => {
+            this.state({dataResultRequest: ''})
+        })
+    };
+
     render() {
+        if(this.state.isLoading){
+            return(
+                <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
+                                start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
+                    <ActivityIndicator color='#A9F8FF' />
+                </LinearGradient>
+            )
+        }
         return (
             <LinearGradient colors={['#0057AA', '#A9F8FF']} style={styles.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
                 <StatusBar translucent={true} backgroundColor='transparent'/>
-                {/*<View style={styles.view_header}>
-                    <TouchableOpacity style={{flex: 0.2, justifyContent: 'center'}}
-                                      onPress={() => this.props.navigation.goBack()}>
-                        <Image source={require('../img/icon_back.png')}
-                               style={styles.icon_back}/>
-                    </TouchableOpacity>
-                    <View style={{flex: 0.2}}></View>
-                    <View style={{flex: 0.2, justifyContent: 'center'}}>
-                        <Text style={styles.txt_header}>Tìm kiếm</Text>
-                    </View>
-                    <View style={{flex: 0.4}}></View>
-                </View>*/}
                 <Content style={{marginHorizontal: 7}}>
-                    <FlatList data={this.state.dataResult}
+                    <FlatList data={this.state.dataResultRequest}
                               renderItem={({item, index}) => {
                                   // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`)
                                   return (

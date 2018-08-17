@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     view_one: {
-        borderBottomColor: '#dbceff',
+        borderBottomColor: '#000',
         borderBottomWidth: 1,
         paddingBottom: 15
     },
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
     },
     txt_tinhcuoc: {
         fontSize: 17,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#fff'
     },
     view_hethong: {
         flex: 1,
@@ -93,17 +94,18 @@ const styles = StyleSheet.create({
     view_time: {
         flex: 1,
         flexDirection: 'row',
-        borderBottomColor: '#dbceff',
+        borderBottomColor: '#000',
         borderBottomWidth: 1,
         paddingVertical: 15
     },
     txt_time: {
         fontWeight: 'bold',
         flex: 0.4,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        color: '#fff'
     },
     view_sum_sent: {
-        borderBottomColor: '#dbceff',
+        borderBottomColor: '#000',
         borderBottomWidth: 1,
         paddingVertical: 15
     },
@@ -113,23 +115,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRightWidth: 1,
-        borderRightColor: '#8e8e8e'
+        borderRightColor: '#000'
     },
     txt_sent: {
         fontWeight: 'bold',
         justifyContent: 'center',
-        color: '#3a73ff'
+        color: '#fff'
     },
-    txt_value_sent: {color: '#3a73ff'},
+    txt_value_sent: {color: '#fff'},
     view_content_reques: {
-        borderBottomColor: '#dbceff',
+        borderBottomColor: '#000',
         borderBottomWidth: 1,
         paddingVertical: 15
     },
     txt_value_reques: {
         fontWeight: 'bold',
         flex: 0.4,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        color: '#fff'
     },
 
     // Search
@@ -168,7 +171,7 @@ const styles = StyleSheet.create({
     },
     view_sum_item: {
         borderBottomWidth: 1,
-        borderBottomColor: '#6677ff',
+        borderBottomColor: '#000',
         paddingBottom: 5
     },
     view_modal: {

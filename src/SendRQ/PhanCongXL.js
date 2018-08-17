@@ -5,6 +5,7 @@ import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
+import Details from '../Search/Details'
 
 
 //Dinh nghia 1 Item cua Flatlist
@@ -52,42 +53,44 @@ export default class PhanCongXL extends Component {
 
     componentDidMount() {
         DataAction.getUser().then((user) => {
-            this.setState({ globUser: user });
+            this.setState({globUser: user});
             console.log('in fetch pcxl send = ' + this.state.globUser);
             DataAction.getSendRQ(this.state.tabname, this.state.globUser).then((response) => {
-              this.setState({
-                sendRQ: response,
-                isLoading: false
-              })
+                this.setState({
+                    sendRQ: response,
+                    isLoading: false
+                })
             }).catch((error) => {
-              console.log(error)
+                console.log(error)
             })
         })
     }
 
     render() {
-        if(this.state.isLoading){
-          return(
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
-            start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
-              <ActivityIndicator color='#A9F8FF' />
-            </LinearGradient>
-          )
+        if (this.state.isLoading) {
+            return (
+                <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
+                                start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
+                    <ActivityIndicator color='#A9F8FF'/>
+                </LinearGradient>
+            )
         }
-  
+
         return (
-          <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
-          start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
-            <View style={receiveStyle.Parea} >
-              <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')} />
-            </View>
-            <FlatList data={this.state.sendRQ}
-            renderItem={({item, index}) => {
-              return(
-                <ItemLayout item={item} index={index} ></ItemLayout>
-              );
-            }} ></FlatList>
-          </LinearGradient>
+            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
+                            start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
+                <View style={receiveStyle.Parea}>
+                    <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')}/>
+                </View>
+                <FlatList data={this.state.sendRQ}
+                          renderItem={({item, index}) => {
+                              return (
+                                  <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {dataDetails: item})}>
+                                      <ItemLayout item={item} index={index}></ItemLayout>
+                                  </TouchableOpacity>
+                              );
+                          }}></FlatList>
+            </LinearGradient>
         );
-      }
+    }
 }
