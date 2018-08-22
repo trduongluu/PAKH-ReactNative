@@ -30,7 +30,7 @@ class ItemLayout extends Component {
             <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_title} tu {this.props.item.req_dep_code}</Text>
             <View style={receiveStyle.code_levelArea} >
               <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
-              <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} />
+              {this.props.item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
             </View>
           </View>
           <View style={receiveStyle.rowSubline} >
@@ -61,7 +61,7 @@ class PhanCong extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     DataAction.getUser().then((user) => {
       this.setState({ globUser: user });
       console.log('in fetch pcxl = ' + this.state.globUser);
@@ -74,6 +74,8 @@ class PhanCong extends Component {
       }).catch((error) => {
         console.log(error)
       })
+    }).catch((error) => {
+      console.log(error)
     })
   }
 

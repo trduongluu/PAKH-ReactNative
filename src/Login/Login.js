@@ -26,7 +26,7 @@ export default class Login extends Component {
                 if(response.password == null) {
                     Alert.alert('Lỗi', 'Sai Username hoặc Password!');
                 } else if(response.password != '') {
-                    DataAction.storeUser(user);
+                    DataAction.storeUser(response.username);
                     this.props.navigation.navigate('BottomTabNav');
                 }
             }).catch((error) => {
@@ -46,7 +46,7 @@ export default class Login extends Component {
     render() {
       // Check user chưa logout thì skip login action khi mở app lần 2 trở đi
       if (this.state.globUser !== '' && this.state.globUser !== null) {
-          this.props.navigation.navigate('BottomTabNav')
+          this.props.navigation.navigate('BottomTabNav');
       }
 
       return (

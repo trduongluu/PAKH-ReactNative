@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Container, Header, Left, Body, Right, Button, Icon, Title, Tabs, Tab, TabHeading, ScrollableTab, Item,
-        Input, Content, Footer, FooterTab, Picker, Textarea } from 'native-base';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Container, Button, Icon, Content, Picker, Textarea } from 'native-base';
 import {} from '../LayoutStyle';
 import styles from './styles';
 import DataAction from '../apiData';
+
+var today = new Date();
+let ngayxl = today.getDate() + '/' + parseInt(today.getMonth() + 1) + '/' + today.getFullYear();
+var reqUser = '';
+var ticketId = '';
 
 export default class Process extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -14,8 +18,12 @@ export default class Process extends Component {
       backgroundColor: '#0057AA',
     },
     headerRight: <MaterialIcon name="history" color='white' size={24} style={{marginRight: 15}} 
-    onPress={() => navigation.navigate('History')} />,
-    headerTitle: 'Xử lý'
+    onPress={() => navigation.navigate('History', {
+        reqUser: reqUser,
+        ticketId: ticketId
+    })} />,
+    headerTitle: 'Xử lý',
+    headerTitleStyle: { flex: 1, textAlign: 'center', alignItems: 'center' }
   });
 
   constructor(props) {
@@ -35,8 +43,46 @@ export default class Process extends Component {
         nguyennhanCap2: [],
         nguyennhanCap3: [],
         isCap1Clicked: false,
-        isLoadingCap2: true
+        isCap2Clicked: false,
+        ndxl: '',
+        ndxlNB: '',
+        idRqForward: '',
+        fwDep: '',
+        fwUser: '',
+        fwContent: ''
     };
+    reqUser = this.props.navigation.state.params.reqUser;
+    ticketId = this.props.navigation.state.params.ticketId;
+  }
+
+  chonCap1(value) {
+    DataAction.getNguyenNhanCap2(value).then((response) => {
+        this.setState({
+            nguyennhanCap2: response
+        });
+        if (response !== []) {
+            this.setState({isCap1Clicked: true})
+        }
+        console.log('cap 2 ne: ' + this.state.nguyennhanCap2);
+    });
+    this.setState({
+        selectedIdCause1: value
+    });
+  }
+
+  chonCap2(value) {
+    DataAction.getNguyenNhanCap3(value).then((response) => {
+        this.setState({
+            nguyennhanCap3: response
+        });
+        if (response !== []) {
+            this.setState({isCap2Clicked: true})
+        }
+        console.log('cap 3 ne: ' + this.state.nguyennhanCap3);
+    });
+    this.setState({
+        selectedIdCause2: value
+    });
   }
 
   renderCap1() {
@@ -47,23 +93,7 @@ export default class Process extends Component {
     return items;
   }
 
-  chonCap1(value) {
-    this.setState({
-        selectedIdCause1: value,
-        isCap1Clicked: true,
-        isLoadingCap2: true
-    })
-  }
-
   renderCap2() {
-    DataAction.getNguyenNhanCap2(this.state.selectedIdCause1).then((response) => {
-        this.setState({
-            nguyennhanCap2: response,
-            isLoadingCap2: false
-        });
-        console.log('cap 2 ne: ' + JSON.stringify(this.state.nguyennhanCap2));
-    });
-    
     items = [];
     for(let item of this.state.nguyennhanCap2){
         items.push(<Picker.Item key={item.id} label={item.causeName} value={item.id} />)
@@ -82,7 +112,7 @@ export default class Process extends Component {
                     // iosHeader="Select one"
                     mode="dropdown"
                     selectedValue={this.state.selectedIdCause2}
-                    onValueChange={(itemValue, itemIndex) => this.setState({selectedIdCause2: itemValue})}
+                    onValueChange={(itemValue, itemIndex) => this.chonCap2(itemValue)}
                     style={styles.picker}
                     itemTextStyle={{ color: '#A9F8FF', fontSize: 12 }}
                     textStyle={{ color: "#A9F8FF", fontSize: 12 }}
@@ -99,12 +129,87 @@ export default class Process extends Component {
   }
 
   renderCap3(){
-    DataAction.getNguyenNhanCap3(this.state.selectedIdCause2).then((response) => {
-        this.setState({nguyennhanCap3: response})
+    items = [];
+    for(let item of this.state.nguyennhanCap3){
+        items.push(<Picker.Item key={item.id} label={item.causeName} value={item.id} />)
+    }
+
+    return (
+        <View style={{marginBottom: 0}}>
+            <View style={{flexDirection: 'row'}}>
+                <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
+                <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                    Nguyên Nhân Cấp 3
+                </Text>
+            </View>
+            <View style={{borderBottomWidth: 1, paddingBottom: 2}}>
+                <Picker
+                    // iosHeader="Select one"
+                    mode="dropdown"
+                    selectedValue={this.state.selectedIdCause3}
+                    onValueChange={(itemValue, itemIndex) => this.setState({selectedIdCause3: itemValue})}
+                    style={styles.picker}
+                    itemTextStyle={{ color: '#A9F8FF', fontSize: 12 }}
+                    textStyle={{ color: "#A9F8FF", fontSize: 12 }}
+                    itemStyle={{
+                        backgroundColor: "#fff",
+                        paddingLeft: 10
+                    }}
+                >
+                    {items}
+                </Picker>
+            </View>
+        </View>
+    );
+  }
+
+  kethuc() {
+    DataAction.getUser().then((value) => {
+        DataAction.getUserInfo(value).then((user) => {
+            DataAction.putRequest(this.state.ticketId, ngayxl, this.state.ndxl, user.username, user.departmentCode).then((resultPutRQ) => {
+                DataAction.putRqDetail(this.state.idRqForward, this.state.reqDate, user.departmentCode, user.username, ngayxl, this.state.ndxlNB, this.state.ndxl, this.state.selectedIdCause1, this.state.selectedIdCause3).then((resultPutRQD) => {
+                    if (JSON.stringify(resultPutRQ) == 'true' && JSON.stringify(resultPutRQD) == 'true') {
+                        console.log('put RQ: ' + JSON.stringify(resultPutRQ));
+                        console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
+                        Alert.alert('Thành công', 'Xử lý của bạn đã được kết thúc.');
+                        this.props.navigation.navigate("ReceiveTopbar");
+                    } else {
+                        Alert.alert('Thất bại', 'Xử lý của bạn chưa được kết thúc.');
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                });
+            }).catch((error) => {
+                console.log(error)
+            });
+        }).catch((error) => {
+            console.log(error)
+        });
     })
   }
 
-  componentDidMount() {
+  chuyentiep() {
+    DataAction.getUser().then((value) => {
+        DataAction.getUserInfo(value).then((user) => {
+            DataAction.responseRQ(this.state.ticketId, this.state.fwDep, this.state.fwUser, this.state.fwContent, this.state.reqDate, user.departmentCode, user.username, this.state.ndxl, this.state.ndxlNB, this.state.selectedIdCause1, this.state.selectedIdCause3).then((result) => {
+                // function
+                if (JSON.stringify(result) == 'true') {
+                    console.log('response: ' + JSON.stringify(result));
+                    Alert.alert('Thành công', 'Xử lý của bạn đã được chuyển tiếp.');
+                    this.props.navigation.navigate("ReceiveTopbar");
+                } else {
+                    Alert.alert('Thất bại', 'Xử lý của bạn chưa được chuyển tiếp.');
+                }
+            }).catch((error) => {
+                console.log(error)
+            })
+        }).catch((error) => {
+            console.log(error)
+        });
+    })
+  }
+
+  componentWillMount() {
     DataAction.getUserInfo(this.state.reqUser).then((response) => {
         this.setState({
             fullname: response.fullname,
@@ -119,14 +224,26 @@ export default class Process extends Component {
         //     this.setState({nguyennhanCap1: [...this.state.nguyennhanCap1, cause.causeName]});
         // })
         this.setState({nguyennhanCap1: response})
+    }).catch((error) => {
+        console.log(error)
+    });
+    DataAction.getRecentRqDetail(this.state.ticketId).then((response) => {
+        this.setState({
+            idRqForward: response.id,
+            fwDep: response.fw_dep_code,
+            fwUser: response.fw_user,
+            fwContent: response.fw_content
+        })
+    }).catch((error) => {
+        console.log(error)
     })
   }
 
     render() {
       return (
-        <Content>
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={{flex: 1}}
+        <LinearGradient colors={['#0057AA', '#A9F8FF']} style={{flex: 1}}
             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
+            <Content style={{flex: 1}} >
 
                 <View style={{flexDirection: 'row', marginTop: 15, marginBottom: 10}}>
                     <View style={{flex: 2, justifyContent: 'center', marginLeft:20}}>
@@ -137,11 +254,11 @@ export default class Process extends Component {
                     <View style={{flex:3, borderLeftWidth: 1, borderLeftColor: '#A9F8FF', paddingLeft:10}}>
                         <View style={{flexDirection: 'row'}}>
                             <Icon name='person' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
-                            <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}> {this.state.fullname} - Phòng {this.state.departmentCode}</Text>
+                            <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                         </View>
                         <View style={{flexDirection: 'row'}}>
                             <Icon name='call' style={{fontSize: 12, color: '#A9F8FF', padding: 3}}/>
-                            <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}> Gọi {this.state.phone}</Text>
+                            <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
                         </View>
                     </View>
                 </View>
@@ -159,6 +276,7 @@ export default class Process extends Component {
                         <Picker
                             // iosHeader="Select one"
                             mode="dropdown"
+                            placeholder="Select one cause"
                             selectedValue={this.state.selectedIdCause1}
                             onValueChange={(itemValue, itemIndex) => this.chonCap1(itemValue)}
                             style={styles.picker}
@@ -174,33 +292,9 @@ export default class Process extends Component {
                     </View>
                 </View>
                 {/* cap 2 */}
-                    {(this.state.isCap1Clicked) ? this.renderCap2() : null }
+                    { this.state.isCap1Clicked ? this.renderCap2() : null }
                 {/* cap 3 */}
-                {/* <View style={{marginBottom: 0}}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
-                        <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
-                            Nguyên Nhân Cấp 3
-                        </Text>
-                    </View>
-                    <View style={{borderBottomWidth: 1, paddingBottom: 2}}>
-                        <Picker
-                            // iosHeader="Select one"
-                            mode="dropdown"
-                            selectedValue={this.state.selectedIdCause3}
-                            onValueChange={(itemValue, itemIndex) => this.setState({selectedIdCause3: itemValue})}
-                            style={styles.picker}
-                            itemTextStyle={{ color: '#A9F8FF', fontSize: 12 }}
-                            textStyle={{ color: "#A9F8FF", fontSize: 12 }}
-                            itemStyle={{
-                                backgroundColor: "#fff",
-                                paddingLeft: 10
-                            }}
-                        >
-                            {this.renderItem()}
-                        </Picker>
-                    </View>
-                </View> */}
+                    { this.state.isCap2Clicked ? this.renderCap3() : null }
             </View>
             
         {/* Phan noi dung */}
@@ -212,12 +306,10 @@ export default class Process extends Component {
                         </Text>
                     </View>
                     <View>
-                        <Text style={{color: '#fff', fontSize: 12}} >
-                            Sửa tính cước thuê bao, tính cước theo tiêu chuẩn mới ban hành ngày 15/4/2018
-                        </Text>
+                        <Text style={{color: '#fff', fontSize: 12}} >{this.state.reqTitle}</Text>
                     </View>
                 </View>
-
+            {/* noi dung xu ly */}
                 <View style={{margin: 15, marginBottom: 0}}>
                     <View style={{flexDirection: 'row'}}>
                         <Icon name='document' style={{fontSize: 12, color: 'white'}}/>
@@ -230,9 +322,10 @@ export default class Process extends Component {
                         placeholder="Nhập nội dung yêu cầu..."
                         placeholderTextColor='rgba(255,255,255,0.7)'
                         style={styles.textArea}
+                        onChangeText={ndxl => this.setState({ndxl})}
                     />
                 </View>
-
+            {/* noi dung xu ly noi bo */}
                 <View style={{margin: 15}}>
                     <View style={{flexDirection: 'row'}}>
                         <Icon name='document' style={{fontSize: 12, color: 'white'}}/>
@@ -245,6 +338,7 @@ export default class Process extends Component {
                         placeholder="Nhập nội dung yêu cầu..."
                         placeholderTextColor='rgba(255,255,255,0.7)'
                         style={styles.textArea}
+                        onChangeText={ndxlNB => this.setState({ndxlNB})}
                     />
                 </View>
                 
@@ -253,7 +347,7 @@ export default class Process extends Component {
                     <View style={styles.centerRow}>
                         <Button
                             style={styles.btn}
-                            onPress={() => this.props.navigation.navigate("")}
+                            onPress={() => this.kethuc()}
                         >
                             <Text style={styles.textFoot}>Kết Thúc</Text>
                         </Button>
@@ -261,15 +355,15 @@ export default class Process extends Component {
                     <View style={styles.centerRow}>
                         <Button
                             style={styles.btn}
-                            onPress={() => this.props.navigation.navigate("")}
+                            onPress={() => this.chuyentiep()}
                         >
                             <Text style={styles.textFoot}>Chuyển Tiếp</Text>
                         </Button>
                     </View>
                 </View>
 
-            </LinearGradient>
-        </Content>
+            </Content>
+        </LinearGradient>
       );
     }
   }

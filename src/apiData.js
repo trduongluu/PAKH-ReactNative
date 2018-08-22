@@ -9,9 +9,9 @@ var apiGetRequest = `${ip}/request/get?`;
 var apiAddRequest = `${ip}/request/post?`;
 var apiHethong = `${ip}/sys/`;
 var apiNguyenNhan = `${ip}/cause?`;
-var apiRqDetail = `${ip}/request/recent/`;
-var apiPutRqDetail = `${ip}/request/updateRequestDetail/`;
+var apiRecentRqDetail = `${ip}/request/recent/`;
 var apiPutRequest = `${ip}/request/updateRequest/`;
+var apiPutRqDetail = `${ip}/request/updateRequestDetail/`;
 var apiResponse = `${ip}/request/response?`;
 
 // Fetch API function list
@@ -77,6 +77,72 @@ var DataAction = {
     getNguyenNhanCap3(idcap2){
         var url = `${apiNguyenNhan}level=2&id_parent=${idcap2}`;
         return fetch(url).then((res) => res.json());
+    },
+
+    // Recent RQ detail
+    getRecentRqDetail(ticketid){
+        var url = `${apiRecentRqDetail}${ticketid}`;
+        return fetch(url).then((res) => res.json());
+    },
+
+    async putRequest(ticketid, ngayxl, ndxl, username, userdep){
+        var url = `${apiPutRequest}${ticketid}?pro_actua=${ngayxl}&pro_content=${ndxl}&pro_user=${username}&pro_dep_code=${userdep}`;
+        try {
+            let response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ngayxl, ndxl, username, userdep
+                })
+            })
+            let resjson = await response.json();
+            return resjson;
+        } catch (error) {
+            console.error(`Error is: ${error}`);
+        }
+    },
+
+    async putRqDetail(idRqForward, reqDate, userdep, username, ngayxl, ndxlNB, ndxl, idcauseCap1, idcauseCap3){
+        var url = `${apiPutRqDetail}${idRqForward}?receiving_date=${reqDate}&receiving_dep_code=${userdep}&receiving_user=${username}&actualy_finish=${ngayxl}&return_content_private=${ndxlNB}&return_content=${ndxl}&dic_cause_id=${idcauseCap1}&dic_cause_id_private=${idcauseCap3}`;
+        try {
+            let response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    reqDate, userdep, username, ngayxl, ndxlNB, ndxl, idcauseCap1, idcauseCap3
+                })
+            })
+            let resjson = await response.json();
+            return resjson;
+        } catch (error) {
+            console.error(`Error is: ${error}`);
+        }
+    },
+
+    async responseRQ(ticketid, fwDep, fwUser, fwContent, reqDate, userdep, username, ndxl, ndxlNB, idcauseCap1, idcauseCap3){
+        var url = `${apiResponse}ticketid=${ticketid}&fw_dep_code=${fwDep}&fw_user=${fwUser}&fw_content=${fwContent}&receiving_date=${reqDate}&receiving_dep_code=${userdep}&receiving_user=${username}&return_content=${ndxl}&return_content_private=${ndxlNB}&dic_cause_id=${idcauseCap1}&dic_cause_id_private=${idcauseCap3}`;
+        try {
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fwDep, fwUser, fwContent, reqDate, userdep, username, ndxl, ndxlNB, idcauseCap1, idcauseCap3
+                })
+            })
+            let resjson = await response.json();
+            return resjson;
+        } catch (error) {
+            console.error(`Error is: ${error}`);
+        }
     },
 
 

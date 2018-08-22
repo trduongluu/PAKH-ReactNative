@@ -73,7 +73,8 @@ const ReceiveTopbar = createMaterialTopTabNavigator({
     initialRouteName: 'Receive',
     order: ['Receive', 'DangXuly', 'DaXuly'],
     tabBarOptions: {
-        style: { backgroundColor: '#0057AA' }
+        style: { backgroundColor: '#0057AA' },
+        upperCaseLabel: false
     }
 });
 
@@ -113,7 +114,8 @@ const SendTopbar = createMaterialTopTabNavigator({
     initialRouteName: 'Send',
     order: ['Send', 'DangXL', 'DaXL'],
     tabBarOptions: {
-        style: { backgroundColor: '#0057AA' }
+        style: { backgroundColor: '#0057AA' },
+        upperCaseLabel: false
     }
 });
 

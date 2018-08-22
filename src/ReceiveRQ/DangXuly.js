@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, findNodeHandle, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -15,7 +15,7 @@ class ItemLayout extends Component {
             <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_content} tu {this.props.item.req_dep_code}</Text>
             <View style={receiveStyle.code_levelArea} >
               <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
-              <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} />
+              {this.props.item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
             </View>
           </View>
           <View style={receiveStyle.rowSubline} >
@@ -46,7 +46,7 @@ export default class DangXuly extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     DataAction.getUser().then((user) => {
       this.setState({ globUser: user });
       console.log('in fetch dangxl = ' + this.state.globUser);
@@ -80,7 +80,14 @@ export default class DangXuly extends Component {
           <FlatList data={this.state.receiveRQ}
           renderItem={({item, index}) => {
             return(
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Process', {
+                ticketId: item.ticket_id,
+                reqUser: item.req_user,
+                reqTitle: item.req_title,
+                reqDate: item.req_date
+              })} >
               <ItemLayout item={item} index={index} ></ItemLayout>
+              </TouchableOpacity>
             );
           }} ></FlatList>
         </LinearGradient>

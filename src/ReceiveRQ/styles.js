@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     picker: {
-        height: 20,
+        height: 40,
+        color: 'white'
     },
     textArea:{
         borderRadius: 7,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 12
+        marginBottom: 15
     },
     centerCol: {
         flex: 1,
@@ -70,11 +71,12 @@ const styles = StyleSheet.create({
         width: 110,
         flexDirection: 'row',
         justifyContent: 'center',
-
+        alignItems: 'center'
     },
     textFoot: {
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 12
     },
     img :{
         width: '100%',

@@ -19,14 +19,13 @@ class ItemLayout extends Component {
                             tu {this.props.item.req_dep_code}</Text>
                         <View style={receiveStyle.code_levelArea}>
                             <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
-                            <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon}/>
+                            {this.props.item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
                         </View>
                     </View>
                     <View style={receiveStyle.rowSubline}>
                         <View style={receiveStyle.timeArea}>
                             <Ionicons name="md-time" size={10} style={receiveStyle.clockIcon}/>
-                            <Text style={receiveStyle.txtTime}>{this.props.item.req_date}
-                                - {this.props.item.pro_plan}</Text>
+                            <Text style={receiveStyle.txtTime}>{this.props.item.req_date} - {this.props.item.pro_plan}</Text>
                         </View>
                         <View style={receiveStyle.usersArea}>
                             <Ionicons name="md-contact" size={10} style={receiveStyle.senderIcon}/>
