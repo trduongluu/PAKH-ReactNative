@@ -66,7 +66,7 @@ class PhanCong extends Component {
       this.setState({ globUser: user });
       console.log('in fetch pcxl = ' + this.state.globUser);
       DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
-        console.log(JSON.stringify(response));
+        console.log('receive RQ: ' + response);
         this.setState({
           receiveRQ: response,
           isLoading: false

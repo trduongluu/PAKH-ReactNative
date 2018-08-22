@@ -2,6 +2,10 @@ import {AsyncStorage} from 'react-native';
 
 var ip = 'http://14.160.91.174:8080';       // IP config
 
+var date = new Date();
+let today = date.getDate() + '/' + parseInt(date.getMonth() + 1) + '/' + date.getFullYear();
+let startday = '12-12-2017';
+
 // List API
 var apiLogin = `${ip}/user?`;
 var apiUser = `${ip}/user/`;
@@ -53,7 +57,7 @@ var DataAction = {
 
     // Lấy yêu cầu nhận của user
     getReceiveRQ(tabname, user){
-        var url = `${apiGetRequest}start_req_date=12-12-2017&end_req_date=12-08-2018&req_status=${tabname}&pro_user=${user}`;
+        var url = `${apiGetRequest}start_req_date=${startday}&end_req_date=${today}&req_status=${tabname}&pro_user=${user}`;
         return fetch(url).then((res) => res.json());
     },
 
@@ -150,7 +154,7 @@ var DataAction = {
 
     // lấy yêu cầu gửi
     getSendRQ(tabname, user){
-        var url = `${apiGetRequest}start_req_date=18-01-2018&end_req_date=18-08-2018&req_status=${tabname}&req_user=${user}`;
+        var url = `${apiGetRequest}start_req_date=${startday}&end_req_date=${today}&req_status=${tabname}&req_user=${user}`;
         return fetch(url).then((res) => res.json());
     },
     // Tìm kiếm yêu cầu

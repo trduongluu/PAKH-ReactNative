@@ -23,7 +23,7 @@ export default class Process extends Component {
         ticketId: ticketId
     })} />,
     headerTitle: 'Xử lý',
-    headerTitleStyle: { flex: 1, textAlign: 'center', alignItems: 'center' }
+    // headerTitleStyle: { flex: 1, textAlign: 'center', alignItems: 'center' }
   });
 
   constructor(props) {
@@ -192,7 +192,6 @@ export default class Process extends Component {
     DataAction.getUser().then((value) => {
         DataAction.getUserInfo(value).then((user) => {
             DataAction.responseRQ(this.state.ticketId, this.state.fwDep, this.state.fwUser, this.state.fwContent, this.state.reqDate, user.departmentCode, user.username, this.state.ndxl, this.state.ndxlNB, this.state.selectedIdCause1, this.state.selectedIdCause3).then((result) => {
-                // function
                 if (JSON.stringify(result) == 'true') {
                     console.log('response: ' + JSON.stringify(result));
                     Alert.alert('Thành công', 'Xử lý của bạn đã được chuyển tiếp.');
