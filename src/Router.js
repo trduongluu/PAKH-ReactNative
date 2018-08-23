@@ -20,6 +20,7 @@ import DangXuly from './ReceiveRQ/DangXuly';
 import DaXuly from './ReceiveRQ/DaXuly';
 import PhanCong from './ReceiveRQ/PhanCong';
 import History from './ReceiveRQ/History';
+import DetailsSend from './SendRQ/DetailsSend'
 
 console.disableYellowBox = true;
 
@@ -44,7 +45,8 @@ export default class Router extends React.Component {
 // Cụm search screens
 const SearchStack = createStackNavigator({
     Search: { screen: Search },
-    Results: { screen: Results, navigationOptions: headerConfig }
+    Results: { screen: Results, navigationOptions: headerConfig },
+    Details: {screen: Details, navigationOptions: headerConfig}
 });
 
 // Cụm setting screens
@@ -130,7 +132,8 @@ const SendStack = createStackNavigator({
             headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
         })
     },
-    MakeRQ: { screen: MakeRQ, navigationOptions: headerConfig }
+    MakeRQ: { screen: MakeRQ, navigationOptions: headerConfig },
+    DetailsSend: {screen: DetailsSend, navigationOptions: headerConfig}
 }, {
     initialRouteName: 'SendTopbar'
 });

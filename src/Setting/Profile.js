@@ -9,6 +9,7 @@ const data =[{name: 'Họ tên'},
     {name: 'Username'},
     {name: 'Số điện thoại'},
     {name: 'Đơn vị'},
+    {name: 'Email'}
 ];
 export default class Profile extends Component {
     constructor(props){
@@ -43,6 +44,9 @@ export default class Profile extends Component {
         }
         else if(lab === 'Đơn vị'){
             return this.state.infoUser.departmentCode
+        }
+        else if(lab === 'Email'){
+            return this.state.infoUser.email
         }
     };
 

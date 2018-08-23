@@ -208,7 +208,7 @@ var DataAction = {
             console.error(`Error is: ${error}`);
         }
     },
-
+    //Lấy yêu cầu cấp cha
     async getRequestTypesParent(departcode, sys_code, username){
         try{
             let res = await fetch(`${ip}/request/type?department_code=${departcode}&system_code=${sys_code}&username=${username}`);
@@ -220,6 +220,7 @@ var DataAction = {
             return ''
         }
     },
+    //Lấy yêu cầu cấp con
     async getRequestTypesChild(departcode, sys_code, is_has){
         try{
             let res = await fetch(`${ip}/request/type?department_code=${departcode}&system_code=${sys_code}&is_has=${is_has}`);
@@ -242,7 +243,19 @@ var DataAction = {
             console.error(`Error is: ${error}`);
             return ''
         }
-    }
+    },
+    // API lấy danh sách nhân viên
+    async getStaffDepartment(dep_code){
+        try{
+            let res = await fetch(`${ip}/staff/${dep_code}`)
+            let reJson = await res.json();
+            return reJson;
+        }
+        catch (error) {
+            console.error(`Error is: ${error}`);
+        }
+
+    },
 };
 
 // module.exports = DataAction;
