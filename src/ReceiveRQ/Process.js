@@ -8,7 +8,7 @@ import styles from './styles';
 import DataAction from '../apiData';
 
 var today = new Date();
-let ngayxl = today.getDate() + '/' + parseInt(today.getMonth() + 1) + '/' + today.getFullYear();
+let ngayxl = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear();
 var reqUser = '';
 var ticketId = '';
 
