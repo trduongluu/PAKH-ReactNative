@@ -235,6 +235,9 @@ export default class Search extends Component {
                                                                 height: 22,
                                                                 width: 22,
                                                                 marginLeft: 0,
+                                                            },
+                                                            dateText:{
+                                                                color: '#fff'
                                                             }
                                                         }}
                                                         onDateChange={(date) => {
@@ -275,6 +278,9 @@ export default class Search extends Component {
                                                             dateInput: {
                                                                 marginLeft: 36,
                                                                 borderWidth: 0,
+                                                            },
+                                                            dateText:{
+                                                                color: '#fff'
                                                             }
                                                         }}
                                                         onDateChange={(date) => {
@@ -305,6 +311,7 @@ export default class Search extends Component {
                                                             selectedValue={this.state.req_system}
                                                             onValueChange={this.onValueChange_system.bind(this)}
                                                             style={[styles.picker]}
+                                                            textStyle={{ color: "#fff" }}
                                                         >
                                                             <Picker.Item label="Tất cả" value=""/>
                                                             {this.state.arrSystemCode.map((item) => {
@@ -339,6 +346,7 @@ export default class Search extends Component {
                                                             selectedValue={this.state.req_dep_code}
                                                             onValueChange={this.onValueChange_DepartCode.bind(this)}
                                                             style={[styles.picker]}
+                                                            textStyle={{ color: "#fff" }}
                                                         >
                                                             <Picker.Item label="Tất cả" value=""/>
                                                             {this.state.dataDepartCode.map((item) => {
@@ -373,6 +381,7 @@ export default class Search extends Component {
                                                             selectedValue={this.state.req_user}
                                                             onValueChange={this.onValueChange_Rep_User.bind(this)}
                                                             style={[styles.picker]}
+                                                            textStyle={{ color: "#fff" }}
                                                         >
                                                             <Picker.Item label="Tất cả" value=""/>
                                                             {this.state.dataStaff.map((item) => {
@@ -460,6 +469,7 @@ export default class Search extends Component {
                                                                 selectedValue={this.state.pro_dep_code}
                                                                 onValueChange={this.onValueChange_pro_dep_code.bind(this)}
                                                                 style={[styles.picker]}
+                                                                textStyle={{ color: "#fff" }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataDepartCode.map((item) => {
@@ -498,6 +508,7 @@ export default class Search extends Component {
                                                                 selectedValue={this.state.pro_user}
                                                                 onValueChange={this.onValueChange_pro_user.bind(this)}
                                                                 style={[styles.picker]}
+                                                                textStyle={{ color: "#fff" }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataStaff_pro.map((item) => {
@@ -536,6 +547,7 @@ export default class Search extends Component {
                                                                 selectedValue={this.state.req_status}
                                                                 onValueChange={this.onValueChange_req_status.bind(this)}
                                                                 style={[styles.picker]}
+                                                                textStyle={{ color: "#fff" }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 <Picker.Item label="Phân công xử lí"
@@ -596,6 +608,7 @@ export default class Search extends Component {
                                                                 selectedValue={this.state.pro_dep_code}
                                                                 onValueChange={this.onValueChange_pro_dep_code.bind(this)}
                                                                 style={[styles.picker]}
+                                                                textStyle={{ color: "#fff" }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataDepartCode.map((item) => {
@@ -630,6 +643,7 @@ export default class Search extends Component {
                                                                 selectedValue={this.state.pro_user}
                                                                 onValueChange={this.onValueChange_pro_user.bind(this)}
                                                                 style={[styles.picker]}
+                                                                textStyle={{ color: "#fff" }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataStaff_pro.map((item) => {
@@ -665,6 +679,7 @@ export default class Search extends Component {
                                                                 selectedValue={this.state.req_status}
                                                                 onValueChange={this.onValueChange_req_status.bind(this)}
                                                                 style={[styles.picker]}
+                                                                textStyle={{ color: "#fff" }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 <Picker.Item label="Phân công xử lí"

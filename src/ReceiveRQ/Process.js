@@ -3,8 +3,7 @@ import { View, Text, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container, Button, Icon, Content, Picker, Textarea } from 'native-base';
-import {} from '../LayoutStyle';
-import styles from './styles';
+import {processStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 
 var today = new Date();
@@ -107,15 +106,16 @@ export default class Process extends Component {
                     Nguyên Nhân Cấp 2
                 </Text>
             </View>
-            <View style={{borderBottomWidth: 1, paddingBottom: 2}}>
+            <View style={processStyle.pickerline}>
                 <Picker
                     // iosHeader="Select one"
                     mode="dropdown"
+                    placeholder="Select one cause"
                     selectedValue={this.state.selectedIdCause2}
                     onValueChange={(itemValue, itemIndex) => this.chonCap2(itemValue)}
-                    style={styles.picker}
-                    itemTextStyle={{ color: '#A9F8FF', fontSize: 12 }}
-                    textStyle={{ color: "#A9F8FF", fontSize: 12 }}
+                    style={processStyle.picker}
+                    itemTextStyle={{ fontSize: 12 }}
+                    textStyle={{ color: "#fff", fontSize: 12 }}
                     itemStyle={{
                         backgroundColor: "#fff",
                         paddingLeft: 10
@@ -142,15 +142,16 @@ export default class Process extends Component {
                     Nguyên Nhân Cấp 3
                 </Text>
             </View>
-            <View style={{borderBottomWidth: 1, paddingBottom: 2}}>
+            <View style={processStyle.pickerline}>
                 <Picker
                     // iosHeader="Select one"
                     mode="dropdown"
+                    placeholder="Select one cause"
                     selectedValue={this.state.selectedIdCause3}
                     onValueChange={(itemValue, itemIndex) => this.setState({selectedIdCause3: itemValue})}
-                    style={styles.picker}
-                    itemTextStyle={{ color: '#A9F8FF', fontSize: 12 }}
-                    textStyle={{ color: "#A9F8FF", fontSize: 12 }}
+                    style={processStyle.picker}
+                    itemTextStyle={{ fontSize: 12 }}
+                    textStyle={{ color: "#fff", fontSize: 12 }}
                     itemStyle={{
                         backgroundColor: "#fff",
                         paddingLeft: 10
@@ -271,16 +272,16 @@ export default class Process extends Component {
                             Nguyên Nhân Cấp 1
                         </Text>
                     </View>
-                    <View style={{borderBottomWidth: 1, paddingBottom: 2}}>
+                    <View style={processStyle.pickerline}>
                         <Picker
                             // iosHeader="Select one"
                             mode="dropdown"
                             placeholder="Select one cause"
                             selectedValue={this.state.selectedIdCause1}
                             onValueChange={(itemValue, itemIndex) => this.chonCap1(itemValue)}
-                            style={styles.picker}
-                            itemTextStyle={{ color: '#A9F8FF', fontSize: 12 }}
-                            textStyle={{ color: "#A9F8FF", fontSize: 12 }}
+                            style={processStyle.picker}
+                            itemTextStyle={{ fontSize: 12 }}
+                            textStyle={{ color: "#fff", fontSize: 12 }}
                             itemStyle={{
                                 backgroundColor: "#fff",
                                 paddingLeft: 10
@@ -320,7 +321,7 @@ export default class Process extends Component {
                         rowSpan={4} bordered
                         placeholder="Nhập nội dung yêu cầu..."
                         placeholderTextColor='rgba(255,255,255,0.7)'
-                        style={styles.textArea}
+                        style={processStyle.textArea}
                         onChangeText={ndxl => this.setState({ndxl})}
                     />
                 </View>
@@ -336,27 +337,27 @@ export default class Process extends Component {
                         rowSpan={4} bordered
                         placeholder="Nhập nội dung yêu cầu..."
                         placeholderTextColor='rgba(255,255,255,0.7)'
-                        style={styles.textArea}
+                        style={processStyle.textArea}
                         onChangeText={ndxlNB => this.setState({ndxlNB})}
                     />
                 </View>
                 
         {/* 2 Button bottom */}
-                <View style={styles.rowButtonBot}>
-                    <View style={styles.centerRow}>
+                <View style={processStyle.rowButtonBot}>
+                    <View style={processStyle.centerRow}>
                         <Button
-                            style={styles.btn}
+                            style={processStyle.btn}
                             onPress={() => this.kethuc()}
                         >
-                            <Text style={styles.textFoot}>Kết Thúc</Text>
+                            <Text style={processStyle.textFoot}>Kết Thúc</Text>
                         </Button>
                     </View>
-                    <View style={styles.centerRow}>
+                    <View style={processStyle.centerRow}>
                         <Button
-                            style={styles.btn}
+                            style={processStyle.btn}
                             onPress={() => this.chuyentiep()}
                         >
-                            <Text style={styles.textFoot}>Chuyển Tiếp</Text>
+                            <Text style={processStyle.textFoot}>Chuyển Tiếp</Text>
                         </Button>
                     </View>
                 </View>

@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#4076b9'
     },
     input_search: {
+        height: 30,
         marginTop: 5,
         borderWidth: 1,
         borderColor: '#fff',
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     txt_value_sent_details: {color: '#fff'},
-    txt_value_sent: {color: 'rgba(255,255,255,0.7)'},
+    txt_value_sent: {color: 'rgba(255,255,255,0.7)', marginTop: 4},
     view_content_reques: {
         borderBottomColor: '#383838',
         borderBottomWidth: 1,
@@ -149,7 +150,8 @@ const styles = StyleSheet.create({
     txt_input_search: {
         marginLeft: 10,
         marginVertical: -10,
-        color: 'white'
+        color: 'white',
+        paddingVertical: 14
     },
     view_icon_minus: {
         width: 20,
@@ -176,7 +178,7 @@ const styles = StyleSheet.create({
         height: 30,
         // paddingTop: 10,
         // paddingBottom: 22,
-        backgroundColor: '#2f40ff',
+        backgroundColor: '#0057AA',
         borderRadius: 20,
 
         flex: 1,
@@ -187,8 +189,7 @@ const styles = StyleSheet.create({
     txt_btn_search: {
         textAlign: 'center',
         color: '#fff',
-        fontWeight: 'bold',
-
+        fontWeight: 'bold'
     },
     view_sum_item: {
         borderBottomWidth: 1,
@@ -207,8 +208,8 @@ const styles = StyleSheet.create({
     },
     touchable_ok: {
         width: 60,
-        paddingVertical: 5,
-        paddingHorizontal: 20,
+        paddingVertical: 4,
+        paddingHorizontal: 4,
         backgroundColor: '#2f40ff',
         borderRadius: 10
     },
