@@ -17,7 +17,6 @@ export default class Results extends Component {
         super(props);
         this.state = {
             dataResultRequest: [],      //data kết quả tìm kiếm yêu cầu
-
             start_date: this.props.navigation.state.params.sd,     //ngày bắt đầu
             end_date: this.props.navigation.state.params.ed,      //ngày kết thúc
             req_title: this.props.navigation.state.params.rt,             //tiêu đề
@@ -28,7 +27,6 @@ export default class Results extends Component {
             pro_dep_code: this.props.navigation.state.params.pdc,      //dơn vị xử lý
             req_status: this.props.navigation.state.params.rstatus,         //trạng thái
             pro_user: this.props.navigation.state.params.pu,           //người xử lý
-
             isLoading: true,
         }
     }
@@ -47,13 +45,13 @@ export default class Results extends Component {
                 dataResultRequest: obj,
                 isLoading: false,
             })
-            console.log("ADDD")
         }).catch((error) => {
             this.state({dataResultRequest: ''})
         })
     };
 
     render() {
+
         if(this.state.isLoading){
             return(
                 <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
@@ -69,7 +67,6 @@ export default class Results extends Component {
                 <Content style={{marginHorizontal: 7}}>
                     <FlatList data={this.state.dataResultRequest}
                               renderItem={({item, index}) => {
-                                  // console.log(`Item = ${JSON.stringify(item)}, index = ${index}`)
                                   return (
                                       <TouchableOpacity style={styles.view_sum_item}
                                                         onPress={() => this.props.navigation.navigate('Details', {dataDetails: item})}>
@@ -86,8 +83,7 @@ export default class Results extends Component {
                                               </View>
                                               <View style={{flex: 0.1}}>
                                                   <Text style={styles.txt_resulf_search_1}>{item.ticket_id}</Text>
-                                                  <Ionicons name="md-star" color='red' size={18}
-                                                            style={receiveStyle.levelIcon}/>
+                                                  {item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
                                               </View>
                                           </View>
                                           <View style={{flexDirection: 'row'}}>

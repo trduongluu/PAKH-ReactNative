@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackground} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
-import {Container, Header, Content, Icon,} from 'native-base'
-import styles from "./styles";
+import {Container, Header, Content, Icon} from 'native-base'
+import styles from "../Search/styles";
 import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData'
-import Communications from 'react-native-communications';
-import common from "../common/Common";
 
 
-export default class Details extends Component {
+export default class DetailsSend extends Component {
 
     constructor(props) {
         super(props);
@@ -21,16 +19,13 @@ export default class Details extends Component {
     }
 
     componentWillMount() {
-
-        DataAction.getUserInfo(this.state.itemDetail.req_user).then((obj) => {
+        DataAction.getUserInfo(this.state.itemDetail.rep_user).then((obj) => {
             this.setState({rep_users: obj})
-            console.log("Nguoi gui: " + this.state.rep_users)
         }).catch((error) => {
             return ''
         })
         DataAction.getUserInfo(this.state.itemDetail.pro_user).then((obj) => {
             this.setState({pro_users: obj})
-            console.log("Nguoi nhan: " + this.state.pro_users)
         }).catch((error) => {
             return ''
         })
@@ -66,8 +61,7 @@ export default class Details extends Component {
                     <View style={styles.view_time}>
                         <Icon name='time' style={[{fontSize: 17, marginRight: 10}, styles.txt_value_sent_details]}/>
                         <Text style={styles.txt_time}>Thời gian</Text>
-                        <Text style={{flex: 0.6, color: '#fff'}}>{this.state.itemDetail.req_date}
-                            - {this.state.itemDetail.pro_plan}</Text>
+                        <Text style={{flex: 0.6, color: '#fff'}}>{this.state.itemDetail.req_date} đến {this.state.itemDetail.pro_plan}</Text>
                     </View>
                     <View style={styles.view_sum_sent}>
                         <View style={{

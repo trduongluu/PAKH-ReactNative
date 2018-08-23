@@ -43,10 +43,23 @@ export default class MakeRQ extends Component {
         DataAction.getUser().then((user) => {
             this.setState({globUser: user});
             console.log('Tao yeu cau = ' + this.state.globUser);
-            DataAction.getInfoUser(this.state.globUser).then((objInfo) => {
+            DataAction.getUserInfo(this.state.globUser).then((objInfo) => {
                 this.setState({infoUser: objInfo})
                 DataAction.getReqSystemCode(this.state.infoUser.departmentCode).then((obj) => {
                     this.setState({arrSystemCode: obj})
+                    if(this.state.arrSystemCode.length > 0){
+
+                        this.state.arrSystemCode.map((item, i) => {
+                            if(i === 0){
+                                DataAction.getRequestTypesParent(this.state.infoUser.departmentCode, item.request_code,this.state.globUser).then((objabc) => {
+                                    this.setState({arrRequestParent: objabc})
+                                }).catch((error)=>{
+                                    return ''
+                                })
+                            }
+                        })
+
+                    }
                 }).catch((error) => {
                     return ''
                 })
@@ -68,39 +81,33 @@ export default class MakeRQ extends Component {
         this.setState({
             selected_system: value
         });
-        /*  DataAction.getRequestTypesParent(this.state.infoUser.departmentCode, this.state.selected_system,this.state.globUser).then((obj) => {
+          DataAction.getRequestTypesParent(this.state.infoUser.departmentCode, value,this.state.globUser).then((obj) => {
               this.setState({arrRequestParent: obj});
           }).catch((error)=>{
               return ''
-          })*/
-        DataAction.getRequestTypesParent("KT", "TDH_VP", "ADMIN").then((obj) => {
+          })
+       /* DataAction.getRequestTypesParent("KT", "TDH_VP", "ADMIN").then((obj) => {
             this.setState({arrRequestParent: obj});
         }).catch((error) => {
             return ''
-        })
+        })*/
     }
 
     //thay đổi cấp yêu cầu
     onValueChange_request(value: string) {
         this.setState({
             selected_request: value
-        }, () => {console.log("ADH === " + this.state.selected_request)});
-        /* DataAction.getRequestTypesParent(this.state.infoUser.departmentCode, this.state.selected_system,this.state.arrRequestParent.id).then((obj) => {
-             this.setState({arrRequestChild: obj});
-         }).catch((error)=>{
-             return ''
-         })*/
+        });
         this.state.arrRequestParent.map((item) =>{
-            console.log("Ten he thong ===  " + this.state.selected_request)
-            if(item.request_name === this.state.selected_request){
-                this.setState({idRequestParent: item.id}, () => {console.log("ID1 = "+this.state.idRequestParent)})
+            if(item.request_code === value){
+                DataAction.getRequestTypesChild(this.state.infoUser.departmentCode, this.state.selected_system,item.id).then((obj) => {
+                    this.setState({arrRequestChild: obj});
+                }).catch((error) => {
+                    return ''
+                })
+            }else {
+                this.setState({arrRequestChild: []});
             }
-        })
-        console.log("ID = "+this.state.idRequestParent)
-        DataAction.getRequestTypesChild("KT", "TDH_VP", "130").then((obj) => {
-            this.setState({arrRequestChild: obj});
-        }).catch((error) => {
-
         })
     }
 
@@ -127,29 +134,43 @@ export default class MakeRQ extends Component {
     };
 // tạo yêu cầu mới
     insertRequest = async () => {
-        DataAction.postRequest(this.state.infoUser.departmentCode, this.state.infoUser.username, this.state.title, this.state.selected_level, this.state.selected_system, this.state.selected_request, this.state.content_request, this.state.file_dir).then((obj) => {
-            this.setState({insertResult: obj})
-            if (this.state.insertResult === true) {
-                Alert.alert(
-                    'Tạo yêu cầu thành công',
-                    '',
-                    [
-                        {text: 'OK'},
-                    ],
-                    {cancelable: false}
-                )
-            }
-            else {
-                Alert.alert(
-                    'FAIL',
-                    '',
-                    [
-                        {text: 'OK'},
-                    ],
-                    {cancelable: false}
-                )
-            }
-        })
+        console.log(this.state.title + " " + this.state.content_request )
+        if(this.state.title !== '' && this.state.content_request !== ''){
+            DataAction.postRequest(this.state.infoUser.departmentCode, this.state.infoUser.username, this.state.title, this.state.selected_level, this.state.selected_system, this.state.selected_request, this.state.content_request, this.state.file_dir).then((obj) => {
+                this.setState({insertResult: obj})
+                if (this.state.insertResult === true) {
+                    Alert.alert(
+                        'Tạo yêu cầu thành công',
+                        '',
+                        [
+                            {text: 'OK'},
+                        ],
+                        {cancelable: false}
+                    )
+                }
+                else {
+                    Alert.alert(
+                        'FAIL',
+                        '',
+                        [
+                            {text: 'OK'},
+                        ],
+                        {cancelable: false}
+                    )
+                }
+            })
+        }
+        else {
+            Alert.alert(
+                'Nhập đầy đủ tiêu đề và nội dung yêu cầu',
+                '',
+                [
+                    {text: 'OK'},
+                ],
+                {cancelable: false}
+            )
+        }
+
     }
 
     static navigationOptions = {
@@ -189,9 +210,8 @@ export default class MakeRQ extends Component {
                                 onValueChange={this.onValueChange_level.bind(this)}
                                 style={styles.picker}
                             >
-                                <Picker.Item label="Bình thường" value="Bình thường"/>
-                                <Picker.Item label="Dễ" value="Dễ"/>
-                                <Picker.Item label="Khó" value="Khó"/>
+                                <Picker.Item label="Bình thường" value="BINH_THUONG"/>
+                                <Picker.Item label="Khẩn cấp" value="KHAN_CAP"/>
                             </Picker>
                         </Form>
 
@@ -205,7 +225,6 @@ export default class MakeRQ extends Component {
                                 onValueChange={this.onValueChange_system.bind(this)}
                                 style={styles.picker}
                             >
-                                <Picker.Item label="------" value="key0"/>
                                 {this.state.arrSystemCode.map((item) => {
                                     return (
                                         <Picker.Item label={item.systemName} value={item.systemCode}/>
@@ -214,7 +233,7 @@ export default class MakeRQ extends Component {
 
                             </Picker>
                         </Form>
-                        <Form style={styles.bo}>
+                        {this.state.arrRequestParent.length !== 0 ? <Form style={styles.bo}>
                             <Text style={{color: '#bfd1e3'}}>YÊU CẦU CHA</Text>
 
                             <Picker
@@ -224,14 +243,15 @@ export default class MakeRQ extends Component {
                                 onValueChange={this.onValueChange_request.bind(this)}
                                 style={styles.picker}
                             >
+                                <Picker.Item label="ALL" value="111"/>
                                 {this.state.arrRequestParent.map((item) => {
                                     return (
                                         <Picker.Item label={item.request_name} value={item.request_code}/>
                                     );
                                 })}
                             </Picker>
-                        </Form>
-                        <Form style={styles.bo}>
+                        </Form> : <View></View>}
+                        {this.state.arrRequestChild.length !== 0 ? <Form style={styles.bo}>
                             <Text style={{color: '#bfd1e3'}}>YÊU CẦU CON</Text>
 
                             <Picker
@@ -247,7 +267,8 @@ export default class MakeRQ extends Component {
                                     );
                                 })}
                             </Picker>
-                        </Form>
+                        </Form> : <View></View>}
+
                     </View>
 
                     <View style={{alignItems: 'center', marginTop: 30}}>
@@ -256,7 +277,9 @@ export default class MakeRQ extends Component {
                     <Textarea
                         rowSpan={5} bordered
                         placeholder="Nhập nội dung yêu cầu..."
+                        placeholderTextColor='rgba(255,255,255,0.7)'
                         style={styles.textArea}
+                        onChangeText={(text) => this.setState({content_request: text})}
                     />
 
 
@@ -275,6 +298,8 @@ export default class MakeRQ extends Component {
                             </Button>
                         </View>
                     </View>
+
+                    <View style={{height: 30}}/>
 
                 </Content>
             </LinearGradient>

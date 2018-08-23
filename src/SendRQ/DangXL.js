@@ -5,7 +5,7 @@ import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
-import Details from '../Search/Details'
+import DetailsSend from './DetailsSend'
 
 class ItemLayout extends Component {
   render() {
@@ -13,7 +13,7 @@ class ItemLayout extends Component {
       <View style={receiveStyle.bground} >
         <View style={receiveStyle.rowbg} >
           <View style={receiveStyle.rowSubline} >
-            <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_content} tu {this.props.item.req_dep_code}</Text>
+            <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_content}</Text>
             <View style={receiveStyle.code_levelArea} >
               <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
               {this.props.item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
@@ -81,7 +81,7 @@ export default class DangXL extends Component {
           <FlatList data={this.state.sendRQ}
           renderItem={({item, index}) => {
             return(
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {dataDetails: item})}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailsSend', {dataDetails: item})}>
                   <ItemLayout item={item} index={index}></ItemLayout>
                 </TouchableOpacity>
             );

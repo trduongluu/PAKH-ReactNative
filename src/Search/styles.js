@@ -22,8 +22,12 @@ const styles = StyleSheet.create({
         height: 2,
     },
 
-
-
+    picker: {
+        marginLeft: 10,
+        paddingBottom: 2,
+        height: 30,
+        color: 'white',
+    },
     text_top: {
         color: '#fff',
         fontSize: 10,
@@ -37,10 +41,9 @@ const styles = StyleSheet.create({
         borderBottomColor: '#4076b9'
     },
     input_search: {
-        flex: 0.6,
-        marginTop: 10,
+        marginTop: 5,
         borderWidth: 1,
-        borderColor: '#bbbdcd',
+        borderColor: '#fff',
         borderRadius: 15,
     },
     icon_time: {
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     view_one: {
-        borderBottomColor: '#000',
+        borderBottomColor: '#383838',
         borderBottomWidth: 1,
         paddingBottom: 15
     },
@@ -94,7 +97,7 @@ const styles = StyleSheet.create({
     view_time: {
         flex: 1,
         flexDirection: 'row',
-        borderBottomColor: '#000',
+        borderBottomColor: '#383838',
         borderBottomWidth: 1,
         paddingVertical: 15
     },
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     view_sum_sent: {
-        borderBottomColor: '#000',
+        borderBottomColor: '#383838',
         borderBottomWidth: 1,
         paddingVertical: 15
     },
@@ -122,9 +125,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color: '#fff'
     },
-    txt_value_sent: {color: '#fff'},
+    txt_value_sent_details: {color: '#fff'},
+    txt_value_sent: {color: 'rgba(255,255,255,0.7)'},
     view_content_reques: {
-        borderBottomColor: '#000',
+        borderBottomColor: '#383838',
         borderBottomWidth: 1,
         paddingVertical: 15
     },
@@ -150,28 +154,45 @@ const styles = StyleSheet.create({
     view_icon_minus: {
         width: 20,
         height: 20,
-        marginLeft: 10
+        marginLeft: 10,
+        justifyContent: 'flex-end',
+        marginTop: 15,
     },
     view_btn_search: {
-        marginTop: '10%',
+        marginTop: '20%',
+
+        margin: '35%',
+
+        flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+
+
     },
     btn_search: {
+
         width: 100,
-        paddingTop: 10,
-        paddingBottom: 22,
+        height: 30,
+        // paddingTop: 10,
+        // paddingBottom: 22,
         backgroundColor: '#2f40ff',
-        borderRadius: 20
+        borderRadius: 20,
+
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     txt_btn_search: {
         textAlign: 'center',
         color: '#fff',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+
     },
     view_sum_item: {
         borderBottomWidth: 1,
-        borderBottomColor: '#000',
+        borderBottomColor: '#383838',
         paddingBottom: 5
     },
     view_modal: {
