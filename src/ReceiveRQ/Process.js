@@ -101,7 +101,7 @@ export default class Process extends Component {
     return (
         <View style={{marginBottom: 12}}>
             <View style={{flexDirection: 'row'}}>
-                <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
+                <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
                 <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                     Nguyên Nhân Cấp 2
                 </Text>
@@ -137,7 +137,7 @@ export default class Process extends Component {
     return (
         <View style={{marginBottom: 0}}>
             <View style={{flexDirection: 'row'}}>
-                <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
+                <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
                 <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                     Nguyên Nhân Cấp 3
                 </Text>
@@ -253,11 +253,11 @@ export default class Process extends Component {
                     </View>
                     <View style={{flex:3, borderLeftWidth: 1, borderLeftColor: '#A9F8FF', paddingLeft:10}}>
                         <View style={{flexDirection: 'row'}}>
-                            <Icon name='person' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
+                            <Icon name='person' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
                             <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                         </View>
                         <View style={{flexDirection: 'row'}}>
-                            <Icon name='call' style={{fontSize: 12, color: '#A9F8FF', padding: 3}}/>
+                            <Icon name='call' type='MaterialIcons' style={{fontSize: 12, color: '#A9F8FF', padding: 3}}/>
                             <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
                         </View>
                     </View>
@@ -267,7 +267,7 @@ export default class Process extends Component {
             <View style={{margin: 12}} >
                 <View style={{marginBottom: 12}}>
                     <View style={{flexDirection: 'row'}}>
-                        <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
+                        <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
                         <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                             Nguyên Nhân Cấp 1
                         </Text>
@@ -300,7 +300,7 @@ export default class Process extends Component {
         {/* Phan noi dung */}
                 <View style={{margin: 15, marginBottom: 0}}>
                     <View style={{flexDirection: 'row'}}>
-                        <Icon name='ios-paper' style={{fontSize: 12, color: '#fff'}}/>
+                        <Icon name='assignment' type='MaterialIcons' style={processStyle.iconContent}/>
                         <Text style={{fontWeight:'bold', color:'#fff', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                             Nội Dung Yêu Cầu
                         </Text>
@@ -312,7 +312,7 @@ export default class Process extends Component {
             {/* noi dung xu ly */}
                 <View style={{margin: 15, marginBottom: 0}}>
                     <View style={{flexDirection: 'row'}}>
-                        <Icon name='document' style={{fontSize: 12, color: 'white'}}/>
+                        <Icon name='document' style={processStyle.iconContent}/>
                         <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                             Nội Dung Xử Lý
                         </Text>
@@ -328,7 +328,7 @@ export default class Process extends Component {
             {/* noi dung xu ly noi bo */}
                 <View style={{margin: 15}}>
                     <View style={{flexDirection: 'row'}}>
-                        <Icon name='document' style={{fontSize: 12, color: 'white'}}/>
+                        <Icon name='album' type='MaterialIcons' style={processStyle.iconContent}/>
                         <Text style={{fontWeight:'bold', color:'white',fontSize: 12, marginTop: -3, marginLeft: 4}}>
                             Nội Dung Xử Lý Nội Bộ
                         </Text>

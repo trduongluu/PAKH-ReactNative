@@ -28,7 +28,7 @@ class ItemLayout extends Component {
                             <Text style={receiveStyle.txtTime}>{this.props.item.req_date} - {this.props.item.pro_plan}</Text>
                         </View>
                         <View style={receiveStyle.usersArea}>
-                            <Ionicons name="md-contact" size={10} style={receiveStyle.senderIcon}/>
+                            <Ionicons name="md-send" size={10} style={receiveStyle.senderIcon}/>
                             <Text style={receiveStyle.txtSender}>{this.props.item.req_user}</Text>
                         </View>
                     </View>

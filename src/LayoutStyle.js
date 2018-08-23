@@ -191,6 +191,9 @@ export const processStyle = StyleSheet.create({
     background: {
         backgroundColor: 'white',
     },
+    iconCause: {fontSize: 8, color: 'white', marginVertical: 4},
+    iconContent: {fontSize: 12, color: 'white', marginVertical: 2},
+    txtDataHistory: {color: 'white', fontSize: 12, marginLeft: 10},
     picker: {
         height: 40,
         color: 'white'

@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Body, Container, Content, Icon } from 'native-base';
 import DataAction from '../apiData';
-import {} from '../LayoutStyle';
+import {processStyle} from '../LayoutStyle';
 
 export default class History extends Component {
   static navigationOptions = {
@@ -64,11 +64,11 @@ export default class History extends Component {
                   </View>
                   <View style={{flex:3, borderLeftWidth: 1, borderLeftColor: '#A9F8FF', paddingLeft: 10}}>
                       <View style={{flexDirection: 'row'}}>
-                          <Icon name='person' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
+                          <Icon name='person' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
                           <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                       </View>
                       <View style={{flexDirection: 'row'}}>
-                          <Icon name='call' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
+                          <Icon name='call' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
                           <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
                       </View>
                   </View>
@@ -76,37 +76,37 @@ export default class History extends Component {
             {/* fw cause 1 */}
               <View style={{margin: 15}}>
                   <View style={{flexDirection: 'row'}}>
-                      <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
+                      <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
                       <Text style={{fontWeight: 'bold', color: 'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                           Nguyên Nhân Xử Lý (Cấp 1)
                       </Text>
                   </View>
                   <View>
-                      <Text style={{color: 'white', fontSize: 12}} >{this.state.fwIdCause1}</Text>
+                      <Text style={processStyle.txtDataHistory} >{this.state.fwIdCause1}</Text>
                   </View>
               </View>
             {/* fw cause 2 */}
               <View style={{margin: 15}}>
                   <View style={{flexDirection: 'row'}}>
-                      <Icon name='ios-paper' style={{fontSize: 12, color: 'white'}}/>
+                      <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
                       <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                           Nguyên Nhân Xử Lý Nội Bộ (Cấp 3)
                       </Text>
                   </View>
                   <View>
-                      <Text style={{color: 'white', fontSize: 12}} >{this.state.fwIdCause3}</Text>
+                      <Text style={processStyle.txtDataHistory} >{this.state.fwIdCause3}</Text>
                   </View>
               </View>
             {/* return content ndxl */}
               <View style={{margin: 15, marginBottom: 0}}>
                   <View style={{flexDirection: 'row'}}>
-                      <Icon name='document' style={{fontSize: 12, color: 'white'}}/>
+                      <Icon name='document' style={processStyle.iconContent}/>
                       <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                           Nội Dung Xử Lý
                       </Text>
                   </View>
                   <View>
-                      <Text style={{color: 'white', fontSize: 12}} >
+                      <Text style={processStyle.txtDataHistory} >
                           {this.state.ndxl}
                       </Text>
                   </View>
@@ -114,13 +114,13 @@ export default class History extends Component {
             {/* return content private ndxlNB */}
               <View style={{margin: 15}}>
                   <View style={{flexDirection: 'row'}}>
-                      <Icon name='document' style={{fontSize: 12, color: 'white'}}/>
+                      <Icon name='album' type='MaterialIcons' style={processStyle.iconContent}/>
                       <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
                           Nội Dung Xử Lý Nội Bộ
                       </Text>
                   </View>
                   <View>
-                      <Text style={{color: 'white', fontSize: 12}} >
+                      <Text style={processStyle.txtDataHistory} >
                           {this.state.ndxlNB}
                       </Text>
                   </View>
