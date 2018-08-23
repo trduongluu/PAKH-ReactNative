@@ -60,7 +60,7 @@ export default class Process extends Component {
         this.setState({
             nguyennhanCap2: response
         });
-        if (response !== []) {
+        if (JSON.stringify(response) !== '[]') {
             this.setState({isCap1Clicked: true})
         }
         console.log('cap 2 ne: ' + this.state.nguyennhanCap2);
@@ -75,7 +75,7 @@ export default class Process extends Component {
         this.setState({
             nguyennhanCap3: response
         });
-        if (response !== []) {
+        if (JSON.stringify(response) !== '[]') {
             this.setState({isCap2Clicked: true})
         }
         console.log('cap 3 ne: ' + this.state.nguyennhanCap3);
