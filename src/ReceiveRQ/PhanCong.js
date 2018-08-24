@@ -57,11 +57,14 @@ class PhanCong extends Component {
       isLoading: true,
       receiveRQ: [],
       tabname: 'PHAN_CONG_XU_LY',
-      globUser: ''
+      globUser: '',
+      // page: 1,
+      seed: 1,
+      refreshing: false
     }
   }
 
-  componentWillMount(){
+  LoadData() {
     DataAction.getUser().then((user) => {
       this.setState({ globUser: user });
       console.log('in fetch pcxl = ' + this.state.globUser);
@@ -69,7 +72,8 @@ class PhanCong extends Component {
         console.log('receive RQ: ' + response);
         this.setState({
           receiveRQ: response,
-          isLoading: false
+          isLoading: false,
+          refreshing: false
         })
       }).catch((error) => {
         console.log(error)
@@ -77,6 +81,20 @@ class PhanCong extends Component {
     }).catch((error) => {
       console.log(error)
     })
+  }
+
+  handleRefresh = () => {
+    this.setState({
+      // page: 1,
+      refreshing: true,
+      seed: this.state.seed + 1
+    }, () => {
+      this.LoadData();
+    });
+  }
+
+  componentWillMount() {
+    this.LoadData();
   }
 
     render() {
@@ -108,7 +126,8 @@ class PhanCong extends Component {
               <ItemLayout item={item} index={index} ></ItemLayout>
               </TouchableOpacity>
             );
-          }} ></FlatList>
+          }}
+          refreshing={this.state.refreshing} onRefresh={this.handleRefresh} ></FlatList>
         </LinearGradient>
       );
     }

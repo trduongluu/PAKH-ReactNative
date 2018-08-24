@@ -46,23 +46,39 @@ class PhanCongXL extends Component {
             isLoading: true,
             sendRQ: [],
             tabname: 'PHAN_CONG_XU_LY',
-            globUser: ''
+            globUser: '',
+            seed: 1,
+            refreshing: false
         }
     }
 
-    componentDidMount() {
+    LoadData() {
         DataAction.getUser().then((user) => {
             this.setState({globUser: user});
             console.log('in fetch pcxl send = ' + this.state.globUser);
             DataAction.getSendRQ(this.state.tabname, this.state.globUser).then((response) => {
                 this.setState({
                     sendRQ: response,
-                    isLoading: false
+                    isLoading: false,
+                    refreshing: false
                 })
             }).catch((error) => {
                 console.log(error)
             })
         })
+    }
+
+    handleRefresh = () => {
+        this.setState({
+          refreshing: true,
+          seed: this.state.seed + 1
+        }, () => {
+          this.LoadData();
+        });
+      }
+
+    componentDidMount() {
+        this.LoadData();
     }
 
     render() {
@@ -88,7 +104,8 @@ class PhanCongXL extends Component {
                                       <ItemLayout item={item} index={index}></ItemLayout>
                                   </TouchableOpacity>
                               );
-                          }}></FlatList>
+                          }}
+                          refreshing={this.state.refreshing} onRefresh={this.handleRefresh} ></FlatList>
             </LinearGradient>
         );
     }

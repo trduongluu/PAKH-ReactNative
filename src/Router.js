@@ -20,14 +20,14 @@ import DangXuly from './ReceiveRQ/DangXuly';
 import DaXuly from './ReceiveRQ/DaXuly';
 import PhanCong from './ReceiveRQ/PhanCong';
 import History from './ReceiveRQ/History';
-import DetailsSend from './SendRQ/DetailsSend'
+import DetailsSend from './SendRQ/DetailsSend';
 
 console.disableYellowBox = true;
 
 // Config header màn hình trong stack
 const headerConfig = {
     headerTintColor: 'white',
-    headerTitleStyle: { flex: 1, textAlign: 'center', alignItems: 'center' }
+    headerTitleStyle: { flex: 1, textAlign: 'center', alignSelf: 'center' }
 }
 
 // Start screen here

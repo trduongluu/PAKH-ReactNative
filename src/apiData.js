@@ -33,7 +33,7 @@ var DataAction = {
     async getUser(){
         try {
             let user = await AsyncStorage.getItem('userinfo');
-            console.log('User action-get is: ' + user);
+            // console.log('User action-get is: ' + user);
             return user;
         } catch (error) {
             console.log(`Error is: ${error}`)

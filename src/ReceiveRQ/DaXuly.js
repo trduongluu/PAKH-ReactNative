@@ -42,23 +42,39 @@ export default class DaXuly extends Component {
       isLoading: true,
       receiveRQ: [],
       tabname: 'DA_XU_LY',
-      globUser: ''
+      globUser: '',
+      seed: 1,
+      refreshing: false
     }
   }
 
-  componentWillMount(){
+  LoadData() {
     DataAction.getUser().then((user) => {
       this.setState({ globUser: user });
       console.log('in fetch daxl = ' + this.state.globUser);
       DataAction.getReceiveRQ(this.state.tabname, this.state.globUser).then((response) => {
         this.setState({
           receiveRQ: response,
-          isLoading: false
+          isLoading: false,
+          refreshing: false
         })
       }).catch((error) => {
         console.log(error)
       })
     })
+  }
+
+  handleRefresh = () => {
+    this.setState({
+      refreshing: true,
+      seed: this.state.seed + 1
+    }, () => {
+      this.LoadData();
+    });
+  }
+
+  componentWillMount(){
+    this.LoadData();
   }
 
     render() {
@@ -89,7 +105,8 @@ export default class DaXuly extends Component {
               <ItemLayout item={item} index={index} ></ItemLayout>
               </TouchableOpacity>
             );
-          }} ></FlatList>
+          }}
+          refreshing={this.state.refreshing} onRefresh={this.handleRefresh} ></FlatList>
         </LinearGradient>
       );
     }
