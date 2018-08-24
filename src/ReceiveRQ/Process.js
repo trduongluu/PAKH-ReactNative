@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container, Button, Icon, Content, Picker, Textarea } from 'native-base';
 import {processStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
+import Communications from 'react-native-communications';
 
 var today = new Date();
 let ngayxl = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear();
@@ -256,10 +257,10 @@ export default class Process extends Component {
                             <Icon name='person' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
                             <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                         </View>
-                        <View style={{flexDirection: 'row'}}>
+                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Communications.phonecall(this.state.phone, true)} >
                             <Icon name='call' type='MaterialIcons' style={{fontSize: 12, color: '#A9F8FF', padding: 3}}/>
                             <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
 

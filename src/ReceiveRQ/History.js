@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Body, Container, Content, Icon } from 'native-base';
 import DataAction from '../apiData';
 import {processStyle} from '../LayoutStyle';
+import Communications from 'react-native-communications';
 
 export default class History extends Component {
   static navigationOptions = {
@@ -67,10 +68,10 @@ export default class History extends Component {
                           <Icon name='person' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
                           <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                       </View>
-                      <View style={{flexDirection: 'row'}}>
+                      <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Communications.phonecall(this.state.phone, true)} >
                           <Icon name='call' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
                           <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
-                      </View>
+                      </TouchableOpacity>
                   </View>
               </View>
             {/* fw cause 1 */}

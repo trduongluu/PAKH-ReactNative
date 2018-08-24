@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackground} from 'react-native'
+import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackground} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Container, Header, Content, Icon,} from 'native-base'
+import {Container, Header, Content, Icon,} from 'native-base';
 import styles from "./styles";
 import {receiveStyle} from '../LayoutStyle';
-import DataAction from '../apiData'
+import DataAction from '../apiData';
 import Communications from 'react-native-communications';
 import common from "../common/Common";
 
