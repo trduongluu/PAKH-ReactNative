@@ -99,7 +99,7 @@ const ReceiveStack = createStackNavigator({
         screen: ReceiveTopbar,
         navigationOptions: ({navigation}) => ({
             headerStyle: { backgroundColor: themeUse.primaryColor },
-            headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}}
+            headerRight: <Icon name="user" color={themeUse.inactiveIconBottom} size={24} style={{marginRight: 15}}
                                onPress={() => navigation.navigate('Profile')} />,
             headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
         })
@@ -140,7 +140,7 @@ const SendStack = createStackNavigator({
         screen: SendTopbar,
         navigationOptions: ({navigation}) => ({
             headerStyle: { backgroundColor: themeUse.primaryColor },
-            headerRight: <Icon name="plus-circle" color='white' size={24} style={{marginRight: 15}}
+            headerRight: <Icon name="plus-circle" color={themeUse.inactiveIconBottom} size={24} style={{marginRight: 15}}
                             onPress={() => navigation.navigate('MakeRQ')} />,
             headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
         })
