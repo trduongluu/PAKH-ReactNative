@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList,Alert} from 'react-native';
+import {View, Text, Image, FlatList, Alert} from 'react-native';
 import {receiveStyle} from '../LayoutStyle';
 import LinearGradient from 'react-native-linear-gradient';
 import {DocumentPicker, DocumentPickerUtil} from 'react-native-document-picker';
@@ -12,10 +12,9 @@ import {
     Picker,
     Form, Textarea, Label
 } from 'native-base';
-import common from "../common/Common";
-import styles from './styles';
-import Send from './Send'
+import {sendStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
+import {themeUse} from '../themecolor';
 
 export default class MakeRQ extends Component {
 
@@ -70,14 +69,14 @@ export default class MakeRQ extends Component {
     }
 
     // thay đổi mức đọ request
-    onValueChange_level(value: string) {
+    onValueChange_level(value) {
         this.setState({
             selected_level: value,
         });
     }
 
     //thay đổi hệ thống
-    onValueChange_system(value: string) {
+    onValueChange_system(value) {
         this.setState({
             selected_system: value
         });
@@ -94,7 +93,7 @@ export default class MakeRQ extends Component {
     }
 
     //thay đổi cấp yêu cầu
-    onValueChange_request(value: string) {
+    onValueChange_request(value) {
         this.setState({
             selected_request: value
         });
@@ -111,7 +110,7 @@ export default class MakeRQ extends Component {
         })
     }
 
-    onValueChange_request_child(value: string) {
+    onValueChange_request_child(value) {
         this.setState({
             selected_request_child: value
         });
@@ -170,60 +169,55 @@ export default class MakeRQ extends Component {
                 {cancelable: false}
             )
         }
-
     }
 
     static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#0057AA',
-        },
-        headerTitle: 'Tạo yêu cầu',
-        headerTitleStyle: {color: '#fff'}
+        headerTitle: 'Tạo yêu cầu'
     };
 
     render() {
         return (
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
+            <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={receiveStyle.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
                 <Content>
                     <View style={{margin: 15}}>
                         <Item floatingLabel
                               style={{
                                   borderBottomWidth: 1,
-                                  borderColor: 'white'
+                                  borderColor: themeUse.textColor
                               }}
                         >
-                            <Label style={{paddingBottom: 5, fontSize: 20, color: '#bfd1e3'}}>
+                            <Label style={{paddingBottom: 5, fontSize: 20, color: themeUse.textColor}}>
                                 TIÊU ĐỀ
                             </Label>
-                            <Input style={{color: 'white'}} onChangeText={(text) => this.setState({title: text})}/>
+                            <Input style={{color: themeUse.textColor}} onChangeText={(text) => this.setState({title: text})}/>
                         </Item>
 
 
-                        <Form style={styles.bo}>
-                            <Text style={{color: '#bfd1e3'}}>MỨC ĐỘ</Text>
+                        <Form style={sendStyle.bo}>
+                            <Text style={{color: themeUse.textColor}}>MỨC ĐỘ</Text>
 
                             <Picker
                                 iosHeader="Select one"
                                 mode="dropdown"
                                 selectedValue={this.state.selected_level}
                                 onValueChange={this.onValueChange_level.bind(this)}
-                                style={styles.picker}
+                                style={sendStyle.picker}
                             >
                                 <Picker.Item label="Bình thường" value="BINH_THUONG"/>
                                 <Picker.Item label="Khẩn cấp" value="KHAN_CAP"/>
                             </Picker>
                         </Form>
 
-                        <Form style={styles.bo}>
-                            <Text style={{color: '#bfd1e3'}}>HỆ THỐNG</Text>
+                        <Form style={sendStyle.bo}>
+                            <Text style={{color: themeUse.textColor}}>HỆ THỐNG</Text>
 
                             <Picker
                                 iosHeader="Select one"
                                 mode="dropdown"
                                 selectedValue={this.state.selected_system}
                                 onValueChange={this.onValueChange_system.bind(this)}
-                                style={styles.picker}
+                                style={sendStyle.picker}
                             >
                                 {this.state.arrSystemCode.map((item) => {
                                     return (
@@ -233,15 +227,15 @@ export default class MakeRQ extends Component {
 
                             </Picker>
                         </Form>
-                        {this.state.arrRequestParent.length !== 0 ? <Form style={styles.bo}>
-                            <Text style={{color: '#bfd1e3'}}>YÊU CẦU CHA</Text>
+                        {this.state.arrRequestParent.length !== 0 ? <Form style={sendStyle.bo}>
+                            <Text style={{color: themeUse.textColor}}>YÊU CẦU CHA</Text>
 
                             <Picker
                                 iosHeader="Select one"
                                 mode="dropdown"
                                 selectedValue={this.state.selected_request}
                                 onValueChange={this.onValueChange_request.bind(this)}
-                                style={styles.picker}
+                                style={sendStyle.picker}
                             >
                                 <Picker.Item label="ALL" value="111"/>
                                 {this.state.arrRequestParent.map((item) => {
@@ -251,15 +245,15 @@ export default class MakeRQ extends Component {
                                 })}
                             </Picker>
                         </Form> : <View></View>}
-                        {this.state.arrRequestChild.length !== 0 ? <Form style={styles.bo}>
-                            <Text style={{color: '#bfd1e3'}}>YÊU CẦU CON</Text>
+                        {this.state.arrRequestChild.length !== 0 ? <Form style={sendStyle.bo}>
+                            <Text style={{color: themeUse.textColor}}>YÊU CẦU CON</Text>
 
                             <Picker
                                 iosHeader="Select one"
                                 mode="dropdown"
                                 selectedValue={this.state.selected_request_child}
                                 onValueChange={this.onValueChange_request_child.bind(this)}
-                                style={styles.picker}
+                                style={sendStyle.picker}
                             >
                                 {this.state.arrRequestChild.map((item) => {
                                     return (
@@ -272,29 +266,29 @@ export default class MakeRQ extends Component {
                     </View>
 
                     <View style={{alignItems: 'center', marginTop: 30}}>
-                        <Text style={{color: 'white', fontWeight: 'bold'}}>Nội Dung Yêu Cầu</Text>
+                        <Text style={{color: themeUse.textColor, fontWeight: 'bold'}}>Nội Dung Yêu Cầu</Text>
                     </View>
                     <Textarea
                         rowSpan={5} bordered
                         placeholder="Nhập nội dung yêu cầu..."
-                        placeholderTextColor='rgba(255,255,255,0.7)'
-                        style={styles.textArea}
+                        placeholderTextColor={themeUse.placeholdertxtColor}
+                        style={sendStyle.textArea}
                         onChangeText={(text) => this.setState({content_request: text})}
                     />
 
 
-                    <View style={styles.centerCol}>
+                    <View style={sendStyle.centerCol}>
                         <View>
                             <Button transparent onPress={() => this._chooseFile()}>
-                                <Icon name='attach' style={{color: 'blue'}}/>
+                                <Icon name='attach' style={{color: themeUse.primaryColor}}/>
                             </Button>
                         </View>
                         <View style={{width: '30%'}}>
                             <Button
-                                style={styles.btnF1}
+                                style={sendStyle.btnF1}
                                 onPress={() => this.insertRequest()}
                             >
-                                <Text style={styles.textFoot}>Gửi Yêu Cầu</Text>
+                                <Text style={sendStyle.textFoot}>Gửi Yêu Cầu</Text>
                             </Button>
                         </View>
                     </View>

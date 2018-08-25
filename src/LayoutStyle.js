@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {themeUse} from './themecolor';
 
 export const khung = StyleSheet.create({
     toplogo: {
@@ -28,7 +29,7 @@ export const loginStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: '#fff',
+        color: themeUse.textColor,
         marginTop: 150
     },
     loginForm: {
@@ -53,7 +54,7 @@ export const loginStyle = StyleSheet.create({
         width: 280,
         backgroundColor: 'transparent',
         marginBottom: 15,
-        color: '#fff',
+        color: themeUse.textColor,
         paddingHorizontal: 0,
         borderRadius: 18
     },
@@ -65,14 +66,14 @@ export const loginStyle = StyleSheet.create({
         height: 40
     },
     buttonLogin: {
-        backgroundColor: '#0057AA',
+        backgroundColor: themeUse.primaryColor,
         width: 300,
         padding: 11,
         borderRadius: 18
     },
     buttonText: {
         textAlign: 'center',
-        color: '#fff',
+        color: themeUse.textColor,
         fontWeight: 'bold'
     }
 });
@@ -101,7 +102,7 @@ export const receiveStyle = StyleSheet.create({
         flex: 1,
         backgroundColor: 'rgba(0,0,0,0.1)',
         borderBottomWidth: 1,
-        borderColor: '#95afc0'
+        borderColor: themeUse.borderItem
     },
     blurAbsolute: {
         position: "absolute",
@@ -113,7 +114,7 @@ export const receiveStyle = StyleSheet.create({
     },
     txtRQ: {
         fontSize: 12,
-        color: 'white',
+        color: themeUse.textColor,
         fontWeight: 'bold',
         width: 200,
         height: 50,
@@ -127,7 +128,7 @@ export const receiveStyle = StyleSheet.create({
     },
     txtCode: {
         fontSize: 10,
-        color: 'white'
+        color: themeUse.textColor
     },
     levelIcon: {
         padding: 0,
@@ -143,29 +144,29 @@ export const receiveStyle = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     clockIcon: {
-        color: 'white',
+        color: themeUse.textColor,
         padding: 2,
         marginLeft: 5
     },
     txtTime: {
         fontSize: 10,
-        color: 'white',
+        color: themeUse.textColor,
         paddingBottom: 5
     },
     senderIcon: {
-        color: 'white',
+        color: themeUse.textColor,
         padding: 2
     },
     txtSender: {
         fontSize: 10,
-        color: 'white',
+        color: themeUse.textColor,
         marginRight: 6
     }
 });
 
 export const processStyle = StyleSheet.create({
     text_top: {
-        color: '#fff',
+        color: themeUse.textColor,
         fontSize: 10,
         textAlign: 'center',
         fontWeight: 'bold'
@@ -182,34 +183,44 @@ export const processStyle = StyleSheet.create({
     },
     txt_result_search_1: {
         fontSize: 10,
-        color: '#fff'
+        color: themeUse.textColor
     },
     txt_result_search_2: {
         fontWeight: 'bold',
-        color: '#fff'
+        color: themeUse.textColor
     },
     background: {
-        backgroundColor: 'white',
+        backgroundColor: themeUse.textColor,
     },
-    iconCause: {fontSize: 8, color: 'white', marginVertical: 4},
-    iconContent: {fontSize: 12, color: 'white', marginVertical: 2},
-    txtDataHistory: {color: 'white', fontSize: 12, marginLeft: 10},
+    iconCause: {fontSize: 8, color: themeUse.textColor, marginVertical: 4},
+    iconContent: {fontSize: 12, color: themeUse.textColor, marginVertical: 2},
+    txtDataHistory: {color: themeUse.textColor, fontSize: 12, marginLeft: 10},
+    headlines: { fontWeight: 'bold', color: themeUse.textColor, fontSize: 12, marginTop: -3, marginLeft: 4 },
+    pickItemSpace: { marginBottom: 12 },
+    topInfoUser: { flexDirection: 'row', marginTop: 15, marginBottom: 10 },
+    leftTophead: { flex: 2, justifyContent: 'center', marginLeft: 20 },
+    txtHeadtop: { fontWeight: 'bold', color: themeUse.textColor, fontSize: 12 },
+    rightTophead: { flex: 3, borderLeftWidth: 1, borderLeftColor: themeUse.textColor, paddingLeft: 10 },
+    topheadIcon: { fontSize: 12, color: themeUse.textColor, padding: 3 },
+    topheadText: { color: themeUse.textColor, fontSize: 12, marginLeft: 2 },
+    contentText: { color: themeUse.textColor, fontSize: 12 },
+    viewContent: { margin: 15 },
     picker: {
         height: 40,
-        color: 'white'
+        color: themeUse.textColor
     },
     pickerline: {
-        borderBottomWidth: 1, paddingBottom: 2, borderBottomColor: '#fff'
+        borderBottomWidth: 1, paddingBottom: 2, borderBottomColor: themeUse.textColor
     },
     textArea:{
         borderRadius: 7,
         borderWidth: 1,
-        borderColor: 'white',
-        color: '#fff',
+        borderColor: themeUse.textColor,
+        color: themeUse.textColor,
         fontSize: 12
     },
     white: {
-        color: 'white'
+        color: themeUse.textColor
     },
     centerRow: {
         flex: 1,
@@ -231,7 +242,7 @@ export const processStyle = StyleSheet.create({
         alignItems: 'center',
     },
     btn :{
-        backgroundColor: '#0057AA',
+        backgroundColor: themeUse.primaryColor,
         borderRadius: 20,
         height: 30,
         width: 110,
@@ -240,7 +251,7 @@ export const processStyle = StyleSheet.create({
         alignItems: 'center'
     },
     textFoot: {
-        color: 'white',
+        color: themeUse.textColor,
         fontWeight: 'bold',
         fontSize: 12
     },
@@ -250,13 +261,332 @@ export const processStyle = StyleSheet.create({
 });
 
 export const sendStyle = StyleSheet.create({
-    abc: {}
+    color_theme: {
+        backgroundColor: themeUse.primaryColor,
+    },
+    background: {
+        backgroundColor: 'white',
+    },
+    text_top: {
+        color: themeUse.textColor,
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    view_top: {
+        marginLeft: 30,
+        paddingVertical: 10,
+    },
+    view_sum_item: {
+        borderBottomWidth: 2,
+        borderBottomColor: 'black',
+        paddingBottom: 10,
+        paddingTop: 10,
+    },
+    txt_result_search_1: {
+        fontSize: 10,
+        color: themeUse.textColor
+    },
+    txt_result_search_2: {
+        fontWeight: 'bold',
+        color: themeUse.textColor
+    },
+    picker: {
+        paddingBottom: 2,
+        height: 30,
+        color: themeUse.textColor
+    },
+    bo: {
+        marginTop: 20,
+        borderBottomWidth: 1,
+        borderColor: themeUse.textColor,
+        paddingBottom: -5
+    },
+    textArea:{
+        margin: 15,
+        borderRadius: 7,
+        color: themeUse.textColor
+    },
+    textFoot: {
+        color: themeUse.textColor,
+        fontWeight: 'bold'
+    },
+    btnF1: {
+        backgroundColor: themeUse.primaryColor,
+        borderRadius: 20,
+        height: 30,
+        width: 110,
+        marginTop: 20,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    btnF2: {
+        backgroundColor: themeUse.primaryColor,
+        width: '100%',
+        borderRadius: 7,
+        height: 30,
+        marginTop: 15,
+
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    centerRow: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    centerCol: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    iconBack: {
+        color: themeUse.textColor,
+        marginLeft: 7,
+        fontSize: 25
+    },
+    line: {
+        backgroundColor: '#8B8B8B',
+        height: 2,
+    }
 });
 
 export const searchStyle = StyleSheet.create({
-    abc: {}
+    bground: {
+        flex: 1
+    },
+    color_theme: {
+        backgroundColor: themeUse.primaryColor,
+    },
+    background: {
+        backgroundColor: 'white',
+    },
+    centerCol: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    line: {
+        backgroundColor: '#8B8B8B',
+        height: 2,
+    },
+
+    picker: {
+        marginLeft: 10,
+        paddingBottom: 2,
+        height: 30,
+        color: themeUse.textColor,
+    },
+    text_top: {
+        color: themeUse.textColor,
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    view_top: {
+        flexDirection: 'row',
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: themeUse.primaryColor
+    },
+    input_search: {
+        height: 30,
+        marginTop: 5,
+        borderWidth: 1,
+        borderColor: themeUse.textColor,
+        borderRadius: 15,
+    },
+    icon_time: {
+        color: themeUse.textColor,
+        paddingTop:2,
+        paddingRight: 2
+    },
+    txt_resulf_search_1: {
+        fontSize: 10,
+        color: themeUse.textColor
+    },
+    txt_resulf_search_2: {
+        fontWeight: 'bold',
+        color: themeUse.textColor
+    },
+    view_header: {
+        flexDirection: 'row',
+        backgroundColor: themeUse.primaryColor,
+        height: 70
+    },
+    icon_back: {
+        marginLeft: 15,
+        width: 20,
+        height: 20
+    },
+    txt_header: {
+        color: themeUse.textColor,
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    view_one: {
+        borderBottomColor: themeUse.lineColor,
+        borderBottomWidth: 1,
+        paddingBottom: 15
+    },
+    view_tinhcuoc: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10
+    },
+    txt_tinhcuoc: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: themeUse.textColor
+    },
+    view_hethong: {
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 15
+    },
+    view_time: {
+        flex: 1,
+        flexDirection: 'row',
+        borderBottomColor: themeUse.lineColor,
+        borderBottomWidth: 1,
+        paddingVertical: 15
+    },
+    txt_time: {
+        fontWeight: 'bold',
+        flex: 0.4,
+        justifyContent: 'center',
+        color: themeUse.textColor
+    },
+    view_sum_sent: {
+        borderBottomColor: themeUse.lineColor,
+        borderBottomWidth: 1,
+        paddingVertical: 15
+    },
+    view_sent: {
+        flex: 0.4,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRightWidth: 1,
+        borderRightColor: themeUse.lineColor
+    },
+    txt_sent: {
+        fontWeight: 'bold',
+        justifyContent: 'center',
+        color: themeUse.textColor
+    },
+    txt_value_sent_details: {color: themeUse.textColor},
+    txt_value_sent: {color: themeUse.placeholdertxtColor, marginTop: 4},
+    view_content_reques: {
+        borderBottomColor: themeUse.lineColor,
+        borderBottomWidth: 1,
+        paddingVertical: 15
+    },
+    txt_value_reques: {
+        fontWeight: 'bold',
+        flex: 0.4,
+        justifyContent: 'center',
+        color: themeUse.textColor
+    },
+
+    // Search
+    logo: {width: 87, height: 20},
+    view_icon_add: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 25
+    },
+    txt_input_search: {
+        marginLeft: 10,
+        marginVertical: -10,
+        color: themeUse.textColor,
+        paddingVertical: 14
+    },
+    view_icon_minus: {
+        width: 20,
+        height: 20,
+        marginLeft: 10,
+        justifyContent: 'flex-end',
+        marginTop: 15,
+    },
+    view_btn_search: {
+        marginTop: '20%',
+        margin: '35%',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btn_search: {
+        width: 100,
+        height: 30,
+        // paddingTop: 10,
+        // paddingBottom: 22,
+        backgroundColor: themeUse.primaryColor,
+        borderRadius: 20,
+
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    txt_btn_search: {
+        textAlign: 'center',
+        color: themeUse.textColor,
+        fontWeight: 'bold'
+    },
+    view_sum_item: {
+        borderBottomWidth: 1,
+        borderBottomColor: themeUse.lineColor,
+        paddingBottom: 5
+    },
+    view_modal: {
+        backgroundColor: themeUse.textColor,
+        justifyContent: 'center',
+        borderRadius: 10,
+        marginHorizontal: 10},
+    view_ok: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginVertical: 10
+    },
+    touchable_ok: {
+        width: 60,
+        paddingVertical: 4,
+        paddingHorizontal: 4,
+        backgroundColor: themeUse.primaryColor,
+        borderRadius: 10
+    }
 });
 
 export const settingStyle = StyleSheet.create({
-    abc: {}
+    bground: {
+        flex: 1
+    },
+    headerTop: {marginTop: 20, flexDirection: 'row', justifyContent: 'center'},
+    textTop: {color: themeUse.textColor, fontSize: 20, fontWeight: 'bold'},
+    viewItem: {
+        flexDirection: 'row', flex: 1,
+        borderBottomWidth:1, borderBottomColor: themeUse.lineColor,
+        paddingVertical: 5, marginTop: 5
+    },
+    itemLabel: {flex: 0.4, color: themeUse.textColor},
+    itemContent: {flex: 0.6, color: themeUse.textColor},
+    taikhoanView: {borderBottomWidth: 1, borderBottomColor: themeUse.lineColor, paddingVertical: 10},
+    txtHeadlines: {fontWeight: 'bold', color: themeUse.textColor},
+    txtChild: {color: themeUse.textColor},
+    themeView: {
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: themeUse.lineColor,
+        flexDirection: 'row'
+    },
+    logoutView: {borderBottomWidth: 1, borderBottomColor: themeUse.lineColor}
 });

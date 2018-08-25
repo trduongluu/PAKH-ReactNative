@@ -18,15 +18,16 @@ import Password from './Setting/Password';
 import Login from './Login/Login';
 import DangXuly from './ReceiveRQ/DangXuly';
 import DaXuly from './ReceiveRQ/DaXuly';
-import PhanCong from './ReceiveRQ/PhanCong';
 import History from './ReceiveRQ/History';
 import DetailsSend from './SendRQ/DetailsSend';
+import {themeUse} from './themecolor';
 
 console.disableYellowBox = true;
 
 // Config header màn hình trong stack
 const headerConfig = {
-    headerTintColor: 'white',
+    headerStyle: { backgroundColor: themeUse.primaryColor },
+    headerTintColor: themeUse.textColor,
     headerTitleStyle: { flex: 1, textAlign: 'center', alignSelf: 'center' }
 }
 
@@ -44,14 +45,26 @@ export default class Router extends React.Component {
 
 // Cụm search screens
 const SearchStack = createStackNavigator({
-    Search: { screen: Search },
+    Search: {
+        screen: Search,
+        navigationOptions: {
+            headerStyle: { backgroundColor: themeUse.primaryColor },
+            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
+        }
+    },
     Results: { screen: Results, navigationOptions: headerConfig },
-    Details: {screen: Details, navigationOptions: headerConfig}
+    Details: { screen: Details, navigationOptions: headerConfig }
 });
 
 // Cụm setting screens
 const SettingStack = createStackNavigator({
-    Setting: { screen: Setting },
+    Setting: {
+        screen: Setting,
+        navigationOptions: {
+            headerStyle: { backgroundColor: themeUse.primaryColor },
+            headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
+        }
+    },
     Profile: { screen: Profile, navigationOptions: headerConfig },
     Password: { screen: Password, navigationOptions: headerConfig },
     Logout: { screen: Login }
@@ -75,7 +88,7 @@ const ReceiveTopbar = createMaterialTopTabNavigator({
     initialRouteName: 'Receive',
     order: ['Receive', 'DangXuly', 'DaXuly'],
     tabBarOptions: {
-        style: { backgroundColor: '#0057AA' },
+        style: { backgroundColor: themeUse.primaryColor },
         upperCaseLabel: false
     }
 });
@@ -85,7 +98,7 @@ const ReceiveStack = createStackNavigator({
     ReceiveTopbar: {
         screen: ReceiveTopbar,
         navigationOptions: ({navigation}) => ({
-            headerStyle: { backgroundColor: '#0057AA' },
+            headerStyle: { backgroundColor: themeUse.primaryColor },
             headerRight: <Icon name="user" color='white' size={24} style={{marginRight: 15}}
                                onPress={() => navigation.navigate('Profile')} />,
             headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
@@ -116,7 +129,7 @@ const SendTopbar = createMaterialTopTabNavigator({
     initialRouteName: 'Send',
     order: ['Send', 'DangXL', 'DaXL'],
     tabBarOptions: {
-        style: { backgroundColor: '#0057AA' },
+        style: { backgroundColor: themeUse.primaryColor },
         upperCaseLabel: false
     }
 });
@@ -126,14 +139,14 @@ const SendStack = createStackNavigator({
     SendTopbar: {
         screen: SendTopbar,
         navigationOptions: ({navigation}) => ({
-            headerStyle: { backgroundColor: '#0057AA' },
+            headerStyle: { backgroundColor: themeUse.primaryColor },
             headerRight: <Icon name="plus-circle" color='white' size={24} style={{marginRight: 15}}
                             onPress={() => navigation.navigate('MakeRQ')} />,
             headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('./img/mobi-top.png')} />
         })
     },
     MakeRQ: { screen: MakeRQ, navigationOptions: headerConfig },
-    DetailsSend: {screen: DetailsSend, navigationOptions: headerConfig}
+    DetailsSend: { screen: DetailsSend, navigationOptions: headerConfig }
 }, {
     initialRouteName: 'SendTopbar'
 });
@@ -181,9 +194,9 @@ export const BottomTabNav = createBottomTabNavigator({
     order: ['Receive', 'Send', 'Search', 'Setting'],
     navigationOptions: { tabBarVisible: true },
     tabBarOptions: {
-        activeTintColor: '#9CDCFF',
-        inactiveTintColor: '#fff',
-        style: { backgroundColor: '#0057AA' }
+        activeTintColor: themeUse.activeIconBottom,
+        inactiveTintColor: themeUse.inactiveIconBottom,
+        style: { backgroundColor: themeUse.primaryColor }
     }
 });
 

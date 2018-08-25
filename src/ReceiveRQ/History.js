@@ -5,12 +5,10 @@ import { Body, Container, Content, Icon } from 'native-base';
 import DataAction from '../apiData';
 import {processStyle} from '../LayoutStyle';
 import Communications from 'react-native-communications';
+import {themeUse} from '../themecolor';
 
 export default class History extends Component {
   static navigationOptions = {
-    headerStyle: {
-      backgroundColor: '#0057AA',
-    },
     headerTitle: 'Xử lý gần nhất'
   };
 
@@ -54,31 +52,31 @@ export default class History extends Component {
     render() {
       return (
         <Container>
-          <LinearGradient colors={['#0057AA', '#A9F8FF']} style={{flex: 1}}
+          <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={{flex: 1}}
             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
             {/* nguoi gui/chuyen tiep yeu cau */}
-              <View style={{flexDirection: 'row', marginTop: 15, marginBottom: 10}}>
-                  <View style={{flex: 2, justifyContent: 'center', marginLeft:20}}>
-                      <Text style={{fontWeight:'bold', color:'#A9F8FF', fontSize: 12}}>
+              <View style={processStyle.topInfoUser}>
+                  <View style={processStyle.leftTophead}>
+                      <Text style={processStyle.txtHeadtop}>
                           Người Gửi
                       </Text>
                   </View>
-                  <View style={{flex:3, borderLeftWidth: 1, borderLeftColor: '#A9F8FF', paddingLeft: 10}}>
+                  <View style={processStyle.rightTophead}>
                       <View style={{flexDirection: 'row'}}>
-                          <Icon name='person' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
-                          <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
+                          <Icon name='person' type='MaterialIcons' style={processStyle.topheadIcon}/>
+                          <Text style={processStyle.topheadText}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                       </View>
                       <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Communications.phonecall(this.state.phone, true)} >
-                          <Icon name='call' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
-                          <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
+                          <Icon name='call' type='MaterialIcons' style={processStyle.topheadIcon}/>
+                          <Text style={processStyle.topheadText}>Gọi {this.state.phone}</Text>
                       </TouchableOpacity>
                   </View>
               </View>
             {/* fw cause 1 */}
-              <View style={{margin: 15}}>
+              <View style={processStyle.viewContent}>
                   <View style={{flexDirection: 'row'}}>
                       <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
-                      <Text style={{fontWeight: 'bold', color: 'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                      <Text style={processStyle.headlines}>
                           Nguyên Nhân Xử Lý (Cấp 1)
                       </Text>
                   </View>
@@ -87,10 +85,10 @@ export default class History extends Component {
                   </View>
               </View>
             {/* fw cause 2 */}
-              <View style={{margin: 15}}>
+              <View style={processStyle.viewContent}>
                   <View style={{flexDirection: 'row'}}>
                       <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
-                      <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                      <Text style={processStyle.headlines}>
                           Nguyên Nhân Xử Lý Nội Bộ (Cấp 3)
                       </Text>
                   </View>
@@ -99,10 +97,10 @@ export default class History extends Component {
                   </View>
               </View>
             {/* return content ndxl */}
-              <View style={{margin: 15, marginBottom: 0}}>
+              <View style={processStyle.viewContent}>
                   <View style={{flexDirection: 'row'}}>
                       <Icon name='document' style={processStyle.iconContent}/>
-                      <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                      <Text style={processStyle.headlines}>
                           Nội Dung Xử Lý
                       </Text>
                   </View>
@@ -113,10 +111,10 @@ export default class History extends Component {
                   </View>
               </View>
             {/* return content private ndxlNB */}
-              <View style={{margin: 15}}>
+              <View style={processStyle.viewContent}>
                   <View style={{flexDirection: 'row'}}>
                       <Icon name='album' type='MaterialIcons' style={processStyle.iconContent}/>
-                      <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                      <Text style={processStyle.headlines}>
                           Nội Dung Xử Lý Nội Bộ
                       </Text>
                   </View>

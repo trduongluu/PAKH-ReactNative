@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity, Switch} from 'react-native'
+import {View, Text, Image, TouchableOpacity, Switch} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Content, Right} from 'native-base'
+import {Content, Right} from 'native-base';
 
-import Profile from './Profile'
-import Login from '../Login/Login'
-import styles from "./styles";
+import {settingStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
+import {themeUse} from '../themecolor';
 
 export default class Setting extends Component {
     constructor(props) {
@@ -22,51 +21,39 @@ export default class Setting extends Component {
         this.setState({on_off: !this.state.on_off})
     }
 
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#0057AA',
-        },
-        headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')}/>
-    };
-
     render() {
         return (
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={styles.bground}
+            <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={settingStyle.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
                 <Content style={{marginHorizontal: 10}}>
-                    <View style={{borderBottomWidth: 1, borderBottomColor: '#6677ff', paddingVertical: 10}}>
-                        <Text style={{fontWeight: 'bold', color: '#fff'}}>Tài Khoản</Text>
+                    <View style={settingStyle.taikhoanView}>
+                        <Text style={settingStyle.txtHeadlines}>Tài Khoản</Text>
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('Profile', {infoU: this.state.infoUserss})}>
-                            <Text style={{color: '#fff'}}>Profile</Text>
+                            <Text style={settingStyle.txtChild}>Profile</Text>
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <Text style={{color: '#fff'}}>Mật khẩu</Text>
+                            <Text style={settingStyle.txtChild}>Mật khẩu</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={{
-                        paddingVertical: 10,
-                        borderBottomWidth: 1,
-                        borderBottomColor: '#6677ff',
-                        flexDirection: 'row'
-                    }}>
-                        <Text style={{fontWeight: 'bold', color: '#fff'}}>Chủ đề giao diện</Text>
+                    <View style={settingStyle.themeView}>
+                        <Text style={settingStyle.txtHeadlines}>Chủ đề giao diện</Text>
                         <Right>
                             <Switch
                                 onValueChange={(value) => this.setState({toggled: value})}
                                 value={this.state.toggled}
-                                onTintColor={'#7cf002'}
-                                thumbTintColor={'#7cf002'}
+                                onTintColor={themeUse.switchColor}
+                                thumbTintColor={themeUse.switchColor}
                             />
                         </Right>
                     </View>
-                    <View style={{borderBottomWidth: 1, borderBottomColor: '#6677ff'}}>
+                    <View style={settingStyle.logoutView}>
                         <TouchableOpacity style={{paddingVertical: 10}}
                                           onPress={() => {
                                               DataAction.removeUser();
                                               this.props.navigation.navigate('Login')
                                           }}>
-                            <Text style={{fontWeight: 'bold', color: '#fff'}}>Đăng xuất</Text>
+                            <Text style={settingStyle.txtHeadlines}>Đăng xuất</Text>
                         </TouchableOpacity>
                     </View>
                 </Content>

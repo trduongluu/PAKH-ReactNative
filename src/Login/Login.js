@@ -3,7 +3,8 @@ import {View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, St
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {loginStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
-import LinearGradient from 'react-native-linear-gradient'
+import LinearGradient from 'react-native-linear-gradient';
+import {themeUse} from '../themecolor';
 
 export default class Login extends Component {
 

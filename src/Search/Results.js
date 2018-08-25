@@ -5,11 +5,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import styles from "./styles";
-import {receiveStyle} from '../LayoutStyle';
+import {receiveStyle, searchStyle} from '../LayoutStyle';
 import Details from './Details'
 import Common from "../common/Common";
 import DataAction from "../apiData";
+import {themeUse} from '../themecolor';
 
 export default class Results extends Component {
 
@@ -32,9 +32,6 @@ export default class Results extends Component {
     }
 
     static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#0057AA',
-        },
         headerTitle: 'Kết quả'
     };
 
@@ -54,35 +51,35 @@ export default class Results extends Component {
 
         if(this.state.isLoading){
             return(
-                <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
+                <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={receiveStyle.loading}
                                 start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
-                    <ActivityIndicator color='#A9F8FF' />
+                    <ActivityIndicator color={themeUse.activityIndicator} />
                 </LinearGradient>
             )
         }
         return (
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={styles.bground}
+            <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={searchStyle.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
                 <StatusBar translucent={true} backgroundColor='transparent'/>
                 <Content style={{marginHorizontal: 7}}>
                     <FlatList data={this.state.dataResultRequest}
                               renderItem={({item, index}) => {
                                   return (
-                                      <TouchableOpacity style={styles.view_sum_item}
+                                      <TouchableOpacity style={searchStyle.view_sum_item}
                                                         onPress={() => this.props.navigation.navigate('Details', {dataDetails: item})}>
                                           <View style={{flexDirection: 'row'}}>
                                               <View style={{flex: 0.9}}>
-                                                  <Text style={styles.txt_resulf_search_2}>Yêu
+                                                  <Text style={searchStyle.txt_resulf_search_2}>Yêu
                                                       cầu: {item.req_title}</Text>
                                                   <View style={{flexDirection: 'row'}}>
-                                                      <Text style={styles.txt_resulf_search_1}>Từ </Text><Text
-                                                      style={[styles.txt_resulf_search_1, {fontWeight: 'bold'}]}>{item.req_dep_code} </Text>
-                                                      <Text style={styles.txt_resulf_search_1}>đến </Text><Text
-                                                      style={styles.txt_resulf_search_1}>{item.pro_dep_code} </Text>
+                                                      <Text style={searchStyle.txt_resulf_search_1}>Từ </Text><Text
+                                                      style={[searchStyle.txt_resulf_search_1, {fontWeight: 'bold'}]}>{item.req_dep_code} </Text>
+                                                      <Text style={searchStyle.txt_resulf_search_1}>đến </Text><Text
+                                                      style={searchStyle.txt_resulf_search_1}>{item.pro_dep_code} </Text>
                                                   </View>
                                               </View>
                                               <View style={{flex: 0.1}}>
-                                                  <Text style={styles.txt_resulf_search_1}>{item.ticket_id}</Text>
+                                                  <Text style={searchStyle.txt_resulf_search_1}>{item.ticket_id}</Text>
                                                   {item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
                                               </View>
                                           </View>
@@ -90,24 +87,24 @@ export default class Results extends Component {
                                               <View style={{flex: 0.45, justifyContent: 'flex-end'}}>
                                                   <View style={{flexDirection: 'row'}}>
                                                       <Ionicons name="md-time" size={10}
-                                                                style={styles.icon_time}/>
-                                                      <Text style={styles.txt_resulf_search_1}>{item.req_date}
+                                                                style={searchStyle.icon_time}/>
+                                                      <Text style={searchStyle.txt_resulf_search_1}>{item.req_date}
                                                           - {item.pro_plan}</Text>
                                                   </View>
                                               </View>
                                               <View style={{flex: 0.35, justifyContent: 'flex-end'}}>
                                                   <Text
-                                                      style={styles.txt_resulf_search_1}>{Common.formatPro_dep_code(item.req_status)}</Text>
+                                                      style={searchStyle.txt_resulf_search_1}>{Common.formatPro_dep_code(item.req_status)}</Text>
                                               </View>
                                               <View style={{flex: 0.2, justifyContent: 'flex-end'}}>
                                                   <View style={{flexDirection: 'row'}}>
                                                       <Icon name="send" size={10} style={receiveStyle.senderIcon}/>
-                                                      <Text style={styles.txt_resulf_search_1}>{item.req_user}</Text>
+                                                      <Text style={searchStyle.txt_resulf_search_1}>{item.req_user}</Text>
                                                   </View>
                                                   <View style={{flexDirection: 'row'}}>
                                                       <Ionicons name="md-contact" size={10}
                                                                 style={receiveStyle.senderIcon}/>
-                                                      <Text style={styles.txt_resulf_search_1}>{item.pro_user}</Text>
+                                                      <Text style={searchStyle.txt_resulf_search_1}>{item.pro_user}</Text>
                                                   </View>
                                               </View>
                                           </View>

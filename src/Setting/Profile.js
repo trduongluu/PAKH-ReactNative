@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackground} from 'react-native'
-import {Container, Header, Content} from 'native-base'
+import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackground} from 'react-native';
+import {Container, Header, Content} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import styles from "./styles";
 import DataAction from "../apiData";
+import {themeUse} from '../themecolor';
+import {settingStyle} from '../LayoutStyle';
 
 const data =[{name: 'Họ tên'},
     {name: 'Username'},
@@ -51,27 +52,23 @@ export default class Profile extends Component {
     };
 
     static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#0057AA',
-        },
-        headerTitle: 'Profile',
-        headerTitleStyle: { color: '#fff' }
+        headerTitle: 'Profile'
     };
 
     render() {
         return (
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={styles.bground}
+            <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={settingStyle.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
               <Content style={{marginHorizontal: 30}}>
-                <View style={{marginTop: 20,flexDirection: 'row', justifyContent: 'center'}}>
-                  <Text style={{color:'#fff', fontSize: 20, fontWeight: 'bold'}}>THÔNG TIN CỦA BẠN</Text>
+                <View style={settingStyle.headerTop}>
+                  <Text style={settingStyle.textTop}>THÔNG TIN CỦA BẠN</Text>
                 </View>
                 <View style={{marginTop: 50}}>
                     {data.map((item) => {
                         return(
-                            <View style={{flexDirection: 'row', flex: 1, borderBottomWidth:1, borderBottomColor: '#70bdff', paddingVertical: 5, marginTop: 5}}>
-                              <Text style={{flex: 0.4,color: '#fff' }}>{item.name}</Text>
-                              <Text style={{flex: 0.6,color: '#fff' }}>{this.setTextProfile(item.name)}</Text>
+                            <View style={settingStyle.viewItem}>
+                              <Text style={settingStyle.itemLabel}>{item.name}</Text>
+                              <Text style={settingStyle.itemContent}>{this.setTextProfile(item.name)}</Text>
                             </View>
                         );
                     })}

@@ -6,6 +6,7 @@ import { Container, Button, Icon, Content, Picker, Textarea } from 'native-base'
 import {processStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import Communications from 'react-native-communications';
+import {themeUse} from '../themecolor';
 
 var today = new Date();
 let ngayxl = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear();
@@ -14,10 +15,7 @@ var ticketId = '';
 
 export default class Process extends Component {
   static navigationOptions = ({navigation}) => ({
-    headerStyle: {
-      backgroundColor: '#0057AA',
-    },
-    headerRight: <MaterialIcon name="history" color='white' size={24} style={{marginRight: 15}} 
+    headerRight: <MaterialIcon name="history" color={themeUse.inactiveIconBottom} size={24} style={{marginRight: 15}} 
     onPress={() => navigation.navigate('History', {
         reqUser: reqUser,
         ticketId: ticketId
@@ -100,10 +98,10 @@ export default class Process extends Component {
     }
 
     return (
-        <View style={{marginBottom: 12}}>
+        <View style={processStyle.pickItemSpace}>
             <View style={{flexDirection: 'row'}}>
                 <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
-                <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                <Text style={processStyle.headlines}>
                     Nguyên Nhân Cấp 2
                 </Text>
             </View>
@@ -116,9 +114,8 @@ export default class Process extends Component {
                     onValueChange={(itemValue, itemIndex) => this.chonCap2(itemValue)}
                     style={processStyle.picker}
                     itemTextStyle={{ fontSize: 12 }}
-                    textStyle={{ color: "#fff", fontSize: 12 }}
+                    textStyle={processStyle.contentText}
                     itemStyle={{
-                        backgroundColor: "#fff",
                         paddingLeft: 10
                     }}
                 >
@@ -136,10 +133,10 @@ export default class Process extends Component {
     }
 
     return (
-        <View style={{marginBottom: 0}}>
+        <View>
             <View style={{flexDirection: 'row'}}>
                 <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
-                <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                <Text style={processStyle.headlines}>
                     Nguyên Nhân Cấp 3
                 </Text>
             </View>
@@ -152,9 +149,8 @@ export default class Process extends Component {
                     onValueChange={(itemValue, itemIndex) => this.setState({selectedIdCause3: itemValue})}
                     style={processStyle.picker}
                     itemTextStyle={{ fontSize: 12 }}
-                    textStyle={{ color: "#fff", fontSize: 12 }}
+                    textStyle={processStyle.contentText}
                     itemStyle={{
-                        backgroundColor: "#fff",
                         paddingLeft: 10
                     }}
                 >
@@ -242,34 +238,34 @@ export default class Process extends Component {
 
     render() {
       return (
-        <LinearGradient colors={['#0057AA', '#A9F8FF']} style={{flex: 1}}
+        <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={{flex: 1}}
             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}} >
             <Content style={{flex: 1}} >
 
-                <View style={{flexDirection: 'row', marginTop: 15, marginBottom: 10}}>
-                    <View style={{flex: 2, justifyContent: 'center', marginLeft:20}}>
-                        <Text style={{fontWeight:'bold', color:'#A9F8FF', fontSize: 12}}>
+                <View style={processStyle.topInfoUser}>
+                    <View style={processStyle.leftTophead}>
+                        <Text style={processStyle.txtHeadtop}>
                             Người Gửi
                         </Text>
                     </View>
-                    <View style={{flex:3, borderLeftWidth: 1, borderLeftColor: '#A9F8FF', paddingLeft:10}}>
+                    <View style={processStyle.rightTophead}>
                         <View style={{flexDirection: 'row'}}>
-                            <Icon name='person' type='MaterialIcons' style={{fontSize: 12, color:'#A9F8FF', padding: 3}}/>
-                            <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
+                            <Icon name='person' type='MaterialIcons' style={processStyle.topheadIcon}/>
+                            <Text style={processStyle.topheadText}>{this.state.fullname} - Phòng {this.state.departmentCode}</Text>
                         </View>
                         <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Communications.phonecall(this.state.phone, true)} >
-                            <Icon name='call' type='MaterialIcons' style={{fontSize: 12, color: '#A9F8FF', padding: 3}}/>
-                            <Text style={{color:'#A9F8FF', fontSize: 12, marginLeft: 2}}>Gọi {this.state.phone}</Text>
+                            <Icon name='call' type='MaterialIcons' style={processStyle.topheadIcon}/>
+                            <Text style={processStyle.topheadText}>Gọi {this.state.phone}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
 
         {/* nguyen nhan dropdown box */}
             <View style={{margin: 12}} >
-                <View style={{marginBottom: 12}}>
+                <View style={processStyle.pickItemSpace}>
                     <View style={{flexDirection: 'row'}}>
                         <Icon name='lens' type='MaterialIcons' style={processStyle.iconCause}/>
-                        <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                        <Text style={processStyle.headlines}>
                             Nguyên Nhân Cấp 1
                         </Text>
                     </View>
@@ -282,9 +278,8 @@ export default class Process extends Component {
                             onValueChange={(itemValue, itemIndex) => this.chonCap1(itemValue)}
                             style={processStyle.picker}
                             itemTextStyle={{ fontSize: 12 }}
-                            textStyle={{ color: "#fff", fontSize: 12 }}
+                            textStyle={processStyle.contentText}
                             itemStyle={{
-                                backgroundColor: "#fff",
                                 paddingLeft: 10
                             }}
                         >
@@ -299,45 +294,45 @@ export default class Process extends Component {
             </View>
             
         {/* Phan noi dung */}
-                <View style={{margin: 15, marginBottom: 0}}>
+                <View style={processStyle.viewContent}>
                     <View style={{flexDirection: 'row'}}>
                         <Icon name='assignment' type='MaterialIcons' style={processStyle.iconContent}/>
-                        <Text style={{fontWeight:'bold', color:'#fff', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                        <Text style={processStyle.headlines}>
                             Nội Dung Yêu Cầu
                         </Text>
                     </View>
                     <View>
-                        <Text style={{color: '#fff', fontSize: 12}} >{this.state.reqTitle}</Text>
+                        <Text style={processStyle.contentText} >{this.state.reqTitle}</Text>
                     </View>
                 </View>
             {/* noi dung xu ly */}
-                <View style={{margin: 15, marginBottom: 0}}>
+                <View style={processStyle.viewContent}>
                     <View style={{flexDirection: 'row'}}>
                         <Icon name='document' style={processStyle.iconContent}/>
-                        <Text style={{fontWeight:'bold', color:'white', fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                        <Text style={processStyle.headlines}>
                             Nội Dung Xử Lý
                         </Text>
                     </View>
                     <Textarea
                         rowSpan={4} bordered
                         placeholder="Nhập nội dung yêu cầu..."
-                        placeholderTextColor='rgba(255,255,255,0.7)'
+                        placeholderTextColor={themeUse.placeholdertxtColor}
                         style={processStyle.textArea}
                         onChangeText={ndxl => this.setState({ndxl})}
                     />
                 </View>
             {/* noi dung xu ly noi bo */}
-                <View style={{margin: 15}}>
+                <View style={processStyle.viewContent}>
                     <View style={{flexDirection: 'row'}}>
                         <Icon name='album' type='MaterialIcons' style={processStyle.iconContent}/>
-                        <Text style={{fontWeight:'bold', color:'white',fontSize: 12, marginTop: -3, marginLeft: 4}}>
+                        <Text style={processStyle.headlines}>
                             Nội Dung Xử Lý Nội Bộ
                         </Text>
                     </View>
                     <Textarea
                         rowSpan={4} bordered
                         placeholder="Nhập nội dung yêu cầu..."
-                        placeholderTextColor='rgba(255,255,255,0.7)'
+                        placeholderTextColor={themeUse.placeholdertxtColor}
                         style={processStyle.textArea}
                         onChangeText={ndxlNB => this.setState({ndxlNB})}
                     />

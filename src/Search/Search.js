@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
-import styles from "./styles";
 import SelectMultiple from 'react-native-select-multiple'
 import Modal from "react-native-modal";
 import DatePicker from 'react-native-datepicker'
 import {Form, Picker} from "native-base";
+import {searchStyle} from '../LayoutStyle';
+import {themeUse} from '../themecolor';
 
 import Results from './Results'
 import DataAction from "../apiData";
@@ -76,14 +77,14 @@ export default class Search extends Component {
     }
 
 // thay đổi hệ thống
-    onValueChange_system(value: string) {
+    onValueChange_system(value) {
         this.setState({
             req_system: value,
         });
     }
 
     //thay đổi đơn vị gửi
-    onValueChange_DepartCode(value: string) {
+    onValueChange_DepartCode(value) {
         this.setState({
             req_dep_code: value,
         });
@@ -104,14 +105,14 @@ export default class Search extends Component {
     }
 
     // Thay đổi người gửi
-    onValueChange_Rep_User(value: string) {
+    onValueChange_Rep_User(value) {
         this.setState({
             req_user: value,
         });
     }
 
     //Thay đổi đơn vị xử lý
-    onValueChange_pro_dep_code(value: string) {
+    onValueChange_pro_dep_code(value) {
         this.setState({
             pro_dep_code: value,
         });
@@ -132,14 +133,14 @@ export default class Search extends Component {
     }
 
     //Thay đổi người xuử lí
-    onValueChange_pro_user(value: string) {
+    onValueChange_pro_user(value) {
         this.setState({
             pro_user: value,
         });
     }
 
     //Thay đổi trạng thái
-    onValueChange_req_status(value: string) {
+    onValueChange_req_status(value) {
         this.setState({
             req_status: value,
         });
@@ -170,30 +171,23 @@ export default class Search extends Component {
         }
     };
 
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#0057AA',
-        },
-        headerLeft: <Image style={{width: 105, height: 35, marginLeft: 25}} source={require('../img/mobi-top.png')}/>
-    };
-
     render() {
         return (
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={styles.bground}
+            <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={searchStyle.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
-                <TouchableOpacity style={styles.view_icon_add}
+                <TouchableOpacity style={searchStyle.view_icon_add}
                                   onPress={this._toggleModal}>
                     <Image source={require('../img/icon_add_white.png')} style={{width: 35, height: 35}}/>
                 </TouchableOpacity>
                 <Modal isVisible={this.state.isModalVisible}>
-                    <View style={styles.view_modal}>
+                    <View style={searchStyle.view_modal}>
                         <SelectMultiple
                             items={data_search}
                             selectedItems={this.state.selectedFruits}
                             onSelectionsChange={this.onSelectionsChange}/>
-                        <View style={styles.view_ok}>
-                            <TouchableOpacity onPress={this._toggleModal} style={styles.touchable_ok}>
-                                <Text style={styles.txt_btn_search}>OK</Text>
+                        <View style={searchStyle.view_ok}>
+                            <TouchableOpacity onPress={this._toggleModal} style={searchStyle.touchable_ok}>
+                                <Text style={searchStyle.txt_btn_search}>OK</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -208,8 +202,8 @@ export default class Search extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <View style={{flex: 0.2}}></View>
                                             <View style={{flex: 0.6}}>
-                                                <Text style={[styles.txt_value_sent]}>{item.lable}:</Text>
-                                                <View style={styles.input_search}>
+                                                <Text style={[searchStyle.txt_value_sent]}>{item.lable}:</Text>
+                                                <View style={searchStyle.input_search}>
                                                     <DatePicker
                                                         style={{
                                                             height: 30,
@@ -255,8 +249,8 @@ export default class Search extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <View style={{flex: 0.2}}></View>
                                             <View style={{flex: 0.6}}>
-                                                <Text style={[styles.txt_value_sent]}>{item.lable}:</Text>
-                                                <View style={styles.input_search}>
+                                                <Text style={[searchStyle.txt_value_sent]}>{item.lable}:</Text>
+                                                <View style={searchStyle.input_search}>
                                                     <DatePicker
                                                         style={{height: 30, justifyContent: 'center'}}
                                                         date={this.state.end_date}
@@ -280,7 +274,7 @@ export default class Search extends Component {
                                                                 borderWidth: 0,
                                                             },
                                                             dateText:{
-                                                                color: '#fff'
+                                                                color: themeUse.textColor
                                                             }
                                                         }}
                                                         onDateChange={(date) => {
@@ -299,8 +293,8 @@ export default class Search extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <View style={{flex: 0.2}}></View>
                                             <View style={{flex: 0.6}}>
-                                                <Text style={[styles.txt_value_sent]}>{item.lable}:</Text>
-                                                <View style={styles.input_search}>
+                                                <Text style={[searchStyle.txt_value_sent]}>{item.lable}:</Text>
+                                                <View style={searchStyle.input_search}>
                                                     <Form style={{
                                                         height: 30, flexDirection: 'row',
                                                         justifyContent: 'center',
@@ -310,8 +304,8 @@ export default class Search extends Component {
                                                             mode="dropdown"
                                                             selectedValue={this.state.req_system}
                                                             onValueChange={this.onValueChange_system.bind(this)}
-                                                            style={[styles.picker]}
-                                                            textStyle={{ color: "#fff" }}
+                                                            style={[searchStyle.picker]}
+                                                            textStyle={{ color: themeUse.textColor }}
                                                         >
                                                             <Picker.Item label="Tất cả" value=""/>
                                                             {this.state.arrSystemCode.map((item) => {
@@ -333,8 +327,8 @@ export default class Search extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <View style={{flex: 0.2}}></View>
                                             <View style={{flex: 0.6}}>
-                                                <Text style={[styles.txt_value_sent]}>{item.lable}:</Text>
-                                                <View style={styles.input_search}>
+                                                <Text style={[searchStyle.txt_value_sent]}>{item.lable}:</Text>
+                                                <View style={searchStyle.input_search}>
                                                     <Form style={{
                                                         height: 30, flexDirection: 'row',
                                                         justifyContent: 'center',
@@ -345,8 +339,8 @@ export default class Search extends Component {
                                                             mode="dropdown"
                                                             selectedValue={this.state.req_dep_code}
                                                             onValueChange={this.onValueChange_DepartCode.bind(this)}
-                                                            style={[styles.picker]}
-                                                            textStyle={{ color: "#fff" }}
+                                                            style={[searchStyle.picker]}
+                                                            textStyle={{ color: themeUse.textColor }}
                                                         >
                                                             <Picker.Item label="Tất cả" value=""/>
                                                             {this.state.dataDepartCode.map((item) => {
@@ -368,8 +362,8 @@ export default class Search extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <View style={{flex: 0.2}}></View>
                                             <View style={{flex: 0.6}}>
-                                                <Text style={[styles.txt_value_sent]}>{item.lable}:</Text>
-                                                <View style={styles.input_search}>
+                                                <Text style={[searchStyle.txt_value_sent]}>{item.lable}:</Text>
+                                                <View style={searchStyle.input_search}>
                                                     <Form style={{
                                                         height: 30, flexDirection: 'row',
                                                         justifyContent: 'center',
@@ -380,8 +374,8 @@ export default class Search extends Component {
                                                             mode="dropdown"
                                                             selectedValue={this.state.req_user}
                                                             onValueChange={this.onValueChange_Rep_User.bind(this)}
-                                                            style={[styles.picker]}
-                                                            textStyle={{ color: "#fff" }}
+                                                            style={[searchStyle.picker]}
+                                                            textStyle={{ color: themeUse.textColor }}
                                                         >
                                                             <Picker.Item label="Tất cả" value=""/>
                                                             {this.state.dataStaff.map((item) => {
@@ -403,12 +397,12 @@ export default class Search extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <View style={{flex: 0.2}}></View>
                                             <View style={{flex: 0.6}}>
-                                                <Text style={[styles.txt_value_sent]}>{item.lable}:</Text>
-                                                <View style={styles.input_search}>
+                                                <Text style={[searchStyle.txt_value_sent]}>{item.lable}:</Text>
+                                                <View style={searchStyle.input_search}>
                                                     <TextInput
-                                                        style={styles.txt_input_search}
+                                                        style={searchStyle.txt_input_search}
                                                         underlineColorAndroid="transparent"
-                                                        placeholderTextColor='rgba(255,255,255,0.7)'
+                                                        placeholderTextColor={themeUse.placeholdertxtColor}
                                                         placeholder={item.lable}
                                                         onChangeText={(text) => {
                                                             this.setTextSearch(item.lable, text)
@@ -430,12 +424,12 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}:</Text>
-                                                    <View style={[styles.input_search]}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}:</Text>
+                                                    <View style={[searchStyle.input_search]}>
                                                         <TextInput
-                                                            style={styles.txt_input_search}
+                                                            style={searchStyle.txt_input_search}
                                                             underlineColorAndroid="transparent"
-                                                            placeholderTextColor='rgba(255,255,255,0.7)'
+                                                            placeholderTextColor={themeUse.placeholdertxtColor}
                                                             placeholder={item.value}
                                                             onChangeText={(text) => {
                                                                 this.setTextSearch(item.value, text)
@@ -446,7 +440,7 @@ export default class Search extends Component {
                                                 <TouchableOpacity style={{flex: 0.2, marginTop: 15}}
                                                                   onPress={() => this.onDeleteItem(this.state.selectedFruits.length - 1)}>
                                                     <Image source={require('../img/icon_minus_black.png')}
-                                                           style={styles.view_icon_minus}/>
+                                                           style={searchStyle.view_icon_minus}/>
                                                 </TouchableOpacity>
                                             </View>
                                         )
@@ -456,8 +450,8 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}:</Text>
-                                                    <View style={styles.input_search}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}:</Text>
+                                                    <View style={searchStyle.input_search}>
                                                         <Form style={{
                                                             height: 30, flexDirection: 'row',
                                                             justifyContent: 'center',
@@ -468,8 +462,8 @@ export default class Search extends Component {
                                                                 mode="dropdown"
                                                                 selectedValue={this.state.pro_dep_code}
                                                                 onValueChange={this.onValueChange_pro_dep_code.bind(this)}
-                                                                style={[styles.picker]}
-                                                                textStyle={{ color: "#fff" }}
+                                                                style={[searchStyle.picker]}
+                                                                textStyle={{ color: themeUse.textColor }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataDepartCode.map((item) => {
@@ -485,7 +479,7 @@ export default class Search extends Component {
                                                 <TouchableOpacity style={{flex: 0.2, marginTop: 15}}
                                                                   onPress={() => this.onDeleteItem(this.state.selectedFruits.length - 1)}>
                                                     <Image source={require('../img/icon_minus_black.png')}
-                                                           style={styles.view_icon_minus}/>
+                                                           style={searchStyle.view_icon_minus}/>
                                                 </TouchableOpacity>
                                             </View>
                                         );
@@ -495,8 +489,8 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}:</Text>
-                                                    <View style={styles.input_search}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}:</Text>
+                                                    <View style={searchStyle.input_search}>
                                                         <Form style={{
                                                             height: 30, flexDirection: 'row',
                                                             justifyContent: 'center',
@@ -507,8 +501,8 @@ export default class Search extends Component {
                                                                 mode="dropdown"
                                                                 selectedValue={this.state.pro_user}
                                                                 onValueChange={this.onValueChange_pro_user.bind(this)}
-                                                                style={[styles.picker]}
-                                                                textStyle={{ color: "#fff" }}
+                                                                style={[searchStyle.picker]}
+                                                                textStyle={{ color: themeUse.textColor }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataStaff_pro.map((item) => {
@@ -524,7 +518,7 @@ export default class Search extends Component {
                                                 <TouchableOpacity style={{flex: 0.2, marginTop: 15}}
                                                                   onPress={() => this.onDeleteItem(this.state.selectedFruits.length - 1)}>
                                                     <Image source={require('../img/icon_minus_black.png')}
-                                                           style={styles.view_icon_minus}/>
+                                                           style={searchStyle.view_icon_minus}/>
                                                 </TouchableOpacity>
                                             </View>
                                         );
@@ -535,8 +529,8 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}: </Text>
-                                                    <View style={styles.input_search}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}: </Text>
+                                                    <View style={searchStyle.input_search}>
                                                         <Form style={{
                                                             height: 30, flexDirection: 'row',
                                                             justifyContent: 'center',
@@ -546,8 +540,8 @@ export default class Search extends Component {
                                                                 mode="dropdown"
                                                                 selectedValue={this.state.req_status}
                                                                 onValueChange={this.onValueChange_req_status.bind(this)}
-                                                                style={[styles.picker]}
-                                                                textStyle={{ color: "#fff" }}
+                                                                style={[searchStyle.picker]}
+                                                                textStyle={{ color: themeUse.textColor }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 <Picker.Item label="Phân công xử lí"
@@ -561,7 +555,7 @@ export default class Search extends Component {
                                                 <TouchableOpacity style={{flex: 0.2, marginTop: 15}}
                                                                   onPress={() => this.onDeleteItem(this.state.selectedFruits.length - 1)}>
                                                     <Image source={require('../img/icon_minus_black.png')}
-                                                           style={styles.view_icon_minus}/>
+                                                           style={searchStyle.view_icon_minus}/>
                                                 </TouchableOpacity>
                                             </View>
                                         );
@@ -574,12 +568,12 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}:</Text>
-                                                    <View style={[styles.input_search]}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}:</Text>
+                                                    <View style={[searchStyle.input_search]}>
                                                         <TextInput
-                                                            style={styles.txt_input_search}
+                                                            style={searchStyle.txt_input_search}
                                                             underlineColorAndroid="transparent"
-                                                            placeholderTextColor='rgba(255,255,255,0.7)'
+                                                            placeholderTextColor={themeUse.placeholdertxtColor}
                                                             placeholder={item.value}
                                                             onChangeText={(text) => {
                                                                 this.setTextSearch(item.value, text)
@@ -595,8 +589,8 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}</Text>
-                                                    <View style={styles.input_search}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}</Text>
+                                                    <View style={searchStyle.input_search}>
                                                         <Form style={{
                                                             height: 30, flexDirection: 'row',
                                                             justifyContent: 'center',
@@ -607,8 +601,8 @@ export default class Search extends Component {
                                                                 mode="dropdown"
                                                                 selectedValue={this.state.pro_dep_code}
                                                                 onValueChange={this.onValueChange_pro_dep_code.bind(this)}
-                                                                style={[styles.picker]}
-                                                                textStyle={{ color: "#fff" }}
+                                                                style={[searchStyle.picker]}
+                                                                textStyle={{ color: themeUse.textColor }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataDepartCode.map((item) => {
@@ -630,8 +624,8 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}</Text>
-                                                    <View style={styles.input_search}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}</Text>
+                                                    <View style={searchStyle.input_search}>
                                                         <Form style={{
                                                             height: 30, flexDirection: 'row',
                                                             justifyContent: 'center',
@@ -642,8 +636,8 @@ export default class Search extends Component {
                                                                 mode="dropdown"
                                                                 selectedValue={this.state.pro_user}
                                                                 onValueChange={this.onValueChange_pro_user.bind(this)}
-                                                                style={[styles.picker]}
-                                                                textStyle={{ color: "#fff" }}
+                                                                style={[searchStyle.picker]}
+                                                                textStyle={{ color: themeUse.textColor }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 {this.state.dataStaff_pro.map((item) => {
@@ -667,8 +661,8 @@ export default class Search extends Component {
                                             <View style={{flexDirection: 'row'}}>
                                                 <View style={{flex: 0.2}}></View>
                                                 <View style={{flex: 0.6}}>
-                                                    <Text style={[styles.txt_value_sent]}>{item.value}</Text>
-                                                    <View style={styles.input_search}>
+                                                    <Text style={[searchStyle.txt_value_sent]}>{item.value}</Text>
+                                                    <View style={searchStyle.input_search}>
                                                         <Form style={{
                                                             height: 30, flexDirection: 'row',
                                                             justifyContent: 'center',
@@ -678,8 +672,8 @@ export default class Search extends Component {
                                                                 mode="dropdown"
                                                                 selectedValue={this.state.req_status}
                                                                 onValueChange={this.onValueChange_req_status.bind(this)}
-                                                                style={[styles.picker]}
-                                                                textStyle={{ color: "#fff" }}
+                                                                style={[searchStyle.picker]}
+                                                                textStyle={{ color: themeUse.textColor }}
                                                             >
                                                                 <Picker.Item label="Tất cả" value=""/>
                                                                 <Picker.Item label="Phân công xử lí"
@@ -701,12 +695,12 @@ export default class Search extends Component {
                                     <View style={{flexDirection: 'row'}}>
                                         <View style={{flex: 0.2}}></View>
                                         <View style={{flex: 0.6}}>
-                                            <Text style={[styles.txt_value_sent]}>{item.value}</Text>
-                                            <View style={styles.input_search}>
+                                            <Text style={[searchStyle.txt_value_sent]}>{item.value}</Text>
+                                            <View style={searchStyle.input_search}>
                                                 <TextInput
-                                                    style={styles.txt_input_search}
+                                                    style={searchStyle.txt_input_search}
                                                     underlineColorAndroid="transparent"
-                                                    placeholderTextColor='#bbbdcd'
+                                                    placeholderTextColor={themeUse.placeholdertxtColor}
                                                     placeholder={item.value}
                                                     onChangeText={(text) => {
                                                         this.setTextSearch(item.value, text)
@@ -723,9 +717,9 @@ export default class Search extends Component {
                         }
                     </ScrollView>
                 </View>
-                <View style={styles.view_btn_search}>
+                <View style={searchStyle.view_btn_search}>
                     <TouchableOpacity
-                        style={styles.btn_search}
+                        style={searchStyle.btn_search}
                         onPress={() => this.props.navigation.navigate('Results', {
                             sd: this.state.start_date,
                             ed: this.state.end_date,
@@ -738,7 +732,7 @@ export default class Search extends Component {
                             tick: this.state.ticketid,
                             rstatus: this.state.req_status
                         })}>
-                        <Text style={styles.txt_btn_search}>Tìm kiếm</Text>
+                        <Text style={searchStyle.txt_btn_search}>Tìm kiếm</Text>
                     </TouchableOpacity>
                 </View>
             </LinearGradient>

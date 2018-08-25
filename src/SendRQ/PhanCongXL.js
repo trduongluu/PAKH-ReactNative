@@ -5,9 +5,8 @@ import {BlurView} from 'react-native-blur';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
-import DetailsSend from './DetailsSend'
 import { withNavigation } from 'react-navigation';
-
+import {themeUse} from '../themecolor';
 
 //Dinh nghia 1 Item cua Flatlist
 class ItemLayout extends Component {
@@ -84,15 +83,15 @@ class PhanCongXL extends Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.loading}
+                <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={receiveStyle.loading}
                                 start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
-                    <ActivityIndicator color='#A9F8FF'/>
+                    <ActivityIndicator color={themeUse.endGradient}/>
                 </LinearGradient>
             )
         }
 
         return (
-            <LinearGradient colors={['#0057AA', '#A9F8FF']} style={receiveStyle.bground}
+            <LinearGradient colors={[themeUse.startGradient, themeUse.endGradient]} style={receiveStyle.bground}
                             start={{x: 0, y: 0}} end={{x: 1.2, y: 1.1}}>
                 <View style={receiveStyle.Parea}>
                     <Image style={receiveStyle.Pimage} source={require('../img/Ptext.png')}/>
