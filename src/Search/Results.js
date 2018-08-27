@@ -6,10 +6,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {receiveStyle, searchStyle} from '../LayoutStyle';
-import Details from './Details'
 import Common from "../common/Common";
 import DataAction from "../apiData";
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 export default class Results extends Component {
 

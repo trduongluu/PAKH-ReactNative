@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {themeUse} from './themecolor';
+// import {themeUse} from './Setting/Setting';
 
 export const khung = StyleSheet.create({
     toplogo: {

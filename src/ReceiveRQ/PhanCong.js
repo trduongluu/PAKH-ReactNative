@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 var dataTest = [
   { "yeucau": "Tinh cuoc thue bao", "donvi": "TC", "code": "109245",

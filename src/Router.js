@@ -21,6 +21,7 @@ import DaXuly from './ReceiveRQ/DaXuly';
 import History from './ReceiveRQ/History';
 import DetailsSend from './SendRQ/DetailsSend';
 import {themeUse} from './themecolor';
+// import {themeUse} from './Setting/Setting';
 
 console.disableYellowBox = true;
 

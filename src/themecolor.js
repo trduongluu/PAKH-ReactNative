@@ -10,5 +10,5 @@ export const themeUse = {
     activeIconBottom: '#9CDCFF',
     inactiveIconBottom: 'white',
     lineColor: '#383838',
-    switchColor: '#f2fcf6'
+    switchColor: '#f9feff'
 }

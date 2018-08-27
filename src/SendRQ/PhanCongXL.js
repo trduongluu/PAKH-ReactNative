@@ -7,6 +7,7 @@ import {receiveStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import { withNavigation } from 'react-navigation';
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 //Dinh nghia 1 Item cua Flatlist
 class ItemLayout extends Component {

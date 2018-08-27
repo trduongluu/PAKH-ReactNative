@@ -5,8 +5,8 @@ import {Container, Header, Content, Icon,} from 'native-base';
 import {receiveStyle, searchStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import Communications from 'react-native-communications';
-import common from "../common/Common";
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 export default class Details extends Component {
 

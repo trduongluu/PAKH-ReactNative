@@ -6,6 +6,7 @@ import DataAction from '../apiData';
 import {processStyle} from '../LayoutStyle';
 import Communications from 'react-native-communications';
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 export default class History extends Component {
   static navigationOptions = {

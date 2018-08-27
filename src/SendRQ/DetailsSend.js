@@ -6,6 +6,7 @@ import {receiveStyle, searchStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import Communications from 'react-native-communications';
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 export default class DetailsSend extends Component {
 

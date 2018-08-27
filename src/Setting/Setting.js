@@ -7,18 +7,52 @@ import {settingStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import {themeUse} from '../themecolor';
 
+let themeblue = {
+    primaryColor: '#0057AA',
+    textColor: 'white',
+    textContent: 'white',
+    placeholdertxtColor: 'rgba(255,255,255,0.7)',
+    startGradient: '#0057AA',
+    endGradient: '#A9F8FF',
+    activityIndicator: '#A9F8FF',
+    borderItem: '#95afc0',
+    activeIconBottom: '#9CDCFF',
+    inactiveIconBottom: 'white',
+    lineColor: '#383838',
+    switchColor: '#f9feff'
+};
+let themelight = {
+    primaryColor: '#0057AA',
+    textColor: 'black',
+    textContent: 'black',
+    placeholdertxtColor: 'rgba(0,0,0,0.6)',
+    startGradient: 'white',
+    endGradient: 'white',
+    activityIndicator: 'black',
+    borderItem: 'black',
+    activeIconBottom: '#9CDCFF',
+    inactiveIconBottom: 'white',
+    lineColor: '#383838',
+    switchColor: '#f9feff'
+};
+// export var themeUse = themeblue;
+
 export default class Setting extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // infoUserss: this.props.navigation.state.params.infoUsers,
-            infoUserss: '',
-            on_off: true,
+            toggle: false
         }
     }
 
-    setOnOff() {
-        this.setState({on_off: !this.state.on_off})
+    changeColor(value) {
+        this.setState({toggle: value})
+        // if (value) {
+        //     themeUse = themelight
+        // } else {
+        //     themeUse = themeblue
+        // }
+        console.log(value);
     }
 
     render() {
@@ -29,7 +63,7 @@ export default class Setting extends Component {
                     <View style={settingStyle.taikhoanView}>
                         <Text style={settingStyle.txtHeadlines}>Tài Khoản</Text>
                         <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Profile', {infoU: this.state.infoUserss})}>
+                            onPress={() => this.props.navigation.navigate('Profile')}>
                             <Text style={settingStyle.txtChild}>Profile</Text>
                         </TouchableOpacity>
                         <TouchableOpacity>
@@ -40,9 +74,8 @@ export default class Setting extends Component {
                         <Text style={settingStyle.txtHeadlines}>Chủ đề giao diện</Text>
                         <Right>
                             <Switch
-                                onValueChange={(value) => this.setState({toggled: value})}
-                                value={this.state.toggled}
-                                onTintColor={themeUse.switchColor}
+                                value={this.state.toggle}
+                                onValueChange={(value) => this.changeColor(value)}
                                 thumbTintColor={themeUse.switchColor}
                             />
                         </Right>

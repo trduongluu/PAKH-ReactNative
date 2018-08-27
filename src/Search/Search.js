@@ -6,10 +6,9 @@ import Modal from "react-native-modal";
 import DatePicker from 'react-native-datepicker'
 import {Form, Picker} from "native-base";
 import {searchStyle} from '../LayoutStyle';
-import {themeUse} from '../themecolor';
-
-import Results from './Results'
 import DataAction from "../apiData";
+import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 var {height, width} = Dimensions.get('window');
 

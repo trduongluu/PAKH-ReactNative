@@ -15,6 +15,7 @@ import {
 import {sendStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import {themeUse} from '../themecolor';
+// import {themeUse} from '../Setting/Setting';
 
 export default class MakeRQ extends Component {
 

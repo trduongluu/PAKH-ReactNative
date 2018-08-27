@@ -3,8 +3,9 @@ import {View, Text, StatusBar, Image, TouchableOpacity, TextInput, ImageBackgrou
 import {Container, Header, Content} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import DataAction from "../apiData";
-import {themeUse} from '../themecolor';
 import {settingStyle} from '../LayoutStyle';
+import {themeUse} from '../themecolor';
+// import {themeUse} from './Setting';
 
 const data =[{name: 'Họ tên'},
     {name: 'Username'},
