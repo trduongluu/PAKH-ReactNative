@@ -167,9 +167,11 @@ export default class Process extends Component {
         DataAction.getUserInfo(value).then((user) => {
             DataAction.putRequest(this.state.ticketId, ngayxl, this.state.ndxl, user.username, user.departmentCode).then((resultPutRQ) => {
                 DataAction.putRqDetail(this.state.idRqForward, this.state.reqDate, user.departmentCode, user.username, ngayxl, this.state.ndxlNB, this.state.ndxl, this.state.selectedIdCause1, this.state.selectedIdCause3).then((resultPutRQD) => {
+                    console.log('put RQ: ' + JSON.stringify(resultPutRQ));
+                    console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
                     if (JSON.stringify(resultPutRQ) == 'true' && JSON.stringify(resultPutRQD) == 'true') {
-                        console.log('put RQ: ' + JSON.stringify(resultPutRQ));
-                        console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
+                        // console.log('put RQ: ' + JSON.stringify(resultPutRQ));
+                        // console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
                         Alert.alert('Thành công', 'Xử lý của bạn đã được kết thúc.');
                         this.props.navigation.navigate("ReceiveTopbar");
                     } else {

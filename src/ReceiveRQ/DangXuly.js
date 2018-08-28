@@ -15,8 +15,8 @@ class ItemLayout extends Component {
         <View style={receiveStyle.rowbg} >
           <View style={receiveStyle.rowSubline} >
             <View>
-            <Text style={receiveStyle.txtRQ_1} >Yêu cầu: {this.props.item.req_title}</Text>
-            <Text style={receiveStyle.txtRQ}>từ {this.props.item.req_dep_code}</Text>
+            <Text style={receiveStyle.txtRQ} >Yêu cầu: {this.props.item.req_title}</Text>
+            <Text style={receiveStyle.txtRQcode}>từ {this.props.item.req_dep_code}</Text>
             </View>
             <View style={receiveStyle.code_levelArea} >
               <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
@@ -51,6 +51,11 @@ export default class DangXuly extends Component {
       seed: 1,
       refreshing: false
     }
+  }
+
+  formatDate(inputDate) {
+    var date = new Date(inputDate);
+    return date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear();
   }
 
   LoadData() {
@@ -105,7 +110,7 @@ export default class DangXuly extends Component {
                 ticketId: item.ticket_id,
                 reqUser: item.req_user,
                 reqTitle: item.req_title,
-                reqDate: item.req_date
+                reqDate: this.formatDate(item.req_date)
               })} >
               <ItemLayout item={item} index={index} ></ItemLayout>
               </TouchableOpacity>

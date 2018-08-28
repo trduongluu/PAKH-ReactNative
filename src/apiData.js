@@ -3,7 +3,7 @@ import {AsyncStorage} from 'react-native';
 var ip = 'http://14.160.91.174:8080';       // IP config
 
 var date = new Date();
-let today = (date.getDate()+1) + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear();
+let today = date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear();
 let startday = '12-12-2017';
 
 // List API
@@ -112,6 +112,7 @@ var DataAction = {
     async putRqDetail(idRqForward, reqDate, userdep, username, ngayxl, ndxlNB, ndxl, idcauseCap1, idcauseCap3){
         var url = `${apiPutRqDetail}${idRqForward}?receiving_date=${reqDate}&receiving_dep_code=${userdep}&receiving_user=${username}&actualy_finish=${ngayxl}&return_content_private=${ndxlNB}&return_content=${ndxl}&dic_cause_id=${idcauseCap1}&dic_cause_id_private=${idcauseCap3}`;
         try {
+            console.log(url);
             let response = await fetch(url, {
                 method: 'PUT',
                 headers: {

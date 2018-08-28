@@ -14,7 +14,7 @@ class ItemLayout extends Component {
       <View style={receiveStyle.bground} >
         <View style={receiveStyle.rowbg} >
           <View style={receiveStyle.rowSubline} >
-            <Text style={receiveStyle.txtRQ} >Yeu cau: {this.props.item.req_title}</Text>
+            <Text style={receiveStyle.txtRQcode} >Yeu cau: {this.props.item.req_title}</Text>
             <View style={receiveStyle.code_levelArea} >
               <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
               {this.props.item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}

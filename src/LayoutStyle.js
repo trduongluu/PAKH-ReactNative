@@ -113,7 +113,7 @@ export const receiveStyle = StyleSheet.create({
         flex: 1,
         flexDirection: 'row'
     },
-    txtRQ: {
+    txtRQcode: {
         fontSize: 12,
         color: themeUse.textColor,
         fontWeight: 'bold',
@@ -121,11 +121,13 @@ export const receiveStyle = StyleSheet.create({
         height: 50,
         padding: 4
     },
-    txtRQ_1: {
+    txtRQ: {
         fontSize: 12,
         color: themeUse.textColor,
         fontWeight: 'bold',
         width: 200,
+        // height: 50,
+        paddingLeft: 3
     },
     code_levelArea: {
         flex: 1,
@@ -199,8 +201,8 @@ export const processStyle = StyleSheet.create({
     background: {
         backgroundColor: themeUse.textColor,
     },
-    iconCause: {fontSize: 8, color: themeUse.textColor, marginVertical: 4},
-    iconContent: {fontSize: 12, color: themeUse.textColor, marginVertical: 2},
+    iconCause: {fontSize: 8, color: themeUse.textColor, marginVertical: 1},
+    iconContent: {fontSize: 12, color: themeUse.textColor, marginVertical: -1},
     txtDataHistory: {color: themeUse.textColor, fontSize: 12, marginLeft: 10},
     headlines: { fontWeight: 'bold', color: themeUse.textColor, fontSize: 12, marginTop: -3, marginLeft: 4 },
     pickItemSpace: { marginBottom: 12 },
