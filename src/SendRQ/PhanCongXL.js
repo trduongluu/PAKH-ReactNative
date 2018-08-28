@@ -16,7 +16,7 @@ class ItemLayout extends Component {
             <View style={receiveStyle.bground}>
                 <View style={receiveStyle.rowbg}>
                     <View style={receiveStyle.rowSubline}>
-                        <Text style={receiveStyle.txtRQ}>Yeu cau: {this.props.item.req_content}</Text>
+                        <Text style={receiveStyle.txtRQ}>Yeu cau: {this.props.item.req_title}</Text>
                         <View style={receiveStyle.code_levelArea}>
                             <Text style={receiveStyle.txtCode}>{this.props.item.ticket_id}</Text>
                             {this.props.item.req_level == 'KHAN_CAP' ? <Ionicons name="md-star" color='red' size={18} style={receiveStyle.levelIcon} /> : null}
@@ -25,7 +25,7 @@ class ItemLayout extends Component {
                     <View style={receiveStyle.rowSubline}>
                         <View style={receiveStyle.timeArea}>
                             <Ionicons name="md-time" size={10} style={receiveStyle.clockIcon}/>
-                            <Text style={receiveStyle.txtTime}>{this.props.item.req_date} - {this.props.item.pro_plan}</Text>
+                            {this.props.item.pro_plan === null ? <Text style={receiveStyle.txtTime}>{this.props.item.req_date}</Text> : <Text style={receiveStyle.txtTime}>{this.props.item.req_date} - {this.props.item.pro_plan}</Text>}
                         </View>
                         <View style={receiveStyle.usersArea}>
                             <Ionicons name="md-send" size={10} style={receiveStyle.senderIcon}/>

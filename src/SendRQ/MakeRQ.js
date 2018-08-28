@@ -287,7 +287,7 @@ export default class MakeRQ extends Component {
                         <View style={{width: '30%'}}>
                             <Button
                                 style={sendStyle.btnF1}
-                                onPress={() => this.insertRequest()}
+                                onPress={() => {this.insertRequest(), this.props.navigation.navigate('SendTopbar')}}
                             >
                                 <Text style={sendStyle.textFoot}>Gửi Yêu Cầu</Text>
                             </Button>

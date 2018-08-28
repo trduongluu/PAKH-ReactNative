@@ -3,7 +3,7 @@ import {AsyncStorage} from 'react-native';
 var ip = 'http://14.160.91.174:8080';       // IP config
 
 var date = new Date();
-let today = date.getDate() + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear();
+let today = (date.getDate()+1) + '-' + parseInt(date.getMonth() + 1) + '-' + date.getFullYear();
 let startday = '12-12-2017';
 
 // List API

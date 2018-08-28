@@ -6,6 +6,7 @@ import {receiveStyle, searchStyle} from '../LayoutStyle';
 import DataAction from '../apiData';
 import Communications from 'react-native-communications';
 import {themeUse} from '../themecolor';
+import Common from '../common/Common'
 // import {themeUse} from '../Setting/Setting';
 
 export default class Details extends Component {
@@ -23,13 +24,11 @@ export default class Details extends Component {
 
         DataAction.getUserInfo(this.state.itemDetail.req_user).then((obj) => {
             this.setState({rep_users: obj})
-            console.log("Nguoi gui: " + this.state.rep_users)
         }).catch((error) => {
             return ''
         })
         DataAction.getUserInfo(this.state.itemDetail.pro_user).then((obj) => {
             this.setState({pro_users: obj})
-            console.log("Nguoi nhan: " + this.state.pro_users)
         }).catch((error) => {
             return ''
         })
@@ -127,7 +126,7 @@ export default class Details extends Component {
                             <Icon name='document' style={[{fontSize: 17, marginRight: 10}, searchStyle.txt_value_sent_details]}/>
                             <Text style={searchStyle.txt_value_reques}>Nội dung Xử lý</Text>
                         </View>
-                        <Text style={{color: themeUse.textColor, marginLeft: 22}}>{this.state.itemDetail.pro_content}</Text>
+                        <Text style={{color: themeUse.textColor, marginLeft: 22}}>{Common.formatContent(this.state.itemDetail.pro_content)}</Text>
                     </View>
 
                     <View style={searchStyle.view_content_reques}>

@@ -121,6 +121,12 @@ export const receiveStyle = StyleSheet.create({
         height: 50,
         padding: 4
     },
+    txtRQ_1: {
+        fontSize: 12,
+        color: themeUse.textColor,
+        fontWeight: 'bold',
+        width: 200,
+    },
     code_levelArea: {
         flex: 1,
         alignItems: 'flex-end',
