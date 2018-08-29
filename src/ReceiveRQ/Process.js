@@ -166,20 +166,28 @@ export default class Process extends Component {
     DataAction.getUser().then((value) => {
         DataAction.getUserInfo(value).then((user) => {
             DataAction.putRequest(this.state.ticketId, ngayxl, this.state.ndxl, user.username, user.departmentCode).then((resultPutRQ) => {
-                DataAction.putRqDetail(this.state.idRqForward, this.state.reqDate, user.departmentCode, user.username, ngayxl, this.state.ndxlNB, this.state.ndxl, this.state.selectedIdCause1, this.state.selectedIdCause3).then((resultPutRQD) => {
+                if (this.state.idRqForward != '' && this.state.idRqForward != null) {
+                    DataAction.putRqDetail(this.state.idRqForward, this.state.reqDate, user.departmentCode, user.username, ngayxl, this.state.ndxlNB, this.state.ndxl, this.state.selectedIdCause1, this.state.selectedIdCause3).then((resultPutRQD) => {
+                        console.log('put RQ: ' + JSON.stringify(resultPutRQ));
+                        console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
+                        if (JSON.stringify(resultPutRQ) == 'true' && JSON.stringify(resultPutRQD) == 'true') {
+                            Alert.alert('Thành công', 'Xử lý của bạn đã được kết thúc.');
+                            this.props.navigation.navigate("ReceiveTopbar");
+                        } else {
+                            Alert.alert('Thất bại', 'Xử lý của bạn chưa được kết thúc.');
+                        }
+                    }).catch((error) => {
+                        console.log(error)
+                    });
+                } else {
                     console.log('put RQ: ' + JSON.stringify(resultPutRQ));
-                    console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
-                    if (JSON.stringify(resultPutRQ) == 'true' && JSON.stringify(resultPutRQD) == 'true') {
-                        // console.log('put RQ: ' + JSON.stringify(resultPutRQ));
-                        // console.log('put RQDetail: ' + JSON.stringify(resultPutRQD));
+                    if (JSON.stringify(resultPutRQ) == 'true') {
                         Alert.alert('Thành công', 'Xử lý của bạn đã được kết thúc.');
                         this.props.navigation.navigate("ReceiveTopbar");
                     } else {
                         Alert.alert('Thất bại', 'Xử lý của bạn chưa được kết thúc.');
                     }
-                }).catch((error) => {
-                    console.log(error)
-                });
+                }
             }).catch((error) => {
                 console.log(error)
             });
@@ -193,8 +201,8 @@ export default class Process extends Component {
     DataAction.getUser().then((value) => {
         DataAction.getUserInfo(value).then((user) => {
             DataAction.responseRQ(this.state.ticketId, this.state.fwDep, this.state.fwUser, this.state.fwContent, this.state.reqDate, user.departmentCode, user.username, this.state.ndxl, this.state.ndxlNB, this.state.selectedIdCause1, this.state.selectedIdCause3).then((result) => {
+                console.log('response: ' + JSON.stringify(result));
                 if (JSON.stringify(result) == 'true') {
-                    console.log('response: ' + JSON.stringify(result));
                     Alert.alert('Thành công', 'Xử lý của bạn đã được chuyển tiếp.');
                     this.props.navigation.navigate("ReceiveTopbar");
                 } else {

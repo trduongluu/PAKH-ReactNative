@@ -92,6 +92,7 @@ var DataAction = {
     async putRequest(ticketid, ngayxl, ndxl, username, userdep){
         var url = `${apiPutRequest}${ticketid}?pro_actua=${ngayxl}&pro_content=${ndxl}&pro_user=${username}&pro_dep_code=${userdep}`;
         try {
+            console.log('url put rq: ' + url);
             let response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -112,7 +113,7 @@ var DataAction = {
     async putRqDetail(idRqForward, reqDate, userdep, username, ngayxl, ndxlNB, ndxl, idcauseCap1, idcauseCap3){
         var url = `${apiPutRqDetail}${idRqForward}?receiving_date=${reqDate}&receiving_dep_code=${userdep}&receiving_user=${username}&actualy_finish=${ngayxl}&return_content_private=${ndxlNB}&return_content=${ndxl}&dic_cause_id=${idcauseCap1}&dic_cause_id_private=${idcauseCap3}`;
         try {
-            console.log(url);
+            console.log('url put rqdetail: ' + url);
             let response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -133,6 +134,7 @@ var DataAction = {
     async responseRQ(ticketid, fwDep, fwUser, fwContent, reqDate, userdep, username, ndxl, ndxlNB, idcauseCap1, idcauseCap3){
         var url = `${apiResponse}ticketid=${ticketid}&fw_dep_code=${fwDep}&fw_user=${fwUser}&fw_content=${fwContent}&receiving_date=${reqDate}&receiving_dep_code=${userdep}&receiving_user=${username}&return_content=${ndxl}&return_content_private=${ndxlNB}&dic_cause_id=${idcauseCap1}&dic_cause_id_private=${idcauseCap3}`;
         try {
+            console.log('url response: ' + url);
             let response = await fetch(url, {
                 method: 'POST',
                 headers: {
